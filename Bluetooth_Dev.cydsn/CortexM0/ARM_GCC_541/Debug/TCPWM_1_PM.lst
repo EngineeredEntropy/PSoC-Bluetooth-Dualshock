@@ -1,0 +1,872 @@
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"TCPWM_1_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.TCPWM_1_SaveConfig,"ax",%progbits
+  20              		.align	2
+  21              		.global	TCPWM_1_SaveConfig
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	TCPWM_1_SaveConfig, %function
+  25              	TCPWM_1_SaveConfig:
+  26              	.LFB5:
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              		@ sp needed
+  32 0000 7047     		bx	lr
+  33              		.cfi_endproc
+  34              	.LFE5:
+  35              		.size	TCPWM_1_SaveConfig, .-TCPWM_1_SaveConfig
+  36 0002 C046     		.section	.text.TCPWM_1_Sleep,"ax",%progbits
+  37              		.align	2
+  38              		.global	TCPWM_1_Sleep
+  39              		.code	16
+  40              		.thumb_func
+  41              		.type	TCPWM_1_Sleep, %function
+  42              	TCPWM_1_Sleep:
+  43              	.LFB1:
+  44              		.file 1 "Generated_Source\\PSoC4\\TCPWM_1_PM.c"
+   1:Generated_Source\PSoC4/TCPWM_1_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/TCPWM_1_PM.c **** * File Name: TCPWM_1_PM.c
+   3:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Version 2.10
+   4:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+   5:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Description:
+   6:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  This file contains the setup, control, and status commands to support
+   7:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  the component operations in the low power mode.
+   8:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+   9:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Note:
+  10:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  11:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  12:Generated_Source\PSoC4/TCPWM_1_PM.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 2
+
+
+  14:Generated_Source\PSoC4/TCPWM_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/TCPWM_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/TCPWM_1_PM.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/TCPWM_1_PM.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  19:Generated_Source\PSoC4/TCPWM_1_PM.c **** #include "TCPWM_1.h"
+  20:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  21:Generated_Source\PSoC4/TCPWM_1_PM.c **** static TCPWM_1_BACKUP_STRUCT TCPWM_1_backup;
+  22:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  23:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  24:Generated_Source\PSoC4/TCPWM_1_PM.c **** /*******************************************************************************
+  25:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Function Name: TCPWM_1_SaveConfig
+  26:Generated_Source\PSoC4/TCPWM_1_PM.c **** ********************************************************************************
+  27:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  28:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Summary:
+  29:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  All configuration registers are retention. Nothing to save here.
+  30:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  31:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Parameters:
+  32:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  33:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  34:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Return:
+  35:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  36:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  37:Generated_Source\PSoC4/TCPWM_1_PM.c **** *******************************************************************************/
+  38:Generated_Source\PSoC4/TCPWM_1_PM.c **** void TCPWM_1_SaveConfig(void)
+  39:Generated_Source\PSoC4/TCPWM_1_PM.c **** {
+  40:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  41:Generated_Source\PSoC4/TCPWM_1_PM.c **** }
+  42:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  43:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  44:Generated_Source\PSoC4/TCPWM_1_PM.c **** /*******************************************************************************
+  45:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Function Name: TCPWM_1_Sleep
+  46:Generated_Source\PSoC4/TCPWM_1_PM.c **** ********************************************************************************
+  47:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  48:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Summary:
+  49:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  Stops the component operation and saves the user configuration.
+  50:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  51:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Parameters:
+  52:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  53:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  54:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Return:
+  55:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  56:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  57:Generated_Source\PSoC4/TCPWM_1_PM.c **** *******************************************************************************/
+  58:Generated_Source\PSoC4/TCPWM_1_PM.c **** void TCPWM_1_Sleep(void)
+  59:Generated_Source\PSoC4/TCPWM_1_PM.c **** {
+  45              		.loc 1 59 0
+  46              		.cfi_startproc
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 0, uses_anonymous_args = 0
+  60:Generated_Source\PSoC4/TCPWM_1_PM.c ****     if(0u != (TCPWM_1_BLOCK_CONTROL_REG & TCPWM_1_MASK))
+  49              		.loc 1 60 0
+  50 0000 0122     		movs	r2, #1
+  51 0002 064B     		ldr	r3, .L7
+  59:Generated_Source\PSoC4/TCPWM_1_PM.c ****     if(0u != (TCPWM_1_BLOCK_CONTROL_REG & TCPWM_1_MASK))
+  52              		.loc 1 59 0
+  53 0004 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 3
+
+
+  54              		.cfi_def_cfa_offset 8
+  55              		.cfi_offset 4, -8
+  56              		.cfi_offset 14, -4
+  57              		.loc 1 60 0
+  58 0006 1B68     		ldr	r3, [r3]
+  59 0008 1340     		ands	r3, r2
+  60 000a 04D1     		bne	.L6
+  61:Generated_Source\PSoC4/TCPWM_1_PM.c ****     {
+  62:Generated_Source\PSoC4/TCPWM_1_PM.c ****         TCPWM_1_backup.enableState = 1u;
+  63:Generated_Source\PSoC4/TCPWM_1_PM.c ****     }
+  64:Generated_Source\PSoC4/TCPWM_1_PM.c ****     else
+  65:Generated_Source\PSoC4/TCPWM_1_PM.c ****     {
+  66:Generated_Source\PSoC4/TCPWM_1_PM.c ****         TCPWM_1_backup.enableState = 0u;
+  61              		.loc 1 66 0
+  62 000c 044A     		ldr	r2, .L7+4
+  63 000e 1370     		strb	r3, [r2]
+  64              	.L4:
+  67:Generated_Source\PSoC4/TCPWM_1_PM.c ****     }
+  68:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  69:Generated_Source\PSoC4/TCPWM_1_PM.c ****     TCPWM_1_Stop();
+  65              		.loc 1 69 0
+  66 0010 FFF7FEFF 		bl	TCPWM_1_Stop
+  67              	.LVL0:
+  70:Generated_Source\PSoC4/TCPWM_1_PM.c ****     TCPWM_1_SaveConfig();
+  71:Generated_Source\PSoC4/TCPWM_1_PM.c **** }
+  68              		.loc 1 71 0
+  69              		@ sp needed
+  70 0014 10BD     		pop	{r4, pc}
+  71              	.L6:
+  62:Generated_Source\PSoC4/TCPWM_1_PM.c ****     }
+  72              		.loc 1 62 0
+  73 0016 024B     		ldr	r3, .L7+4
+  74 0018 1A70     		strb	r2, [r3]
+  75 001a F9E7     		b	.L4
+  76              	.L8:
+  77              		.align	2
+  78              	.L7:
+  79 001c 00000540 		.word	1074069504
+  80 0020 00000000 		.word	.LANCHOR0
+  81              		.cfi_endproc
+  82              	.LFE1:
+  83              		.size	TCPWM_1_Sleep, .-TCPWM_1_Sleep
+  84              		.section	.text.TCPWM_1_RestoreConfig,"ax",%progbits
+  85              		.align	2
+  86              		.global	TCPWM_1_RestoreConfig
+  87              		.code	16
+  88              		.thumb_func
+  89              		.type	TCPWM_1_RestoreConfig, %function
+  90              	TCPWM_1_RestoreConfig:
+  91              	.LFB2:
+  72:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  73:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  74:Generated_Source\PSoC4/TCPWM_1_PM.c **** /*******************************************************************************
+  75:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Function Name: TCPWM_1_RestoreConfig
+  76:Generated_Source\PSoC4/TCPWM_1_PM.c **** ********************************************************************************
+  77:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  78:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Summary:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 4
+
+
+  79:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  All configuration registers are retention. Nothing to restore here.
+  80:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  81:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Parameters:
+  82:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  83:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  84:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Return:
+  85:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+  86:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  87:Generated_Source\PSoC4/TCPWM_1_PM.c **** *******************************************************************************/
+  88:Generated_Source\PSoC4/TCPWM_1_PM.c **** void TCPWM_1_RestoreConfig(void)
+  89:Generated_Source\PSoC4/TCPWM_1_PM.c **** {
+  92              		.loc 1 89 0
+  93              		.cfi_startproc
+  94              		@ args = 0, pretend = 0, frame = 0
+  95              		@ frame_needed = 0, uses_anonymous_args = 0
+  96              		@ link register save eliminated.
+  90:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  91:Generated_Source\PSoC4/TCPWM_1_PM.c **** }
+  97              		.loc 1 91 0
+  98              		@ sp needed
+  99 0000 7047     		bx	lr
+ 100              		.cfi_endproc
+ 101              	.LFE2:
+ 102              		.size	TCPWM_1_RestoreConfig, .-TCPWM_1_RestoreConfig
+ 103 0002 C046     		.section	.text.TCPWM_1_Wakeup,"ax",%progbits
+ 104              		.align	2
+ 105              		.global	TCPWM_1_Wakeup
+ 106              		.code	16
+ 107              		.thumb_func
+ 108              		.type	TCPWM_1_Wakeup, %function
+ 109              	TCPWM_1_Wakeup:
+ 110              	.LFB3:
+  92:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  93:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+  94:Generated_Source\PSoC4/TCPWM_1_PM.c **** /*******************************************************************************
+  95:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Function Name: TCPWM_1_Wakeup
+  96:Generated_Source\PSoC4/TCPWM_1_PM.c **** ********************************************************************************
+  97:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+  98:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Summary:
+  99:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  Restores the user configuration and restores the enable state.
+ 100:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+ 101:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Parameters:
+ 102:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+ 103:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+ 104:Generated_Source\PSoC4/TCPWM_1_PM.c **** * Return:
+ 105:Generated_Source\PSoC4/TCPWM_1_PM.c **** *  None
+ 106:Generated_Source\PSoC4/TCPWM_1_PM.c **** *
+ 107:Generated_Source\PSoC4/TCPWM_1_PM.c **** *******************************************************************************/
+ 108:Generated_Source\PSoC4/TCPWM_1_PM.c **** void TCPWM_1_Wakeup(void)
+ 109:Generated_Source\PSoC4/TCPWM_1_PM.c **** {
+ 111              		.loc 1 109 0
+ 112              		.cfi_startproc
+ 113              		@ args = 0, pretend = 0, frame = 0
+ 114              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115 0000 10B5     		push	{r4, lr}
+ 116              		.cfi_def_cfa_offset 8
+ 117              		.cfi_offset 4, -8
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 5
+
+
+ 118              		.cfi_offset 14, -4
+ 110:Generated_Source\PSoC4/TCPWM_1_PM.c ****     TCPWM_1_RestoreConfig();
+ 111:Generated_Source\PSoC4/TCPWM_1_PM.c **** 
+ 112:Generated_Source\PSoC4/TCPWM_1_PM.c ****     if(0u != TCPWM_1_backup.enableState)
+ 119              		.loc 1 112 0
+ 120 0002 034B     		ldr	r3, .L15
+ 121 0004 1B78     		ldrb	r3, [r3]
+ 122 0006 002B     		cmp	r3, #0
+ 123 0008 01D0     		beq	.L10
+ 113:Generated_Source\PSoC4/TCPWM_1_PM.c ****     {
+ 114:Generated_Source\PSoC4/TCPWM_1_PM.c ****         TCPWM_1_Enable();
+ 124              		.loc 1 114 0
+ 125 000a FFF7FEFF 		bl	TCPWM_1_Enable
+ 126              	.LVL1:
+ 127              	.L10:
+ 115:Generated_Source\PSoC4/TCPWM_1_PM.c ****     }
+ 116:Generated_Source\PSoC4/TCPWM_1_PM.c **** }
+ 128              		.loc 1 116 0
+ 129              		@ sp needed
+ 130 000e 10BD     		pop	{r4, pc}
+ 131              	.L16:
+ 132              		.align	2
+ 133              	.L15:
+ 134 0010 00000000 		.word	.LANCHOR0
+ 135              		.cfi_endproc
+ 136              	.LFE3:
+ 137              		.size	TCPWM_1_Wakeup, .-TCPWM_1_Wakeup
+ 138              		.bss
+ 139              		.align	2
+ 140              		.set	.LANCHOR0,. + 0
+ 141              		.type	TCPWM_1_backup, %object
+ 142              		.size	TCPWM_1_backup, 1
+ 143              	TCPWM_1_backup:
+ 144 0000 00       		.space	1
+ 145              		.text
+ 146              	.Letext0:
+ 147              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 148              		.file 3 "Generated_Source\\PSoC4\\TCPWM_1.h"
+ 149              		.section	.debug_info,"",%progbits
+ 150              	.Ldebug_info0:
+ 151 0000 5A010000 		.4byte	0x15a
+ 152 0004 0400     		.2byte	0x4
+ 153 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 154 000a 04       		.byte	0x4
+ 155 000b 01       		.uleb128 0x1
+ 156 000c 08010000 		.4byte	.LASF24
+ 157 0010 0C       		.byte	0xc
+ 158 0011 69000000 		.4byte	.LASF25
+ 159 0015 A3010000 		.4byte	.LASF26
+ 160 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 161 001d 00000000 		.4byte	0
+ 162 0021 00000000 		.4byte	.Ldebug_line0
+ 163 0025 02       		.uleb128 0x2
+ 164 0026 01       		.byte	0x1
+ 165 0027 06       		.byte	0x6
+ 166 0028 20020000 		.4byte	.LASF0
+ 167 002c 02       		.uleb128 0x2
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 6
+
+
+ 168 002d 01       		.byte	0x1
+ 169 002e 08       		.byte	0x8
+ 170 002f D5000000 		.4byte	.LASF1
+ 171 0033 02       		.uleb128 0x2
+ 172 0034 02       		.byte	0x2
+ 173 0035 05       		.byte	0x5
+ 174 0036 47020000 		.4byte	.LASF2
+ 175 003a 02       		.uleb128 0x2
+ 176 003b 02       		.byte	0x2
+ 177 003c 07       		.byte	0x7
+ 178 003d 0D020000 		.4byte	.LASF3
+ 179 0041 02       		.uleb128 0x2
+ 180 0042 04       		.byte	0x4
+ 181 0043 05       		.byte	0x5
+ 182 0044 F2000000 		.4byte	.LASF4
+ 183 0048 02       		.uleb128 0x2
+ 184 0049 04       		.byte	0x4
+ 185 004a 07       		.byte	0x7
+ 186 004b 93000000 		.4byte	.LASF5
+ 187 004f 02       		.uleb128 0x2
+ 188 0050 08       		.byte	0x8
+ 189 0051 05       		.byte	0x5
+ 190 0052 00000000 		.4byte	.LASF6
+ 191 0056 02       		.uleb128 0x2
+ 192 0057 08       		.byte	0x8
+ 193 0058 07       		.byte	0x7
+ 194 0059 A5000000 		.4byte	.LASF7
+ 195 005d 03       		.uleb128 0x3
+ 196 005e 04       		.byte	0x4
+ 197 005f 05       		.byte	0x5
+ 198 0060 696E7400 		.ascii	"int\000"
+ 199 0064 02       		.uleb128 0x2
+ 200 0065 04       		.byte	0x4
+ 201 0066 07       		.byte	0x7
+ 202 0067 21000000 		.4byte	.LASF8
+ 203 006b 04       		.uleb128 0x4
+ 204 006c 8D000000 		.4byte	.LASF9
+ 205 0070 02       		.byte	0x2
+ 206 0071 D201     		.2byte	0x1d2
+ 207 0073 2C000000 		.4byte	0x2c
+ 208 0077 04       		.uleb128 0x4
+ 209 0078 0E000000 		.4byte	.LASF10
+ 210 007c 02       		.byte	0x2
+ 211 007d D401     		.2byte	0x1d4
+ 212 007f 48000000 		.4byte	0x48
+ 213 0083 02       		.uleb128 0x2
+ 214 0084 04       		.byte	0x4
+ 215 0085 04       		.byte	0x4
+ 216 0086 BC000000 		.4byte	.LASF11
+ 217 008a 02       		.uleb128 0x2
+ 218 008b 08       		.byte	0x8
+ 219 008c 04       		.byte	0x4
+ 220 008d 01010000 		.4byte	.LASF12
+ 221 0091 02       		.uleb128 0x2
+ 222 0092 01       		.byte	0x1
+ 223 0093 08       		.byte	0x8
+ 224 0094 C2000000 		.4byte	.LASF13
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 7
+
+
+ 225 0098 04       		.uleb128 0x4
+ 226 0099 FB000000 		.4byte	.LASF14
+ 227 009d 02       		.byte	0x2
+ 228 009e 7E02     		.2byte	0x27e
+ 229 00a0 A4000000 		.4byte	0xa4
+ 230 00a4 05       		.uleb128 0x5
+ 231 00a5 77000000 		.4byte	0x77
+ 232 00a9 02       		.uleb128 0x2
+ 233 00aa 08       		.byte	0x8
+ 234 00ab 04       		.byte	0x4
+ 235 00ac 3B020000 		.4byte	.LASF15
+ 236 00b0 02       		.uleb128 0x2
+ 237 00b1 04       		.byte	0x4
+ 238 00b2 07       		.byte	0x7
+ 239 00b3 64020000 		.4byte	.LASF16
+ 240 00b7 06       		.uleb128 0x6
+ 241 00b8 01       		.byte	0x1
+ 242 00b9 03       		.byte	0x3
+ 243 00ba 21       		.byte	0x21
+ 244 00bb CC000000 		.4byte	0xcc
+ 245 00bf 07       		.uleb128 0x7
+ 246 00c0 15000000 		.4byte	.LASF27
+ 247 00c4 03       		.byte	0x3
+ 248 00c5 23       		.byte	0x23
+ 249 00c6 6B000000 		.4byte	0x6b
+ 250 00ca 00       		.byte	0
+ 251 00cb 00       		.byte	0
+ 252 00cc 08       		.uleb128 0x8
+ 253 00cd 3D000000 		.4byte	.LASF17
+ 254 00d1 03       		.byte	0x3
+ 255 00d2 24       		.byte	0x24
+ 256 00d3 B7000000 		.4byte	0xb7
+ 257 00d7 09       		.uleb128 0x9
+ 258 00d8 51020000 		.4byte	.LASF18
+ 259 00dc 01       		.byte	0x1
+ 260 00dd 26       		.byte	0x26
+ 261 00de 01       		.byte	0x1
+ 262 00df 09       		.uleb128 0x9
+ 263 00e0 53000000 		.4byte	.LASF19
+ 264 00e4 01       		.byte	0x1
+ 265 00e5 58       		.byte	0x58
+ 266 00e6 01       		.byte	0x1
+ 267 00e7 0A       		.uleb128 0xa
+ 268 00e8 C7000000 		.4byte	.LASF20
+ 269 00ec 01       		.byte	0x1
+ 270 00ed 3A       		.byte	0x3a
+ 271 00ee 00000000 		.4byte	.LFB1
+ 272 00f2 24000000 		.4byte	.LFE1-.LFB1
+ 273 00f6 01       		.uleb128 0x1
+ 274 00f7 9C       		.byte	0x9c
+ 275 00f8 06010000 		.4byte	0x106
+ 276 00fc 0B       		.uleb128 0xb
+ 277 00fd 14000000 		.4byte	.LVL0
+ 278 0101 45010000 		.4byte	0x145
+ 279 0105 00       		.byte	0
+ 280 0106 0C       		.uleb128 0xc
+ 281 0107 DF000000 		.4byte	0xdf
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 8
+
+
+ 282 010b 00000000 		.4byte	.LFB2
+ 283 010f 02000000 		.4byte	.LFE2-.LFB2
+ 284 0113 01       		.uleb128 0x1
+ 285 0114 9C       		.byte	0x9c
+ 286 0115 0A       		.uleb128 0xa
+ 287 0116 2C020000 		.4byte	.LASF21
+ 288 011a 01       		.byte	0x1
+ 289 011b 6C       		.byte	0x6c
+ 290 011c 00000000 		.4byte	.LFB3
+ 291 0120 14000000 		.4byte	.LFE3-.LFB3
+ 292 0124 01       		.uleb128 0x1
+ 293 0125 9C       		.byte	0x9c
+ 294 0126 34010000 		.4byte	0x134
+ 295 012a 0B       		.uleb128 0xb
+ 296 012b 0E000000 		.4byte	.LVL1
+ 297 012f 51010000 		.4byte	0x151
+ 298 0133 00       		.byte	0
+ 299 0134 0D       		.uleb128 0xd
+ 300 0135 2E000000 		.4byte	.LASF28
+ 301 0139 01       		.byte	0x1
+ 302 013a 15       		.byte	0x15
+ 303 013b CC000000 		.4byte	0xcc
+ 304 013f 05       		.uleb128 0x5
+ 305 0140 03       		.byte	0x3
+ 306 0141 00000000 		.4byte	TCPWM_1_backup
+ 307 0145 0E       		.uleb128 0xe
+ 308 0146 96010000 		.4byte	.LASF22
+ 309 014a 96010000 		.4byte	.LASF22
+ 310 014e 03       		.byte	0x3
+ 311 014f 3301     		.2byte	0x133
+ 312 0151 0E       		.uleb128 0xe
+ 313 0152 E3000000 		.4byte	.LASF23
+ 314 0156 E3000000 		.4byte	.LASF23
+ 315 015a 03       		.byte	0x3
+ 316 015b 3101     		.2byte	0x131
+ 317 015d 00       		.byte	0
+ 318              		.section	.debug_abbrev,"",%progbits
+ 319              	.Ldebug_abbrev0:
+ 320 0000 01       		.uleb128 0x1
+ 321 0001 11       		.uleb128 0x11
+ 322 0002 01       		.byte	0x1
+ 323 0003 25       		.uleb128 0x25
+ 324 0004 0E       		.uleb128 0xe
+ 325 0005 13       		.uleb128 0x13
+ 326 0006 0B       		.uleb128 0xb
+ 327 0007 03       		.uleb128 0x3
+ 328 0008 0E       		.uleb128 0xe
+ 329 0009 1B       		.uleb128 0x1b
+ 330 000a 0E       		.uleb128 0xe
+ 331 000b 55       		.uleb128 0x55
+ 332 000c 17       		.uleb128 0x17
+ 333 000d 11       		.uleb128 0x11
+ 334 000e 01       		.uleb128 0x1
+ 335 000f 10       		.uleb128 0x10
+ 336 0010 17       		.uleb128 0x17
+ 337 0011 00       		.byte	0
+ 338 0012 00       		.byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 9
+
+
+ 339 0013 02       		.uleb128 0x2
+ 340 0014 24       		.uleb128 0x24
+ 341 0015 00       		.byte	0
+ 342 0016 0B       		.uleb128 0xb
+ 343 0017 0B       		.uleb128 0xb
+ 344 0018 3E       		.uleb128 0x3e
+ 345 0019 0B       		.uleb128 0xb
+ 346 001a 03       		.uleb128 0x3
+ 347 001b 0E       		.uleb128 0xe
+ 348 001c 00       		.byte	0
+ 349 001d 00       		.byte	0
+ 350 001e 03       		.uleb128 0x3
+ 351 001f 24       		.uleb128 0x24
+ 352 0020 00       		.byte	0
+ 353 0021 0B       		.uleb128 0xb
+ 354 0022 0B       		.uleb128 0xb
+ 355 0023 3E       		.uleb128 0x3e
+ 356 0024 0B       		.uleb128 0xb
+ 357 0025 03       		.uleb128 0x3
+ 358 0026 08       		.uleb128 0x8
+ 359 0027 00       		.byte	0
+ 360 0028 00       		.byte	0
+ 361 0029 04       		.uleb128 0x4
+ 362 002a 16       		.uleb128 0x16
+ 363 002b 00       		.byte	0
+ 364 002c 03       		.uleb128 0x3
+ 365 002d 0E       		.uleb128 0xe
+ 366 002e 3A       		.uleb128 0x3a
+ 367 002f 0B       		.uleb128 0xb
+ 368 0030 3B       		.uleb128 0x3b
+ 369 0031 05       		.uleb128 0x5
+ 370 0032 49       		.uleb128 0x49
+ 371 0033 13       		.uleb128 0x13
+ 372 0034 00       		.byte	0
+ 373 0035 00       		.byte	0
+ 374 0036 05       		.uleb128 0x5
+ 375 0037 35       		.uleb128 0x35
+ 376 0038 00       		.byte	0
+ 377 0039 49       		.uleb128 0x49
+ 378 003a 13       		.uleb128 0x13
+ 379 003b 00       		.byte	0
+ 380 003c 00       		.byte	0
+ 381 003d 06       		.uleb128 0x6
+ 382 003e 13       		.uleb128 0x13
+ 383 003f 01       		.byte	0x1
+ 384 0040 0B       		.uleb128 0xb
+ 385 0041 0B       		.uleb128 0xb
+ 386 0042 3A       		.uleb128 0x3a
+ 387 0043 0B       		.uleb128 0xb
+ 388 0044 3B       		.uleb128 0x3b
+ 389 0045 0B       		.uleb128 0xb
+ 390 0046 01       		.uleb128 0x1
+ 391 0047 13       		.uleb128 0x13
+ 392 0048 00       		.byte	0
+ 393 0049 00       		.byte	0
+ 394 004a 07       		.uleb128 0x7
+ 395 004b 0D       		.uleb128 0xd
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 10
+
+
+ 396 004c 00       		.byte	0
+ 397 004d 03       		.uleb128 0x3
+ 398 004e 0E       		.uleb128 0xe
+ 399 004f 3A       		.uleb128 0x3a
+ 400 0050 0B       		.uleb128 0xb
+ 401 0051 3B       		.uleb128 0x3b
+ 402 0052 0B       		.uleb128 0xb
+ 403 0053 49       		.uleb128 0x49
+ 404 0054 13       		.uleb128 0x13
+ 405 0055 38       		.uleb128 0x38
+ 406 0056 0B       		.uleb128 0xb
+ 407 0057 00       		.byte	0
+ 408 0058 00       		.byte	0
+ 409 0059 08       		.uleb128 0x8
+ 410 005a 16       		.uleb128 0x16
+ 411 005b 00       		.byte	0
+ 412 005c 03       		.uleb128 0x3
+ 413 005d 0E       		.uleb128 0xe
+ 414 005e 3A       		.uleb128 0x3a
+ 415 005f 0B       		.uleb128 0xb
+ 416 0060 3B       		.uleb128 0x3b
+ 417 0061 0B       		.uleb128 0xb
+ 418 0062 49       		.uleb128 0x49
+ 419 0063 13       		.uleb128 0x13
+ 420 0064 00       		.byte	0
+ 421 0065 00       		.byte	0
+ 422 0066 09       		.uleb128 0x9
+ 423 0067 2E       		.uleb128 0x2e
+ 424 0068 00       		.byte	0
+ 425 0069 3F       		.uleb128 0x3f
+ 426 006a 19       		.uleb128 0x19
+ 427 006b 03       		.uleb128 0x3
+ 428 006c 0E       		.uleb128 0xe
+ 429 006d 3A       		.uleb128 0x3a
+ 430 006e 0B       		.uleb128 0xb
+ 431 006f 3B       		.uleb128 0x3b
+ 432 0070 0B       		.uleb128 0xb
+ 433 0071 27       		.uleb128 0x27
+ 434 0072 19       		.uleb128 0x19
+ 435 0073 20       		.uleb128 0x20
+ 436 0074 0B       		.uleb128 0xb
+ 437 0075 00       		.byte	0
+ 438 0076 00       		.byte	0
+ 439 0077 0A       		.uleb128 0xa
+ 440 0078 2E       		.uleb128 0x2e
+ 441 0079 01       		.byte	0x1
+ 442 007a 3F       		.uleb128 0x3f
+ 443 007b 19       		.uleb128 0x19
+ 444 007c 03       		.uleb128 0x3
+ 445 007d 0E       		.uleb128 0xe
+ 446 007e 3A       		.uleb128 0x3a
+ 447 007f 0B       		.uleb128 0xb
+ 448 0080 3B       		.uleb128 0x3b
+ 449 0081 0B       		.uleb128 0xb
+ 450 0082 27       		.uleb128 0x27
+ 451 0083 19       		.uleb128 0x19
+ 452 0084 11       		.uleb128 0x11
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 11
+
+
+ 453 0085 01       		.uleb128 0x1
+ 454 0086 12       		.uleb128 0x12
+ 455 0087 06       		.uleb128 0x6
+ 456 0088 40       		.uleb128 0x40
+ 457 0089 18       		.uleb128 0x18
+ 458 008a 9742     		.uleb128 0x2117
+ 459 008c 19       		.uleb128 0x19
+ 460 008d 01       		.uleb128 0x1
+ 461 008e 13       		.uleb128 0x13
+ 462 008f 00       		.byte	0
+ 463 0090 00       		.byte	0
+ 464 0091 0B       		.uleb128 0xb
+ 465 0092 898201   		.uleb128 0x4109
+ 466 0095 00       		.byte	0
+ 467 0096 11       		.uleb128 0x11
+ 468 0097 01       		.uleb128 0x1
+ 469 0098 31       		.uleb128 0x31
+ 470 0099 13       		.uleb128 0x13
+ 471 009a 00       		.byte	0
+ 472 009b 00       		.byte	0
+ 473 009c 0C       		.uleb128 0xc
+ 474 009d 2E       		.uleb128 0x2e
+ 475 009e 00       		.byte	0
+ 476 009f 31       		.uleb128 0x31
+ 477 00a0 13       		.uleb128 0x13
+ 478 00a1 11       		.uleb128 0x11
+ 479 00a2 01       		.uleb128 0x1
+ 480 00a3 12       		.uleb128 0x12
+ 481 00a4 06       		.uleb128 0x6
+ 482 00a5 40       		.uleb128 0x40
+ 483 00a6 18       		.uleb128 0x18
+ 484 00a7 9742     		.uleb128 0x2117
+ 485 00a9 19       		.uleb128 0x19
+ 486 00aa 00       		.byte	0
+ 487 00ab 00       		.byte	0
+ 488 00ac 0D       		.uleb128 0xd
+ 489 00ad 34       		.uleb128 0x34
+ 490 00ae 00       		.byte	0
+ 491 00af 03       		.uleb128 0x3
+ 492 00b0 0E       		.uleb128 0xe
+ 493 00b1 3A       		.uleb128 0x3a
+ 494 00b2 0B       		.uleb128 0xb
+ 495 00b3 3B       		.uleb128 0x3b
+ 496 00b4 0B       		.uleb128 0xb
+ 497 00b5 49       		.uleb128 0x49
+ 498 00b6 13       		.uleb128 0x13
+ 499 00b7 02       		.uleb128 0x2
+ 500 00b8 18       		.uleb128 0x18
+ 501 00b9 00       		.byte	0
+ 502 00ba 00       		.byte	0
+ 503 00bb 0E       		.uleb128 0xe
+ 504 00bc 2E       		.uleb128 0x2e
+ 505 00bd 00       		.byte	0
+ 506 00be 3F       		.uleb128 0x3f
+ 507 00bf 19       		.uleb128 0x19
+ 508 00c0 3C       		.uleb128 0x3c
+ 509 00c1 19       		.uleb128 0x19
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 12
+
+
+ 510 00c2 6E       		.uleb128 0x6e
+ 511 00c3 0E       		.uleb128 0xe
+ 512 00c4 03       		.uleb128 0x3
+ 513 00c5 0E       		.uleb128 0xe
+ 514 00c6 3A       		.uleb128 0x3a
+ 515 00c7 0B       		.uleb128 0xb
+ 516 00c8 3B       		.uleb128 0x3b
+ 517 00c9 05       		.uleb128 0x5
+ 518 00ca 00       		.byte	0
+ 519 00cb 00       		.byte	0
+ 520 00cc 00       		.byte	0
+ 521              		.section	.debug_aranges,"",%progbits
+ 522 0000 2C000000 		.4byte	0x2c
+ 523 0004 0200     		.2byte	0x2
+ 524 0006 00000000 		.4byte	.Ldebug_info0
+ 525 000a 04       		.byte	0x4
+ 526 000b 00       		.byte	0
+ 527 000c 0000     		.2byte	0
+ 528 000e 0000     		.2byte	0
+ 529 0010 00000000 		.4byte	.LFB1
+ 530 0014 24000000 		.4byte	.LFE1-.LFB1
+ 531 0018 00000000 		.4byte	.LFB2
+ 532 001c 02000000 		.4byte	.LFE2-.LFB2
+ 533 0020 00000000 		.4byte	.LFB3
+ 534 0024 14000000 		.4byte	.LFE3-.LFB3
+ 535 0028 00000000 		.4byte	0
+ 536 002c 00000000 		.4byte	0
+ 537              		.section	.debug_ranges,"",%progbits
+ 538              	.Ldebug_ranges0:
+ 539 0000 00000000 		.4byte	.LFB1
+ 540 0004 24000000 		.4byte	.LFE1
+ 541 0008 00000000 		.4byte	.LFB2
+ 542 000c 02000000 		.4byte	.LFE2
+ 543 0010 00000000 		.4byte	.LFB3
+ 544 0014 14000000 		.4byte	.LFE3
+ 545 0018 00000000 		.4byte	0
+ 546 001c 00000000 		.4byte	0
+ 547              		.section	.debug_line,"",%progbits
+ 548              	.Ldebug_line0:
+ 549 0000 96000000 		.section	.debug_str,"MS",%progbits,1
+ 549      02005400 
+ 549      00000201 
+ 549      FB0E0D00 
+ 549      01010101 
+ 550              	.LASF6:
+ 551 0000 6C6F6E67 		.ascii	"long long int\000"
+ 551      206C6F6E 
+ 551      6720696E 
+ 551      7400
+ 552              	.LASF10:
+ 553 000e 75696E74 		.ascii	"uint32\000"
+ 553      333200
+ 554              	.LASF27:
+ 555 0015 656E6162 		.ascii	"enableState\000"
+ 555      6C655374 
+ 555      61746500 
+ 556              	.LASF8:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 13
+
+
+ 557 0021 756E7369 		.ascii	"unsigned int\000"
+ 557      676E6564 
+ 557      20696E74 
+ 557      00
+ 558              	.LASF28:
+ 559 002e 54435057 		.ascii	"TCPWM_1_backup\000"
+ 559      4D5F315F 
+ 559      6261636B 
+ 559      757000
+ 560              	.LASF17:
+ 561 003d 54435057 		.ascii	"TCPWM_1_BACKUP_STRUCT\000"
+ 561      4D5F315F 
+ 561      4241434B 
+ 561      55505F53 
+ 561      54525543 
+ 562              	.LASF19:
+ 563 0053 54435057 		.ascii	"TCPWM_1_RestoreConfig\000"
+ 563      4D5F315F 
+ 563      52657374 
+ 563      6F726543 
+ 563      6F6E6669 
+ 564              	.LASF25:
+ 565 0069 47656E65 		.ascii	"Generated_Source\\PSoC4\\TCPWM_1_PM.c\000"
+ 565      72617465 
+ 565      645F536F 
+ 565      75726365 
+ 565      5C50536F 
+ 566              	.LASF9:
+ 567 008d 75696E74 		.ascii	"uint8\000"
+ 567      3800
+ 568              	.LASF5:
+ 569 0093 6C6F6E67 		.ascii	"long unsigned int\000"
+ 569      20756E73 
+ 569      69676E65 
+ 569      6420696E 
+ 569      7400
+ 570              	.LASF7:
+ 571 00a5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 571      206C6F6E 
+ 571      6720756E 
+ 571      7369676E 
+ 571      65642069 
+ 572              	.LASF11:
+ 573 00bc 666C6F61 		.ascii	"float\000"
+ 573      7400
+ 574              	.LASF13:
+ 575 00c2 63686172 		.ascii	"char\000"
+ 575      00
+ 576              	.LASF20:
+ 577 00c7 54435057 		.ascii	"TCPWM_1_Sleep\000"
+ 577      4D5F315F 
+ 577      536C6565 
+ 577      7000
+ 578              	.LASF1:
+ 579 00d5 756E7369 		.ascii	"unsigned char\000"
+ 579      676E6564 
+ 579      20636861 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 14
+
+
+ 579      7200
+ 580              	.LASF23:
+ 581 00e3 54435057 		.ascii	"TCPWM_1_Enable\000"
+ 581      4D5F315F 
+ 581      456E6162 
+ 581      6C6500
+ 582              	.LASF4:
+ 583 00f2 6C6F6E67 		.ascii	"long int\000"
+ 583      20696E74 
+ 583      00
+ 584              	.LASF14:
+ 585 00fb 72656733 		.ascii	"reg32\000"
+ 585      3200
+ 586              	.LASF12:
+ 587 0101 646F7562 		.ascii	"double\000"
+ 587      6C6500
+ 588              	.LASF24:
+ 589 0108 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 589      43313120 
+ 589      352E342E 
+ 589      31203230 
+ 589      31363036 
+ 590 013b 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 590      20726576 
+ 590      6973696F 
+ 590      6E203233 
+ 590      37373135 
+ 591 016e 32202D66 		.ascii	"2 -ffunction-sections -ffat-lto-objects\000"
+ 591      66756E63 
+ 591      74696F6E 
+ 591      2D736563 
+ 591      74696F6E 
+ 592              	.LASF22:
+ 593 0196 54435057 		.ascii	"TCPWM_1_Stop\000"
+ 593      4D5F315F 
+ 593      53746F70 
+ 593      00
+ 594              	.LASF26:
+ 595 01a3 433A5C55 		.ascii	"C:\\Users\\jrdia\\OneDrive\\Sync\\Documents\\Projec"
+ 595      73657273 
+ 595      5C6A7264 
+ 595      69615C4F 
+ 595      6E654472 
+ 596 01d0 74735C4D 		.ascii	"ts\\Moving 5DOF\\PSoC Code\\5DOF_Controller\\Blueto"
+ 596      6F76696E 
+ 596      67203544 
+ 596      4F465C50 
+ 596      536F4320 
+ 597 01ff 6F74685F 		.ascii	"oth_Dev.cydsn\000"
+ 597      4465762E 
+ 597      63796473 
+ 597      6E00
+ 598              	.LASF3:
+ 599 020d 73686F72 		.ascii	"short unsigned int\000"
+ 599      7420756E 
+ 599      7369676E 
+ 599      65642069 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccMGzOOJ.s 			page 15
+
+
+ 599      6E7400
+ 600              	.LASF0:
+ 601 0220 7369676E 		.ascii	"signed char\000"
+ 601      65642063 
+ 601      68617200 
+ 602              	.LASF21:
+ 603 022c 54435057 		.ascii	"TCPWM_1_Wakeup\000"
+ 603      4D5F315F 
+ 603      57616B65 
+ 603      757000
+ 604              	.LASF15:
+ 605 023b 6C6F6E67 		.ascii	"long double\000"
+ 605      20646F75 
+ 605      626C6500 
+ 606              	.LASF2:
+ 607 0247 73686F72 		.ascii	"short int\000"
+ 607      7420696E 
+ 607      7400
+ 608              	.LASF18:
+ 609 0251 54435057 		.ascii	"TCPWM_1_SaveConfig\000"
+ 609      4D5F315F 
+ 609      53617665 
+ 609      436F6E66 
+ 609      696700
+ 610              	.LASF16:
+ 611 0264 73697A65 		.ascii	"sizetype\000"
+ 611      74797065 
+ 611      00
+ 612              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

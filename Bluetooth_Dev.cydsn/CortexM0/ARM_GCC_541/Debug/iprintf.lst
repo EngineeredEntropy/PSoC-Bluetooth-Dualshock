@@ -1,0 +1,1704 @@
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"iprintf.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_uidivmod
+  20              		.global	__aeabi_uidiv
+  21              		.section	.text.iprintf,"ax",%progbits
+  22              		.align	2
+  23              		.global	iprintf
+  24              		.code	16
+  25              		.thumb_func
+  26              		.type	iprintf, %function
+  27              	iprintf:
+  28              	.LFB34:
+  29              		.file 1 "iprintf.c"
+   1:iprintf.c     **** /******************************************************************************
+   2:iprintf.c     **** *This file is for iprintf()
+   3:iprintf.c     **** *The iprintf() is a simple printf() and only can print string with %s,%d,%c,%x.
+   4:iprintf.c     **** *******************************************************************************/
+   5:iprintf.c     **** #include "iprintf.h"
+   6:iprintf.c     **** 
+   7:iprintf.c     **** static void iputc(char8 ch)
+   8:iprintf.c     **** {
+   9:iprintf.c     **** 	/*This function has to be replaced by user*/	
+  10:iprintf.c     **** 	UART_UartPutChar(ch);
+  11:iprintf.c     **** }
+  12:iprintf.c     **** 
+  13:iprintf.c     **** static uint8* change(uint32 Index)
+  14:iprintf.c     **** {
+  15:iprintf.c     ****     return (uint8*)("0123456789abcdef"+Index);
+  16:iprintf.c     **** }
+  17:iprintf.c     **** 
+  18:iprintf.c     **** 
+  19:iprintf.c     **** void iprintf(char8 *pszFmt,...)
+  20:iprintf.c     **** {
+  30              		.loc 1 20 0
+  31              		.cfi_startproc
+  32              		@ args = 4, pretend = 16, frame = 48
+  33              		@ frame_needed = 0, uses_anonymous_args = 1
+  34              	.LVL0:
+  35 0000 0FB4     		push	{r0, r1, r2, r3}
+  36              		.cfi_def_cfa_offset 16
+  37 0002 F0B5     		push	{r4, r5, r6, r7, lr}
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 2
+
+
+  38              		.cfi_def_cfa_offset 36
+  39              		.cfi_offset 4, -36
+  40              		.cfi_offset 5, -32
+  41              		.cfi_offset 6, -28
+  42              		.cfi_offset 7, -24
+  43              		.cfi_offset 14, -20
+  44 0004 5646     		mov	r6, r10
+  45 0006 4D46     		mov	r5, r9
+  46 0008 4446     		mov	r4, r8
+  47 000a 5F46     		mov	r7, fp
+  48 000c 5C4B     		ldr	r3, .L36
+  49 000e F0B4     		push	{r4, r5, r6, r7}
+  50              		.cfi_def_cfa_offset 52
+  51              		.cfi_offset 8, -52
+  52              		.cfi_offset 9, -48
+  53              		.cfi_offset 10, -44
+  54              		.cfi_offset 11, -40
+  55 0010 9A46     		mov	r10, r3
+  21:iprintf.c     ****     uint8 *pszVal;
+  22:iprintf.c     ****     uint32 iVal, xVal, i = 0, buffer[12], index = 1;
+  56              		.loc 1 22 0
+  57 0012 0124     		movs	r4, #1
+  20:iprintf.c     ****     uint8 *pszVal;
+  58              		.loc 1 20 0
+  59 0014 8DB0     		sub	sp, sp, #52
+  60              		.cfi_def_cfa_offset 104
+  61              	.LVL1:
+  62 0016 169D     		ldr	r5, [sp, #88]
+  63 0018 2878     		ldrb	r0, [r5]
+  64              	.LVL2:
+  65              	.L2:
+  23:iprintf.c     ****     uint8 cVal;
+  24:iprintf.c     ****     uint32 *pArg;
+  25:iprintf.c     ****     pArg =(uint32 *)&pszFmt;
+  26:iprintf.c     **** 
+  27:iprintf.c     ****     while(*pszFmt)
+  66              		.loc 1 27 0
+  67 001a 0028     		cmp	r0, #0
+  68 001c 09D0     		beq	.L1
+  69              	.L20:
+  28:iprintf.c     ****     {
+  29:iprintf.c     ****         if('%' != *pszFmt)
+  70              		.loc 1 29 0
+  71 001e 2528     		cmp	r0, #37
+  72 0020 11D0     		beq	.L3
+  73              	.LVL3:
+  74              	.LBB16:
+  75              	.LBB17:
+  10:iprintf.c     **** }
+  76              		.loc 1 10 0
+  77 0022 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+  78              	.LVL4:
+  79 0026 6878     		ldrb	r0, [r5, #1]
+  80              	.LBE17:
+  81              	.LBE16:
+  30:iprintf.c     ****         {
+  31:iprintf.c     ****             iputc(*pszFmt);
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 3
+
+
+  32:iprintf.c     ****             pszFmt++;
+  82              		.loc 1 32 0
+  83 0028 6B1C     		adds	r3, r5, #1
+  84 002a 1693     		str	r3, [sp, #88]
+  33:iprintf.c     ****             continue;
+  85              		.loc 1 33 0
+  86 002c 1D00     		movs	r5, r3
+  27:iprintf.c     ****     {
+  87              		.loc 1 27 0
+  88 002e 0028     		cmp	r0, #0
+  89 0030 F5D1     		bne	.L20
+  90              	.L1:
+  34:iprintf.c     ****         }
+  35:iprintf.c     ****         pszFmt++;
+  36:iprintf.c     **** 
+  37:iprintf.c     ****         if(*pszFmt == 's')
+  38:iprintf.c     ****         {
+  39:iprintf.c     ****             pszVal = (uint8*)pArg[index++];
+  40:iprintf.c     ****             for(; *pszVal != '\0'; pszVal++)
+  41:iprintf.c     ****                 iputc(*pszVal);
+  42:iprintf.c     ****             pszFmt++;
+  43:iprintf.c     ****             continue;
+  44:iprintf.c     ****         }
+  45:iprintf.c     ****         if(*pszFmt == 'd')
+  46:iprintf.c     ****         {
+  47:iprintf.c     ****             iVal = pArg[index++];
+  48:iprintf.c     ****             i = 0;
+  49:iprintf.c     ****             do{
+  50:iprintf.c     ****                 buffer[i++] = iVal % 10;
+  51:iprintf.c     ****                 iVal /= 10;
+  52:iprintf.c     ****             }while(iVal);
+  53:iprintf.c     ****             while(i > 0)
+  54:iprintf.c     ****             {
+  55:iprintf.c     ****                 i--;
+  56:iprintf.c     ****                 iputc(*change(buffer[i]));
+  57:iprintf.c     ****             }
+  58:iprintf.c     ****             pszFmt++;
+  59:iprintf.c     ****             continue;
+  60:iprintf.c     ****         }
+  61:iprintf.c     ****         if(*pszFmt == 'c')
+  62:iprintf.c     ****         {
+  63:iprintf.c     ****             cVal = (uint8)pArg[index++];
+  64:iprintf.c     ****             iputc(cVal);
+  65:iprintf.c     ****             pszFmt++;
+  66:iprintf.c     ****             continue;
+  67:iprintf.c     ****         }
+  68:iprintf.c     ****         if(*pszFmt == 'x')
+  69:iprintf.c     ****         {
+  70:iprintf.c     ****             xVal = pArg[index++];
+  71:iprintf.c     ****             i = 0;
+  72:iprintf.c     ****             do{
+  73:iprintf.c     ****                 buffer[i++] = xVal % 16;
+  74:iprintf.c     ****                 xVal /= 16;
+  75:iprintf.c     ****             }while(xVal);
+  76:iprintf.c     ****             if(i%2!=0)
+  77:iprintf.c     ****                 buffer[i++]=0;
+  78:iprintf.c     ****             if(i<2)
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 4
+
+
+  79:iprintf.c     ****                 buffer[i++]=0;
+  80:iprintf.c     **** 
+  81:iprintf.c     ****             while(i > 0)
+  82:iprintf.c     ****             {
+  83:iprintf.c     ****                 i--;
+  84:iprintf.c     ****                 iputc(*change(buffer[i]));
+  85:iprintf.c     ****             }
+  86:iprintf.c     ****             pszFmt++;
+  87:iprintf.c     ****             continue;
+  88:iprintf.c     ****         }
+  89:iprintf.c     ****         if(pszFmt == '\0')
+  90:iprintf.c     ****         {
+  91:iprintf.c     ****             break;
+  92:iprintf.c     ****         }
+  93:iprintf.c     **** 
+  94:iprintf.c     ****     }
+  95:iprintf.c     **** }...
+  91              		.loc 1 95 0
+  92 0032 0DB0     		add	sp, sp, #52
+  93              		@ sp needed
+  94              	.LVL5:
+  95 0034 3CBC     		pop	{r2, r3, r4, r5}
+  96 0036 9046     		mov	r8, r2
+  97 0038 9946     		mov	r9, r3
+  98 003a A246     		mov	r10, r4
+  99 003c AB46     		mov	fp, r5
+ 100 003e F0BC     		pop	{r4, r5, r6, r7}
+ 101 0040 08BC     		pop	{r3}
+ 102 0042 04B0     		add	sp, sp, #16
+ 103 0044 1847     		bx	r3
+ 104              	.LVL6:
+ 105              	.L3:
+  37:iprintf.c     ****         if(*pszFmt == 's')
+ 106              		.loc 1 37 0
+ 107 0046 6878     		ldrb	r0, [r5, #1]
+  35:iprintf.c     ****         pszFmt++;
+ 108              		.loc 1 35 0
+ 109 0048 6B1C     		adds	r3, r5, #1
+ 110 004a 1693     		str	r3, [sp, #88]
+  37:iprintf.c     ****         if(*pszFmt == 's')
+ 111              		.loc 1 37 0
+ 112 004c 7328     		cmp	r0, #115
+ 113 004e 09D0     		beq	.L30
+  45:iprintf.c     ****         if(*pszFmt == 'd')
+ 114              		.loc 1 45 0
+ 115 0050 6428     		cmp	r0, #100
+ 116 0052 1CD0     		beq	.L31
+  61:iprintf.c     ****         if(*pszFmt == 'c')
+ 117              		.loc 1 61 0
+ 118 0054 6328     		cmp	r0, #99
+ 119 0056 79D0     		beq	.L32
+  68:iprintf.c     ****         if(*pszFmt == 'x')
+ 120              		.loc 1 68 0
+ 121 0058 7828     		cmp	r0, #120
+ 122 005a 44D0     		beq	.L33
+  89:iprintf.c     ****         if(pszFmt == '\0')
+ 123              		.loc 1 89 0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 5
+
+
+ 124 005c 002B     		cmp	r3, #0
+ 125 005e E8D0     		beq	.L1
+ 126 0060 1D00     		movs	r5, r3
+ 127 0062 DAE7     		b	.L2
+ 128              	.L30:
+  39:iprintf.c     ****             pszVal = (uint8*)pArg[index++];
+ 129              		.loc 1 39 0
+ 130 0064 16AB     		add	r3, sp, #88
+ 131              	.LVL7:
+ 132 0066 9C46     		mov	ip, r3
+ 133 0068 661C     		adds	r6, r4, #1
+ 134              	.LVL8:
+ 135 006a A400     		lsls	r4, r4, #2
+ 136 006c 6444     		add	r4, r4, ip
+ 137 006e 2468     		ldr	r4, [r4]
+ 138              	.LVL9:
+  40:iprintf.c     ****             for(; *pszVal != '\0'; pszVal++)
+ 139              		.loc 1 40 0
+ 140 0070 2078     		ldrb	r0, [r4]
+ 141 0072 0028     		cmp	r0, #0
+ 142 0074 05D0     		beq	.L8
+ 143              	.LVL10:
+ 144              	.L25:
+  40:iprintf.c     ****             for(; *pszVal != '\0'; pszVal++)
+ 145              		.loc 1 40 0 is_stmt 0 discriminator 2
+ 146 0076 0134     		adds	r4, r4, #1
+ 147              	.LVL11:
+ 148              	.LBB18:
+ 149              	.LBB19:
+  10:iprintf.c     **** 	UART_UartPutChar(ch);
+ 150              		.loc 1 10 0 is_stmt 1 discriminator 2
+ 151 0078 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 152              	.LVL12:
+ 153              	.LBE19:
+ 154              	.LBE18:
+  40:iprintf.c     ****             for(; *pszVal != '\0'; pszVal++)
+ 155              		.loc 1 40 0 discriminator 2
+ 156 007c 2078     		ldrb	r0, [r4]
+ 157 007e 0028     		cmp	r0, #0
+ 158 0080 F9D1     		bne	.L25
+ 159              	.L8:
+  42:iprintf.c     ****             pszFmt++;
+ 160              		.loc 1 42 0
+ 161 0082 AB1C     		adds	r3, r5, #2
+ 162 0084 A878     		ldrb	r0, [r5, #2]
+ 163 0086 1693     		str	r3, [sp, #88]
+  43:iprintf.c     ****             continue;
+ 164              		.loc 1 43 0
+ 165 0088 1D00     		movs	r5, r3
+  39:iprintf.c     ****             pszVal = (uint8*)pArg[index++];
+ 166              		.loc 1 39 0
+ 167 008a 3400     		movs	r4, r6
+ 168              	.LVL13:
+  43:iprintf.c     ****             continue;
+ 169              		.loc 1 43 0
+ 170 008c C5E7     		b	.L2
+ 171              	.LVL14:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 6
+
+
+ 172              	.L31:
+  47:iprintf.c     ****             iVal = pArg[index++];
+ 173              		.loc 1 47 0
+ 174 008e 631C     		adds	r3, r4, #1
+ 175 0090 9846     		mov	r8, r3
+ 176              	.LVL15:
+ 177 0092 16AB     		add	r3, sp, #88
+ 178              	.LVL16:
+ 179 0094 9C46     		mov	ip, r3
+ 180 0096 A400     		lsls	r4, r4, #2
+ 181 0098 6444     		add	r4, r4, ip
+ 182 009a 2668     		ldr	r6, [r4]
+ 183              	.LVL17:
+ 184 009c 6F46     		mov	r7, sp
+  48:iprintf.c     ****             i = 0;
+ 185              		.loc 1 48 0
+ 186 009e 0024     		movs	r4, #0
+ 187 00a0 00E0     		b	.L10
+ 188              	.LVL18:
+ 189              	.L22:
+  50:iprintf.c     ****                 buffer[i++] = iVal % 10;
+ 190              		.loc 1 50 0
+ 191 00a2 5C46     		mov	r4, fp
+ 192              	.LVL19:
+ 193              	.L10:
+  50:iprintf.c     ****                 buffer[i++] = iVal % 10;
+ 194              		.loc 1 50 0 is_stmt 0 discriminator 1
+ 195 00a4 631C     		adds	r3, r4, #1
+ 196 00a6 3000     		movs	r0, r6
+ 197 00a8 0A21     		movs	r1, #10
+ 198 00aa 9B46     		mov	fp, r3
+ 199              	.LVL20:
+ 200 00ac FFF7FEFF 		bl	__aeabi_uidivmod
+ 201              	.LVL21:
+  51:iprintf.c     ****                 iVal /= 10;
+ 202              		.loc 1 51 0 is_stmt 1 discriminator 1
+ 203 00b0 3000     		movs	r0, r6
+  50:iprintf.c     ****                 buffer[i++] = iVal % 10;
+ 204              		.loc 1 50 0 discriminator 1
+ 205 00b2 02C7     		stmia	r7!, {r1}
+  51:iprintf.c     ****                 iVal /= 10;
+ 206              		.loc 1 51 0 discriminator 1
+ 207 00b4 0A21     		movs	r1, #10
+ 208 00b6 FFF7FEFF 		bl	__aeabi_uidiv
+ 209              	.LVL22:
+ 210 00ba 061E     		subs	r6, r0, #0
+ 211              	.LVL23:
+  52:iprintf.c     ****             }while(iVal);
+ 212              		.loc 1 52 0 discriminator 1
+ 213 00bc F1D1     		bne	.L22
+ 214 00be 0423     		movs	r3, #4
+ 215 00c0 5B42     		rsbs	r3, r3, #0
+ 216 00c2 6B44     		add	r3, r3, sp
+ 217 00c4 9946     		mov	r9, r3
+ 218 00c6 A400     		lsls	r4, r4, #2
+ 219 00c8 6C44     		add	r4, r4, sp
+ 220              	.LVL24:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 7
+
+
+ 221              	.L11:
+ 222              	.LBB20:
+ 223              	.LBB21:
+  10:iprintf.c     **** 	UART_UartPutChar(ch);
+ 224              		.loc 1 10 0
+ 225 00ca 2268     		ldr	r2, [r4]
+ 226 00cc 2C4B     		ldr	r3, .L36
+ 227 00ce 043C     		subs	r4, r4, #4
+ 228              	.LVL25:
+ 229 00d0 985C     		ldrb	r0, [r3, r2]
+ 230 00d2 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 231              	.LVL26:
+ 232              	.LBE21:
+ 233              	.LBE20:
+  53:iprintf.c     ****             while(i > 0)
+ 234              		.loc 1 53 0
+ 235 00d6 A145     		cmp	r9, r4
+ 236 00d8 F7D1     		bne	.L11
+  86:iprintf.c     ****             pszFmt++;
+ 237              		.loc 1 86 0
+ 238 00da AB1C     		adds	r3, r5, #2
+ 239 00dc A878     		ldrb	r0, [r5, #2]
+ 240 00de 1693     		str	r3, [sp, #88]
+  87:iprintf.c     ****             continue;
+ 241              		.loc 1 87 0
+ 242 00e0 1D00     		movs	r5, r3
+  70:iprintf.c     ****             xVal = pArg[index++];
+ 243              		.loc 1 70 0
+ 244 00e2 4446     		mov	r4, r8
+  87:iprintf.c     ****             continue;
+ 245              		.loc 1 87 0
+ 246 00e4 99E7     		b	.L2
+ 247              	.LVL27:
+ 248              	.L33:
+  70:iprintf.c     ****             xVal = pArg[index++];
+ 249              		.loc 1 70 0
+ 250 00e6 631C     		adds	r3, r4, #1
+ 251 00e8 9846     		mov	r8, r3
+ 252              	.LVL28:
+ 253 00ea 16AB     		add	r3, sp, #88
+ 254              	.LVL29:
+ 255 00ec 9C46     		mov	ip, r3
+  73:iprintf.c     ****                 buffer[i++] = xVal % 16;
+ 256              		.loc 1 73 0
+ 257 00ee 0F21     		movs	r1, #15
+  70:iprintf.c     ****             xVal = pArg[index++];
+ 258              		.loc 1 70 0
+ 259 00f0 A400     		lsls	r4, r4, #2
+ 260 00f2 6444     		add	r4, r4, ip
+ 261 00f4 2368     		ldr	r3, [r4]
+ 262              	.LVL30:
+ 263 00f6 6A46     		mov	r2, sp
+  71:iprintf.c     ****             i = 0;
+ 264              		.loc 1 71 0
+ 265 00f8 0024     		movs	r4, #0
+  73:iprintf.c     ****                 buffer[i++] = xVal % 16;
+ 266              		.loc 1 73 0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 8
+
+
+ 267 00fa 8C46     		mov	ip, r1
+ 268              	.LVL31:
+ 269 00fc 00E0     		b	.L14
+ 270              	.LVL32:
+ 271              	.L23:
+ 272 00fe 0C00     		movs	r4, r1
+ 273              	.LVL33:
+ 274              	.L14:
+  73:iprintf.c     ****                 buffer[i++] = xVal % 16;
+ 275              		.loc 1 73 0 is_stmt 0 discriminator 1
+ 276 0100 6046     		mov	r0, ip
+ 277 0102 1840     		ands	r0, r3
+ 278 0104 611C     		adds	r1, r4, #1
+ 279              	.LVL34:
+ 280 0106 01C2     		stmia	r2!, {r0}
+  74:iprintf.c     ****                 xVal /= 16;
+ 281              		.loc 1 74 0 is_stmt 1 discriminator 1
+ 282 0108 1B09     		lsrs	r3, r3, #4
+ 283              	.LVL35:
+  75:iprintf.c     ****             }while(xVal);
+ 284              		.loc 1 75 0 discriminator 1
+ 285 010a F8D1     		bne	.L23
+  76:iprintf.c     ****             if(i%2!=0)
+ 286              		.loc 1 76 0
+ 287 010c 0122     		movs	r2, #1
+ 288 010e 0A40     		ands	r2, r1
+ 289 0110 2BD0     		beq	.L15
+  77:iprintf.c     ****                 buffer[i++]=0;
+ 290              		.loc 1 77 0
+ 291 0112 6A46     		mov	r2, sp
+ 292 0114 8900     		lsls	r1, r1, #2
+ 293              	.LVL36:
+ 294 0116 5350     		str	r3, [r2, r1]
+ 295 0118 0022     		movs	r2, #0
+ 296 011a 0234     		adds	r4, r4, #2
+ 297              	.LVL37:
+ 298              	.L16:
+ 299 011c 194B     		ldr	r3, .L36+4
+ 300 011e 9C46     		mov	ip, r3
+ 301 0120 0423     		movs	r3, #4
+ 302 0122 6444     		add	r4, r4, ip
+ 303              	.LVL38:
+ 304 0124 5B42     		rsbs	r3, r3, #0
+ 305 0126 A400     		lsls	r4, r4, #2
+ 306              	.LVL39:
+ 307 0128 6B44     		add	r3, r3, sp
+ 308 012a 6C44     		add	r4, r4, sp
+ 309 012c 9946     		mov	r9, r3
+ 310 012e 01E0     		b	.L19
+ 311              	.LVL40:
+ 312              	.L34:
+ 313 0130 2268     		ldr	r2, [r4]
+ 314 0132 043C     		subs	r4, r4, #4
+ 315              	.L19:
+ 316              	.LVL41:
+ 317              	.LBB22:
+ 318              	.LBB23:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 9
+
+
+  10:iprintf.c     **** 	UART_UartPutChar(ch);
+ 319              		.loc 1 10 0
+ 320 0134 5346     		mov	r3, r10
+ 321 0136 985C     		ldrb	r0, [r3, r2]
+ 322 0138 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 323              	.LVL42:
+ 324              	.LBE23:
+ 325              	.LBE22:
+  81:iprintf.c     ****             while(i > 0)
+ 326              		.loc 1 81 0
+ 327 013c A145     		cmp	r9, r4
+ 328 013e F7D1     		bne	.L34
+  86:iprintf.c     ****             pszFmt++;
+ 329              		.loc 1 86 0
+ 330 0140 AB1C     		adds	r3, r5, #2
+ 331 0142 A878     		ldrb	r0, [r5, #2]
+ 332 0144 1693     		str	r3, [sp, #88]
+  87:iprintf.c     ****             continue;
+ 333              		.loc 1 87 0
+ 334 0146 1D00     		movs	r5, r3
+  70:iprintf.c     ****             xVal = pArg[index++];
+ 335              		.loc 1 70 0
+ 336 0148 4446     		mov	r4, r8
+ 337 014a 66E7     		b	.L2
+ 338              	.LVL43:
+ 339              	.L32:
+  63:iprintf.c     ****             cVal = (uint8)pArg[index++];
+ 340              		.loc 1 63 0
+ 341 014c 631C     		adds	r3, r4, #1
+ 342 014e 9846     		mov	r8, r3
+ 343              	.LVL44:
+ 344 0150 16AB     		add	r3, sp, #88
+ 345              	.LVL45:
+ 346 0152 9C46     		mov	ip, r3
+ 347 0154 A400     		lsls	r4, r4, #2
+ 348              	.LVL46:
+ 349 0156 6444     		add	r4, r4, ip
+ 350              	.LBB24:
+ 351              	.LBB25:
+  10:iprintf.c     **** 	UART_UartPutChar(ch);
+ 352              		.loc 1 10 0
+ 353 0158 2078     		ldrb	r0, [r4]
+ 354 015a FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 355              	.LVL47:
+ 356              	.LBE25:
+ 357              	.LBE24:
+  86:iprintf.c     ****             pszFmt++;
+ 358              		.loc 1 86 0
+ 359 015e AB1C     		adds	r3, r5, #2
+ 360 0160 A878     		ldrb	r0, [r5, #2]
+ 361 0162 1693     		str	r3, [sp, #88]
+  87:iprintf.c     ****             continue;
+ 362              		.loc 1 87 0
+ 363 0164 1D00     		movs	r5, r3
+  70:iprintf.c     ****             xVal = pArg[index++];
+ 364              		.loc 1 70 0
+ 365 0166 4446     		mov	r4, r8
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 10
+
+
+ 366 0168 57E7     		b	.L2
+ 367              	.LVL48:
+ 368              	.L15:
+  78:iprintf.c     ****             if(i<2)
+ 369              		.loc 1 78 0
+ 370 016a 0129     		cmp	r1, #1
+ 371 016c 02D1     		bne	.L35
+ 372              	.LVL49:
+  79:iprintf.c     ****                 buffer[i++]=0;
+ 373              		.loc 1 79 0
+ 374 016e 0193     		str	r3, [sp, #4]
+ 375 0170 0224     		movs	r4, #2
+ 376 0172 D3E7     		b	.L16
+ 377              	.LVL50:
+ 378              	.L35:
+ 379 0174 6B46     		mov	r3, sp
+ 380              	.LVL51:
+ 381 0176 A400     		lsls	r4, r4, #2
+ 382 0178 1A59     		ldr	r2, [r3, r4]
+  78:iprintf.c     ****             if(i<2)
+ 383              		.loc 1 78 0
+ 384 017a 0C00     		movs	r4, r1
+ 385 017c CEE7     		b	.L16
+ 386              	.L37:
+ 387 017e C046     		.align	2
+ 388              	.L36:
+ 389 0180 00000000 		.word	.LC3
+ 390 0184 FEFFFF3F 		.word	1073741822
+ 391              		.cfi_endproc
+ 392              	.LFE34:
+ 393              		.size	iprintf, .-iprintf
+ 394              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 395              		.align	2
+ 396              	.LC3:
+ 397 0000 30313233 		.ascii	"0123456789abcdef\000"
+ 397      34353637 
+ 397      38396162 
+ 397      63646566 
+ 397      00
+ 398              		.text
+ 399              	.Letext0:
+ 400              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 401              		.file 3 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 402              		.section	.debug_info,"",%progbits
+ 403              	.Ldebug_info0:
+ 404 0000 65020000 		.4byte	0x265
+ 405 0004 0400     		.2byte	0x4
+ 406 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 407 000a 04       		.byte	0x4
+ 408 000b 01       		.uleb128 0x1
+ 409 000c 71000000 		.4byte	.LASF25
+ 410 0010 0C       		.byte	0xc
+ 411 0011 61000000 		.4byte	.LASF26
+ 412 0015 42010000 		.4byte	.LASF27
+ 413 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 414 001d 00000000 		.4byte	0
+ 415 0021 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 11
+
+
+ 416 0025 02       		.uleb128 0x2
+ 417 0026 01       		.byte	0x1
+ 418 0027 06       		.byte	0x6
+ 419 0028 01020000 		.4byte	.LASF0
+ 420 002c 02       		.uleb128 0x2
+ 421 002d 01       		.byte	0x1
+ 422 002e 08       		.byte	0x8
+ 423 002f 2F000000 		.4byte	.LASF1
+ 424 0033 02       		.uleb128 0x2
+ 425 0034 02       		.byte	0x2
+ 426 0035 05       		.byte	0x5
+ 427 0036 D7010000 		.4byte	.LASF2
+ 428 003a 02       		.uleb128 0x2
+ 429 003b 02       		.byte	0x2
+ 430 003c 07       		.byte	0x7
+ 431 003d 0F000000 		.4byte	.LASF3
+ 432 0041 02       		.uleb128 0x2
+ 433 0042 04       		.byte	0x4
+ 434 0043 05       		.byte	0x5
+ 435 0044 E7010000 		.4byte	.LASF4
+ 436 0048 02       		.uleb128 0x2
+ 437 0049 04       		.byte	0x4
+ 438 004a 07       		.byte	0x7
+ 439 004b 4F000000 		.4byte	.LASF5
+ 440 004f 02       		.uleb128 0x2
+ 441 0050 08       		.byte	0x8
+ 442 0051 05       		.byte	0x5
+ 443 0052 A6010000 		.4byte	.LASF6
+ 444 0056 02       		.uleb128 0x2
+ 445 0057 08       		.byte	0x8
+ 446 0058 07       		.byte	0x7
+ 447 0059 1F010000 		.4byte	.LASF7
+ 448 005d 03       		.uleb128 0x3
+ 449 005e 04       		.byte	0x4
+ 450 005f 05       		.byte	0x5
+ 451 0060 696E7400 		.ascii	"int\000"
+ 452 0064 02       		.uleb128 0x2
+ 453 0065 04       		.byte	0x4
+ 454 0066 07       		.byte	0x7
+ 455 0067 0D010000 		.4byte	.LASF8
+ 456 006b 04       		.uleb128 0x4
+ 457 006c 6B000000 		.4byte	.LASF9
+ 458 0070 02       		.byte	0x2
+ 459 0071 D201     		.2byte	0x1d2
+ 460 0073 2C000000 		.4byte	0x2c
+ 461 0077 04       		.uleb128 0x4
+ 462 0078 06010000 		.4byte	.LASF10
+ 463 007c 02       		.byte	0x2
+ 464 007d D401     		.2byte	0x1d4
+ 465 007f 48000000 		.4byte	0x48
+ 466 0083 02       		.uleb128 0x2
+ 467 0084 04       		.byte	0x4
+ 468 0085 04       		.byte	0x4
+ 469 0086 29000000 		.4byte	.LASF11
+ 470 008a 02       		.uleb128 0x2
+ 471 008b 08       		.byte	0x8
+ 472 008c 04       		.byte	0x4
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 12
+
+
+ 473 008d FF000000 		.4byte	.LASF12
+ 474 0091 04       		.uleb128 0x4
+ 475 0092 42000000 		.4byte	.LASF13
+ 476 0096 02       		.byte	0x2
+ 477 0097 E301     		.2byte	0x1e3
+ 478 0099 9D000000 		.4byte	0x9d
+ 479 009d 02       		.uleb128 0x2
+ 480 009e 01       		.byte	0x1
+ 481 009f 08       		.byte	0x8
+ 482 00a0 F0010000 		.4byte	.LASF14
+ 483 00a4 02       		.uleb128 0x2
+ 484 00a5 08       		.byte	0x8
+ 485 00a6 04       		.byte	0x4
+ 486 00a7 F5010000 		.4byte	.LASF15
+ 487 00ab 02       		.uleb128 0x2
+ 488 00ac 04       		.byte	0x4
+ 489 00ad 07       		.byte	0x7
+ 490 00ae 9D010000 		.4byte	.LASF16
+ 491 00b2 05       		.uleb128 0x5
+ 492 00b3 04       		.byte	0x4
+ 493 00b4 6B000000 		.4byte	0x6b
+ 494 00b8 06       		.uleb128 0x6
+ 495 00b9 E1010000 		.4byte	.LASF28
+ 496 00bd 01       		.byte	0x1
+ 497 00be 07       		.byte	0x7
+ 498 00bf 01       		.byte	0x1
+ 499 00c0 CF000000 		.4byte	0xcf
+ 500 00c4 07       		.uleb128 0x7
+ 501 00c5 636800   		.ascii	"ch\000"
+ 502 00c8 01       		.byte	0x1
+ 503 00c9 07       		.byte	0x7
+ 504 00ca 91000000 		.4byte	0x91
+ 505 00ce 00       		.byte	0
+ 506 00cf 08       		.uleb128 0x8
+ 507 00d0 3B010000 		.4byte	.LASF29
+ 508 00d4 01       		.byte	0x1
+ 509 00d5 0D       		.byte	0xd
+ 510 00d6 B2000000 		.4byte	0xb2
+ 511 00da 01       		.byte	0x1
+ 512 00db EB000000 		.4byte	0xeb
+ 513 00df 09       		.uleb128 0x9
+ 514 00e0 0D020000 		.4byte	.LASF17
+ 515 00e4 01       		.byte	0x1
+ 516 00e5 0D       		.byte	0xd
+ 517 00e6 77000000 		.4byte	0x77
+ 518 00ea 00       		.byte	0
+ 519 00eb 0A       		.uleb128 0xa
+ 520 00ec 00000000 		.4byte	.LASF30
+ 521 00f0 01       		.byte	0x1
+ 522 00f1 13       		.byte	0x13
+ 523 00f2 00000000 		.4byte	.LFB34
+ 524 00f6 88010000 		.4byte	.LFE34-.LFB34
+ 525 00fa 01       		.uleb128 0x1
+ 526 00fb 9C       		.byte	0x9c
+ 527 00fc 40020000 		.4byte	0x240
+ 528 0100 0B       		.uleb128 0xb
+ 529 0101 22000000 		.4byte	.LASF31
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 13
+
+
+ 530 0105 01       		.byte	0x1
+ 531 0106 13       		.byte	0x13
+ 532 0107 40020000 		.4byte	0x240
+ 533 010b 02       		.uleb128 0x2
+ 534 010c 91       		.byte	0x91
+ 535 010d 70       		.sleb128 -16
+ 536 010e 0C       		.uleb128 0xc
+ 537 010f 0D       		.uleb128 0xd
+ 538 0110 48000000 		.4byte	.LASF18
+ 539 0114 01       		.byte	0x1
+ 540 0115 15       		.byte	0x15
+ 541 0116 B2000000 		.4byte	0xb2
+ 542 011a 00000000 		.4byte	.LLST0
+ 543 011e 0D       		.uleb128 0xd
+ 544 011f 1A010000 		.4byte	.LASF19
+ 545 0123 01       		.byte	0x1
+ 546 0124 16       		.byte	0x16
+ 547 0125 77000000 		.4byte	0x77
+ 548 0129 2B000000 		.4byte	.LLST1
+ 549 012d 0D       		.uleb128 0xd
+ 550 012e 36010000 		.4byte	.LASF20
+ 551 0132 01       		.byte	0x1
+ 552 0133 16       		.byte	0x16
+ 553 0134 77000000 		.4byte	0x77
+ 554 0138 6A000000 		.4byte	.LLST2
+ 555 013c 0E       		.uleb128 0xe
+ 556 013d 6900     		.ascii	"i\000"
+ 557 013f 01       		.byte	0x1
+ 558 0140 16       		.byte	0x16
+ 559 0141 77000000 		.4byte	0x77
+ 560 0145 88000000 		.4byte	.LLST3
+ 561 0149 0F       		.uleb128 0xf
+ 562 014a 08000000 		.4byte	.LASF21
+ 563 014e 01       		.byte	0x1
+ 564 014f 16       		.byte	0x16
+ 565 0150 46020000 		.4byte	0x246
+ 566 0154 03       		.uleb128 0x3
+ 567 0155 91       		.byte	0x91
+ 568 0156 987F     		.sleb128 -104
+ 569 0158 0D       		.uleb128 0xd
+ 570 0159 D1010000 		.4byte	.LASF22
+ 571 015d 01       		.byte	0x1
+ 572 015e 16       		.byte	0x16
+ 573 015f 77000000 		.4byte	0x77
+ 574 0163 4C010000 		.4byte	.LLST4
+ 575 0167 0D       		.uleb128 0xd
+ 576 0168 3D000000 		.4byte	.LASF23
+ 577 016c 01       		.byte	0x1
+ 578 016d 17       		.byte	0x17
+ 579 016e 6B000000 		.4byte	0x6b
+ 580 0172 E4010000 		.4byte	.LLST5
+ 581 0176 0D       		.uleb128 0xd
+ 582 0177 B4010000 		.4byte	.LASF24
+ 583 017b 01       		.byte	0x1
+ 584 017c 18       		.byte	0x18
+ 585 017d 56020000 		.4byte	0x256
+ 586 0181 14020000 		.4byte	.LLST6
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 14
+
+
+ 587 0185 10       		.uleb128 0x10
+ 588 0186 B8000000 		.4byte	0xb8
+ 589 018a 22000000 		.4byte	.LBB16
+ 590 018e 06000000 		.4byte	.LBE16-.LBB16
+ 591 0192 01       		.byte	0x1
+ 592 0193 1F       		.byte	0x1f
+ 593 0194 AB010000 		.4byte	0x1ab
+ 594 0198 11       		.uleb128 0x11
+ 595 0199 C4000000 		.4byte	0xc4
+ 596 019d 94020000 		.4byte	.LLST7
+ 597 01a1 12       		.uleb128 0x12
+ 598 01a2 26000000 		.4byte	.LVL4
+ 599 01a6 5C020000 		.4byte	0x25c
+ 600 01aa 00       		.byte	0
+ 601 01ab 10       		.uleb128 0x10
+ 602 01ac B8000000 		.4byte	0xb8
+ 603 01b0 78000000 		.4byte	.LBB18
+ 604 01b4 04000000 		.4byte	.LBE18-.LBB18
+ 605 01b8 01       		.byte	0x1
+ 606 01b9 29       		.byte	0x29
+ 607 01ba D1010000 		.4byte	0x1d1
+ 608 01be 11       		.uleb128 0x11
+ 609 01bf C4000000 		.4byte	0xc4
+ 610 01c3 A9020000 		.4byte	.LLST8
+ 611 01c7 12       		.uleb128 0x12
+ 612 01c8 7C000000 		.4byte	.LVL12
+ 613 01cc 5C020000 		.4byte	0x25c
+ 614 01d0 00       		.byte	0
+ 615 01d1 10       		.uleb128 0x10
+ 616 01d2 B8000000 		.4byte	0xb8
+ 617 01d6 CA000000 		.4byte	.LBB20
+ 618 01da 0C000000 		.4byte	.LBE20-.LBB20
+ 619 01de 01       		.byte	0x1
+ 620 01df 38       		.byte	0x38
+ 621 01e0 F7010000 		.4byte	0x1f7
+ 622 01e4 11       		.uleb128 0x11
+ 623 01e5 C4000000 		.4byte	0xc4
+ 624 01e9 BC020000 		.4byte	.LLST9
+ 625 01ed 12       		.uleb128 0x12
+ 626 01ee D6000000 		.4byte	.LVL26
+ 627 01f2 5C020000 		.4byte	0x25c
+ 628 01f6 00       		.byte	0
+ 629 01f7 10       		.uleb128 0x10
+ 630 01f8 B8000000 		.4byte	0xb8
+ 631 01fc 34010000 		.4byte	.LBB22
+ 632 0200 08000000 		.4byte	.LBE22-.LBB22
+ 633 0204 01       		.byte	0x1
+ 634 0205 54       		.byte	0x54
+ 635 0206 1D020000 		.4byte	0x21d
+ 636 020a 11       		.uleb128 0x11
+ 637 020b C4000000 		.4byte	0xc4
+ 638 020f E9020000 		.4byte	.LLST10
+ 639 0213 12       		.uleb128 0x12
+ 640 0214 3C010000 		.4byte	.LVL42
+ 641 0218 5C020000 		.4byte	0x25c
+ 642 021c 00       		.byte	0
+ 643 021d 13       		.uleb128 0x13
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 15
+
+
+ 644 021e B8000000 		.4byte	0xb8
+ 645 0222 58010000 		.4byte	.LBB24
+ 646 0226 06000000 		.4byte	.LBE24-.LBB24
+ 647 022a 01       		.byte	0x1
+ 648 022b 40       		.byte	0x40
+ 649 022c 11       		.uleb128 0x11
+ 650 022d C4000000 		.4byte	0xc4
+ 651 0231 E4010000 		.4byte	.LLST5
+ 652 0235 12       		.uleb128 0x12
+ 653 0236 5E010000 		.4byte	.LVL47
+ 654 023a 5C020000 		.4byte	0x25c
+ 655 023e 00       		.byte	0
+ 656 023f 00       		.byte	0
+ 657 0240 05       		.uleb128 0x5
+ 658 0241 04       		.byte	0x4
+ 659 0242 91000000 		.4byte	0x91
+ 660 0246 14       		.uleb128 0x14
+ 661 0247 77000000 		.4byte	0x77
+ 662 024b 56020000 		.4byte	0x256
+ 663 024f 15       		.uleb128 0x15
+ 664 0250 AB000000 		.4byte	0xab
+ 665 0254 0B       		.byte	0xb
+ 666 0255 00       		.byte	0
+ 667 0256 05       		.uleb128 0x5
+ 668 0257 04       		.byte	0x4
+ 669 0258 77000000 		.4byte	0x77
+ 670 025c 16       		.uleb128 0x16
+ 671 025d B9010000 		.4byte	.LASF32
+ 672 0261 B9010000 		.4byte	.LASF32
+ 673 0265 03       		.byte	0x3
+ 674 0266 3A03     		.2byte	0x33a
+ 675 0268 00       		.byte	0
+ 676              		.section	.debug_abbrev,"",%progbits
+ 677              	.Ldebug_abbrev0:
+ 678 0000 01       		.uleb128 0x1
+ 679 0001 11       		.uleb128 0x11
+ 680 0002 01       		.byte	0x1
+ 681 0003 25       		.uleb128 0x25
+ 682 0004 0E       		.uleb128 0xe
+ 683 0005 13       		.uleb128 0x13
+ 684 0006 0B       		.uleb128 0xb
+ 685 0007 03       		.uleb128 0x3
+ 686 0008 0E       		.uleb128 0xe
+ 687 0009 1B       		.uleb128 0x1b
+ 688 000a 0E       		.uleb128 0xe
+ 689 000b 55       		.uleb128 0x55
+ 690 000c 17       		.uleb128 0x17
+ 691 000d 11       		.uleb128 0x11
+ 692 000e 01       		.uleb128 0x1
+ 693 000f 10       		.uleb128 0x10
+ 694 0010 17       		.uleb128 0x17
+ 695 0011 00       		.byte	0
+ 696 0012 00       		.byte	0
+ 697 0013 02       		.uleb128 0x2
+ 698 0014 24       		.uleb128 0x24
+ 699 0015 00       		.byte	0
+ 700 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 16
+
+
+ 701 0017 0B       		.uleb128 0xb
+ 702 0018 3E       		.uleb128 0x3e
+ 703 0019 0B       		.uleb128 0xb
+ 704 001a 03       		.uleb128 0x3
+ 705 001b 0E       		.uleb128 0xe
+ 706 001c 00       		.byte	0
+ 707 001d 00       		.byte	0
+ 708 001e 03       		.uleb128 0x3
+ 709 001f 24       		.uleb128 0x24
+ 710 0020 00       		.byte	0
+ 711 0021 0B       		.uleb128 0xb
+ 712 0022 0B       		.uleb128 0xb
+ 713 0023 3E       		.uleb128 0x3e
+ 714 0024 0B       		.uleb128 0xb
+ 715 0025 03       		.uleb128 0x3
+ 716 0026 08       		.uleb128 0x8
+ 717 0027 00       		.byte	0
+ 718 0028 00       		.byte	0
+ 719 0029 04       		.uleb128 0x4
+ 720 002a 16       		.uleb128 0x16
+ 721 002b 00       		.byte	0
+ 722 002c 03       		.uleb128 0x3
+ 723 002d 0E       		.uleb128 0xe
+ 724 002e 3A       		.uleb128 0x3a
+ 725 002f 0B       		.uleb128 0xb
+ 726 0030 3B       		.uleb128 0x3b
+ 727 0031 05       		.uleb128 0x5
+ 728 0032 49       		.uleb128 0x49
+ 729 0033 13       		.uleb128 0x13
+ 730 0034 00       		.byte	0
+ 731 0035 00       		.byte	0
+ 732 0036 05       		.uleb128 0x5
+ 733 0037 0F       		.uleb128 0xf
+ 734 0038 00       		.byte	0
+ 735 0039 0B       		.uleb128 0xb
+ 736 003a 0B       		.uleb128 0xb
+ 737 003b 49       		.uleb128 0x49
+ 738 003c 13       		.uleb128 0x13
+ 739 003d 00       		.byte	0
+ 740 003e 00       		.byte	0
+ 741 003f 06       		.uleb128 0x6
+ 742 0040 2E       		.uleb128 0x2e
+ 743 0041 01       		.byte	0x1
+ 744 0042 03       		.uleb128 0x3
+ 745 0043 0E       		.uleb128 0xe
+ 746 0044 3A       		.uleb128 0x3a
+ 747 0045 0B       		.uleb128 0xb
+ 748 0046 3B       		.uleb128 0x3b
+ 749 0047 0B       		.uleb128 0xb
+ 750 0048 27       		.uleb128 0x27
+ 751 0049 19       		.uleb128 0x19
+ 752 004a 20       		.uleb128 0x20
+ 753 004b 0B       		.uleb128 0xb
+ 754 004c 01       		.uleb128 0x1
+ 755 004d 13       		.uleb128 0x13
+ 756 004e 00       		.byte	0
+ 757 004f 00       		.byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 17
+
+
+ 758 0050 07       		.uleb128 0x7
+ 759 0051 05       		.uleb128 0x5
+ 760 0052 00       		.byte	0
+ 761 0053 03       		.uleb128 0x3
+ 762 0054 08       		.uleb128 0x8
+ 763 0055 3A       		.uleb128 0x3a
+ 764 0056 0B       		.uleb128 0xb
+ 765 0057 3B       		.uleb128 0x3b
+ 766 0058 0B       		.uleb128 0xb
+ 767 0059 49       		.uleb128 0x49
+ 768 005a 13       		.uleb128 0x13
+ 769 005b 00       		.byte	0
+ 770 005c 00       		.byte	0
+ 771 005d 08       		.uleb128 0x8
+ 772 005e 2E       		.uleb128 0x2e
+ 773 005f 01       		.byte	0x1
+ 774 0060 03       		.uleb128 0x3
+ 775 0061 0E       		.uleb128 0xe
+ 776 0062 3A       		.uleb128 0x3a
+ 777 0063 0B       		.uleb128 0xb
+ 778 0064 3B       		.uleb128 0x3b
+ 779 0065 0B       		.uleb128 0xb
+ 780 0066 27       		.uleb128 0x27
+ 781 0067 19       		.uleb128 0x19
+ 782 0068 49       		.uleb128 0x49
+ 783 0069 13       		.uleb128 0x13
+ 784 006a 20       		.uleb128 0x20
+ 785 006b 0B       		.uleb128 0xb
+ 786 006c 01       		.uleb128 0x1
+ 787 006d 13       		.uleb128 0x13
+ 788 006e 00       		.byte	0
+ 789 006f 00       		.byte	0
+ 790 0070 09       		.uleb128 0x9
+ 791 0071 05       		.uleb128 0x5
+ 792 0072 00       		.byte	0
+ 793 0073 03       		.uleb128 0x3
+ 794 0074 0E       		.uleb128 0xe
+ 795 0075 3A       		.uleb128 0x3a
+ 796 0076 0B       		.uleb128 0xb
+ 797 0077 3B       		.uleb128 0x3b
+ 798 0078 0B       		.uleb128 0xb
+ 799 0079 49       		.uleb128 0x49
+ 800 007a 13       		.uleb128 0x13
+ 801 007b 00       		.byte	0
+ 802 007c 00       		.byte	0
+ 803 007d 0A       		.uleb128 0xa
+ 804 007e 2E       		.uleb128 0x2e
+ 805 007f 01       		.byte	0x1
+ 806 0080 3F       		.uleb128 0x3f
+ 807 0081 19       		.uleb128 0x19
+ 808 0082 03       		.uleb128 0x3
+ 809 0083 0E       		.uleb128 0xe
+ 810 0084 3A       		.uleb128 0x3a
+ 811 0085 0B       		.uleb128 0xb
+ 812 0086 3B       		.uleb128 0x3b
+ 813 0087 0B       		.uleb128 0xb
+ 814 0088 27       		.uleb128 0x27
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 18
+
+
+ 815 0089 19       		.uleb128 0x19
+ 816 008a 11       		.uleb128 0x11
+ 817 008b 01       		.uleb128 0x1
+ 818 008c 12       		.uleb128 0x12
+ 819 008d 06       		.uleb128 0x6
+ 820 008e 40       		.uleb128 0x40
+ 821 008f 18       		.uleb128 0x18
+ 822 0090 9642     		.uleb128 0x2116
+ 823 0092 19       		.uleb128 0x19
+ 824 0093 01       		.uleb128 0x1
+ 825 0094 13       		.uleb128 0x13
+ 826 0095 00       		.byte	0
+ 827 0096 00       		.byte	0
+ 828 0097 0B       		.uleb128 0xb
+ 829 0098 05       		.uleb128 0x5
+ 830 0099 00       		.byte	0
+ 831 009a 03       		.uleb128 0x3
+ 832 009b 0E       		.uleb128 0xe
+ 833 009c 3A       		.uleb128 0x3a
+ 834 009d 0B       		.uleb128 0xb
+ 835 009e 3B       		.uleb128 0x3b
+ 836 009f 0B       		.uleb128 0xb
+ 837 00a0 49       		.uleb128 0x49
+ 838 00a1 13       		.uleb128 0x13
+ 839 00a2 02       		.uleb128 0x2
+ 840 00a3 18       		.uleb128 0x18
+ 841 00a4 00       		.byte	0
+ 842 00a5 00       		.byte	0
+ 843 00a6 0C       		.uleb128 0xc
+ 844 00a7 18       		.uleb128 0x18
+ 845 00a8 00       		.byte	0
+ 846 00a9 00       		.byte	0
+ 847 00aa 00       		.byte	0
+ 848 00ab 0D       		.uleb128 0xd
+ 849 00ac 34       		.uleb128 0x34
+ 850 00ad 00       		.byte	0
+ 851 00ae 03       		.uleb128 0x3
+ 852 00af 0E       		.uleb128 0xe
+ 853 00b0 3A       		.uleb128 0x3a
+ 854 00b1 0B       		.uleb128 0xb
+ 855 00b2 3B       		.uleb128 0x3b
+ 856 00b3 0B       		.uleb128 0xb
+ 857 00b4 49       		.uleb128 0x49
+ 858 00b5 13       		.uleb128 0x13
+ 859 00b6 02       		.uleb128 0x2
+ 860 00b7 17       		.uleb128 0x17
+ 861 00b8 00       		.byte	0
+ 862 00b9 00       		.byte	0
+ 863 00ba 0E       		.uleb128 0xe
+ 864 00bb 34       		.uleb128 0x34
+ 865 00bc 00       		.byte	0
+ 866 00bd 03       		.uleb128 0x3
+ 867 00be 08       		.uleb128 0x8
+ 868 00bf 3A       		.uleb128 0x3a
+ 869 00c0 0B       		.uleb128 0xb
+ 870 00c1 3B       		.uleb128 0x3b
+ 871 00c2 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 19
+
+
+ 872 00c3 49       		.uleb128 0x49
+ 873 00c4 13       		.uleb128 0x13
+ 874 00c5 02       		.uleb128 0x2
+ 875 00c6 17       		.uleb128 0x17
+ 876 00c7 00       		.byte	0
+ 877 00c8 00       		.byte	0
+ 878 00c9 0F       		.uleb128 0xf
+ 879 00ca 34       		.uleb128 0x34
+ 880 00cb 00       		.byte	0
+ 881 00cc 03       		.uleb128 0x3
+ 882 00cd 0E       		.uleb128 0xe
+ 883 00ce 3A       		.uleb128 0x3a
+ 884 00cf 0B       		.uleb128 0xb
+ 885 00d0 3B       		.uleb128 0x3b
+ 886 00d1 0B       		.uleb128 0xb
+ 887 00d2 49       		.uleb128 0x49
+ 888 00d3 13       		.uleb128 0x13
+ 889 00d4 02       		.uleb128 0x2
+ 890 00d5 18       		.uleb128 0x18
+ 891 00d6 00       		.byte	0
+ 892 00d7 00       		.byte	0
+ 893 00d8 10       		.uleb128 0x10
+ 894 00d9 1D       		.uleb128 0x1d
+ 895 00da 01       		.byte	0x1
+ 896 00db 31       		.uleb128 0x31
+ 897 00dc 13       		.uleb128 0x13
+ 898 00dd 11       		.uleb128 0x11
+ 899 00de 01       		.uleb128 0x1
+ 900 00df 12       		.uleb128 0x12
+ 901 00e0 06       		.uleb128 0x6
+ 902 00e1 58       		.uleb128 0x58
+ 903 00e2 0B       		.uleb128 0xb
+ 904 00e3 59       		.uleb128 0x59
+ 905 00e4 0B       		.uleb128 0xb
+ 906 00e5 01       		.uleb128 0x1
+ 907 00e6 13       		.uleb128 0x13
+ 908 00e7 00       		.byte	0
+ 909 00e8 00       		.byte	0
+ 910 00e9 11       		.uleb128 0x11
+ 911 00ea 05       		.uleb128 0x5
+ 912 00eb 00       		.byte	0
+ 913 00ec 31       		.uleb128 0x31
+ 914 00ed 13       		.uleb128 0x13
+ 915 00ee 02       		.uleb128 0x2
+ 916 00ef 17       		.uleb128 0x17
+ 917 00f0 00       		.byte	0
+ 918 00f1 00       		.byte	0
+ 919 00f2 12       		.uleb128 0x12
+ 920 00f3 898201   		.uleb128 0x4109
+ 921 00f6 00       		.byte	0
+ 922 00f7 11       		.uleb128 0x11
+ 923 00f8 01       		.uleb128 0x1
+ 924 00f9 31       		.uleb128 0x31
+ 925 00fa 13       		.uleb128 0x13
+ 926 00fb 00       		.byte	0
+ 927 00fc 00       		.byte	0
+ 928 00fd 13       		.uleb128 0x13
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 20
+
+
+ 929 00fe 1D       		.uleb128 0x1d
+ 930 00ff 01       		.byte	0x1
+ 931 0100 31       		.uleb128 0x31
+ 932 0101 13       		.uleb128 0x13
+ 933 0102 11       		.uleb128 0x11
+ 934 0103 01       		.uleb128 0x1
+ 935 0104 12       		.uleb128 0x12
+ 936 0105 06       		.uleb128 0x6
+ 937 0106 58       		.uleb128 0x58
+ 938 0107 0B       		.uleb128 0xb
+ 939 0108 59       		.uleb128 0x59
+ 940 0109 0B       		.uleb128 0xb
+ 941 010a 00       		.byte	0
+ 942 010b 00       		.byte	0
+ 943 010c 14       		.uleb128 0x14
+ 944 010d 01       		.uleb128 0x1
+ 945 010e 01       		.byte	0x1
+ 946 010f 49       		.uleb128 0x49
+ 947 0110 13       		.uleb128 0x13
+ 948 0111 01       		.uleb128 0x1
+ 949 0112 13       		.uleb128 0x13
+ 950 0113 00       		.byte	0
+ 951 0114 00       		.byte	0
+ 952 0115 15       		.uleb128 0x15
+ 953 0116 21       		.uleb128 0x21
+ 954 0117 00       		.byte	0
+ 955 0118 49       		.uleb128 0x49
+ 956 0119 13       		.uleb128 0x13
+ 957 011a 2F       		.uleb128 0x2f
+ 958 011b 0B       		.uleb128 0xb
+ 959 011c 00       		.byte	0
+ 960 011d 00       		.byte	0
+ 961 011e 16       		.uleb128 0x16
+ 962 011f 2E       		.uleb128 0x2e
+ 963 0120 00       		.byte	0
+ 964 0121 3F       		.uleb128 0x3f
+ 965 0122 19       		.uleb128 0x19
+ 966 0123 3C       		.uleb128 0x3c
+ 967 0124 19       		.uleb128 0x19
+ 968 0125 6E       		.uleb128 0x6e
+ 969 0126 0E       		.uleb128 0xe
+ 970 0127 03       		.uleb128 0x3
+ 971 0128 0E       		.uleb128 0xe
+ 972 0129 3A       		.uleb128 0x3a
+ 973 012a 0B       		.uleb128 0xb
+ 974 012b 3B       		.uleb128 0x3b
+ 975 012c 05       		.uleb128 0x5
+ 976 012d 00       		.byte	0
+ 977 012e 00       		.byte	0
+ 978 012f 00       		.byte	0
+ 979              		.section	.debug_loc,"",%progbits
+ 980              	.Ldebug_loc0:
+ 981              	.LLST0:
+ 982 0000 70000000 		.4byte	.LVL9
+ 983 0004 78000000 		.4byte	.LVL11
+ 984 0008 0100     		.2byte	0x1
+ 985 000a 54       		.byte	0x54
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 21
+
+
+ 986 000b 78000000 		.4byte	.LVL11
+ 987 000f 7C000000 		.4byte	.LVL12
+ 988 0013 0300     		.2byte	0x3
+ 989 0015 74       		.byte	0x74
+ 990 0016 7F       		.sleb128 -1
+ 991 0017 9F       		.byte	0x9f
+ 992 0018 7C000000 		.4byte	.LVL12
+ 993 001c 8C000000 		.4byte	.LVL13
+ 994 0020 0100     		.2byte	0x1
+ 995 0022 54       		.byte	0x54
+ 996 0023 00000000 		.4byte	0
+ 997 0027 00000000 		.4byte	0
+ 998              	.LLST1:
+ 999 002b 9C000000 		.4byte	.LVL17
+ 1000 002f A2000000 		.4byte	.LVL18
+ 1001 0033 0100     		.2byte	0x1
+ 1002 0035 56       		.byte	0x56
+ 1003 0036 A2000000 		.4byte	.LVL18
+ 1004 003a A4000000 		.4byte	.LVL19
+ 1005 003e 0100     		.2byte	0x1
+ 1006 0040 50       		.byte	0x50
+ 1007 0041 A4000000 		.4byte	.LVL19
+ 1008 0045 BC000000 		.4byte	.LVL23
+ 1009 0049 0100     		.2byte	0x1
+ 1010 004b 56       		.byte	0x56
+ 1011 004c BC000000 		.4byte	.LVL23
+ 1012 0050 CA000000 		.4byte	.LVL24
+ 1013 0054 0100     		.2byte	0x1
+ 1014 0056 50       		.byte	0x50
+ 1015 0057 CA000000 		.4byte	.LVL24
+ 1016 005b E6000000 		.4byte	.LVL27
+ 1017 005f 0100     		.2byte	0x1
+ 1018 0061 56       		.byte	0x56
+ 1019 0062 00000000 		.4byte	0
+ 1020 0066 00000000 		.4byte	0
+ 1021              	.LLST2:
+ 1022 006a F6000000 		.4byte	.LVL30
+ 1023 006e 1C010000 		.4byte	.LVL37
+ 1024 0072 0100     		.2byte	0x1
+ 1025 0074 53       		.byte	0x53
+ 1026 0075 6A010000 		.4byte	.LVL48
+ 1027 0079 76010000 		.4byte	.LVL51
+ 1028 007d 0100     		.2byte	0x1
+ 1029 007f 53       		.byte	0x53
+ 1030 0080 00000000 		.4byte	0
+ 1031 0084 00000000 		.4byte	0
+ 1032              	.LLST3:
+ 1033 0088 00000000 		.4byte	.LVL0
+ 1034 008c 1A000000 		.4byte	.LVL2
+ 1035 0090 0200     		.2byte	0x2
+ 1036 0092 30       		.byte	0x30
+ 1037 0093 9F       		.byte	0x9f
+ 1038 0094 9C000000 		.4byte	.LVL17
+ 1039 0098 A2000000 		.4byte	.LVL18
+ 1040 009c 0200     		.2byte	0x2
+ 1041 009e 30       		.byte	0x30
+ 1042 009f 9F       		.byte	0x9f
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 22
+
+
+ 1043 00a0 A2000000 		.4byte	.LVL18
+ 1044 00a4 A4000000 		.4byte	.LVL19
+ 1045 00a8 0100     		.2byte	0x1
+ 1046 00aa 5B       		.byte	0x5b
+ 1047 00ab A4000000 		.4byte	.LVL19
+ 1048 00af AC000000 		.4byte	.LVL20
+ 1049 00b3 0100     		.2byte	0x1
+ 1050 00b5 54       		.byte	0x54
+ 1051 00b6 AC000000 		.4byte	.LVL20
+ 1052 00ba AF000000 		.4byte	.LVL21-1
+ 1053 00be 0100     		.2byte	0x1
+ 1054 00c0 53       		.byte	0x53
+ 1055 00c1 AF000000 		.4byte	.LVL21-1
+ 1056 00c5 CA000000 		.4byte	.LVL24
+ 1057 00c9 0100     		.2byte	0x1
+ 1058 00cb 5B       		.byte	0x5b
+ 1059 00cc F6000000 		.4byte	.LVL30
+ 1060 00d0 FE000000 		.4byte	.LVL32
+ 1061 00d4 0200     		.2byte	0x2
+ 1062 00d6 30       		.byte	0x30
+ 1063 00d7 9F       		.byte	0x9f
+ 1064 00d8 FE000000 		.4byte	.LVL32
+ 1065 00dc 00010000 		.4byte	.LVL33
+ 1066 00e0 0100     		.2byte	0x1
+ 1067 00e2 51       		.byte	0x51
+ 1068 00e3 00010000 		.4byte	.LVL33
+ 1069 00e7 06010000 		.4byte	.LVL34
+ 1070 00eb 0100     		.2byte	0x1
+ 1071 00ed 54       		.byte	0x54
+ 1072 00ee 06010000 		.4byte	.LVL34
+ 1073 00f2 16010000 		.4byte	.LVL36
+ 1074 00f6 0100     		.2byte	0x1
+ 1075 00f8 51       		.byte	0x51
+ 1076 00f9 16010000 		.4byte	.LVL36
+ 1077 00fd 1C010000 		.4byte	.LVL37
+ 1078 0101 0300     		.2byte	0x3
+ 1079 0103 74       		.byte	0x74
+ 1080 0104 01       		.sleb128 1
+ 1081 0105 9F       		.byte	0x9f
+ 1082 0106 1C010000 		.4byte	.LVL37
+ 1083 010a 24010000 		.4byte	.LVL38
+ 1084 010e 0100     		.2byte	0x1
+ 1085 0110 54       		.byte	0x54
+ 1086 0111 24010000 		.4byte	.LVL38
+ 1087 0115 28010000 		.4byte	.LVL39
+ 1088 0119 0700     		.2byte	0x7
+ 1089 011b 74       		.byte	0x74
+ 1090 011c 82808080 		.sleb128 -1073741822
+ 1090      7C
+ 1091 0121 9F       		.byte	0x9f
+ 1092 0122 6A010000 		.4byte	.LVL48
+ 1093 0126 6E010000 		.4byte	.LVL49
+ 1094 012a 0100     		.2byte	0x1
+ 1095 012c 51       		.byte	0x51
+ 1096 012d 6E010000 		.4byte	.LVL49
+ 1097 0131 74010000 		.4byte	.LVL50
+ 1098 0135 0200     		.2byte	0x2
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 23
+
+
+ 1099 0137 32       		.byte	0x32
+ 1100 0138 9F       		.byte	0x9f
+ 1101 0139 74010000 		.4byte	.LVL50
+ 1102 013d 88010000 		.4byte	.LFE34
+ 1103 0141 0100     		.2byte	0x1
+ 1104 0143 51       		.byte	0x51
+ 1105 0144 00000000 		.4byte	0
+ 1106 0148 00000000 		.4byte	0
+ 1107              	.LLST4:
+ 1108 014c 00000000 		.4byte	.LVL0
+ 1109 0150 1A000000 		.4byte	.LVL2
+ 1110 0154 0200     		.2byte	0x2
+ 1111 0156 31       		.byte	0x31
+ 1112 0157 9F       		.byte	0x9f
+ 1113 0158 1A000000 		.4byte	.LVL2
+ 1114 015c 34000000 		.4byte	.LVL5
+ 1115 0160 0100     		.2byte	0x1
+ 1116 0162 54       		.byte	0x54
+ 1117 0163 46000000 		.4byte	.LVL6
+ 1118 0167 6A000000 		.4byte	.LVL8
+ 1119 016b 0100     		.2byte	0x1
+ 1120 016d 54       		.byte	0x54
+ 1121 016e 6A000000 		.4byte	.LVL8
+ 1122 0172 8E000000 		.4byte	.LVL14
+ 1123 0176 0100     		.2byte	0x1
+ 1124 0178 56       		.byte	0x56
+ 1125 0179 8E000000 		.4byte	.LVL14
+ 1126 017d 92000000 		.4byte	.LVL15
+ 1127 0181 0100     		.2byte	0x1
+ 1128 0183 54       		.byte	0x54
+ 1129 0184 92000000 		.4byte	.LVL15
+ 1130 0188 94000000 		.4byte	.LVL16
+ 1131 018c 0100     		.2byte	0x1
+ 1132 018e 53       		.byte	0x53
+ 1133 018f 94000000 		.4byte	.LVL16
+ 1134 0193 E6000000 		.4byte	.LVL27
+ 1135 0197 0100     		.2byte	0x1
+ 1136 0199 58       		.byte	0x58
+ 1137 019a E6000000 		.4byte	.LVL27
+ 1138 019e EA000000 		.4byte	.LVL28
+ 1139 01a2 0100     		.2byte	0x1
+ 1140 01a4 54       		.byte	0x54
+ 1141 01a5 EA000000 		.4byte	.LVL28
+ 1142 01a9 EC000000 		.4byte	.LVL29
+ 1143 01ad 0100     		.2byte	0x1
+ 1144 01af 53       		.byte	0x53
+ 1145 01b0 EC000000 		.4byte	.LVL29
+ 1146 01b4 4C010000 		.4byte	.LVL43
+ 1147 01b8 0100     		.2byte	0x1
+ 1148 01ba 58       		.byte	0x58
+ 1149 01bb 4C010000 		.4byte	.LVL43
+ 1150 01bf 50010000 		.4byte	.LVL44
+ 1151 01c3 0100     		.2byte	0x1
+ 1152 01c5 54       		.byte	0x54
+ 1153 01c6 50010000 		.4byte	.LVL44
+ 1154 01ca 52010000 		.4byte	.LVL45
+ 1155 01ce 0100     		.2byte	0x1
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 24
+
+
+ 1156 01d0 53       		.byte	0x53
+ 1157 01d1 52010000 		.4byte	.LVL45
+ 1158 01d5 88010000 		.4byte	.LFE34
+ 1159 01d9 0100     		.2byte	0x1
+ 1160 01db 58       		.byte	0x58
+ 1161 01dc 00000000 		.4byte	0
+ 1162 01e0 00000000 		.4byte	0
+ 1163              	.LLST5:
+ 1164 01e4 50010000 		.4byte	.LVL44
+ 1165 01e8 56010000 		.4byte	.LVL46
+ 1166 01ec 0A00     		.2byte	0xa
+ 1167 01ee 74       		.byte	0x74
+ 1168 01ef 00       		.sleb128 0
+ 1169 01f0 32       		.byte	0x32
+ 1170 01f1 24       		.byte	0x24
+ 1171 01f2 91       		.byte	0x91
+ 1172 01f3 70       		.sleb128 -16
+ 1173 01f4 22       		.byte	0x22
+ 1174 01f5 08       		.byte	0x8
+ 1175 01f6 20       		.byte	0x20
+ 1176 01f7 1C       		.byte	0x1c
+ 1177 01f8 56010000 		.4byte	.LVL46
+ 1178 01fc 5D010000 		.4byte	.LVL47-1
+ 1179 0200 0A00     		.2byte	0xa
+ 1180 0202 78       		.byte	0x78
+ 1181 0203 7F       		.sleb128 -1
+ 1182 0204 32       		.byte	0x32
+ 1183 0205 24       		.byte	0x24
+ 1184 0206 91       		.byte	0x91
+ 1185 0207 70       		.sleb128 -16
+ 1186 0208 22       		.byte	0x22
+ 1187 0209 08       		.byte	0x8
+ 1188 020a 20       		.byte	0x20
+ 1189 020b 1C       		.byte	0x1c
+ 1190 020c 00000000 		.4byte	0
+ 1191 0210 00000000 		.4byte	0
+ 1192              	.LLST6:
+ 1193 0214 16000000 		.4byte	.LVL1
+ 1194 0218 66000000 		.4byte	.LVL7
+ 1195 021c 0300     		.2byte	0x3
+ 1196 021e 91       		.byte	0x91
+ 1197 021f 50       		.sleb128 -48
+ 1198 0220 9F       		.byte	0x9f
+ 1199 0221 66000000 		.4byte	.LVL7
+ 1200 0225 76000000 		.4byte	.LVL10
+ 1201 0229 0100     		.2byte	0x1
+ 1202 022b 53       		.byte	0x53
+ 1203 022c 76000000 		.4byte	.LVL10
+ 1204 0230 94000000 		.4byte	.LVL16
+ 1205 0234 0300     		.2byte	0x3
+ 1206 0236 91       		.byte	0x91
+ 1207 0237 50       		.sleb128 -48
+ 1208 0238 9F       		.byte	0x9f
+ 1209 0239 94000000 		.4byte	.LVL16
+ 1210 023d A2000000 		.4byte	.LVL18
+ 1211 0241 0100     		.2byte	0x1
+ 1212 0243 53       		.byte	0x53
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 25
+
+
+ 1213 0244 A2000000 		.4byte	.LVL18
+ 1214 0248 EC000000 		.4byte	.LVL29
+ 1215 024c 0300     		.2byte	0x3
+ 1216 024e 91       		.byte	0x91
+ 1217 024f 50       		.sleb128 -48
+ 1218 0250 9F       		.byte	0x9f
+ 1219 0251 EC000000 		.4byte	.LVL29
+ 1220 0255 F6000000 		.4byte	.LVL30
+ 1221 0259 0100     		.2byte	0x1
+ 1222 025b 53       		.byte	0x53
+ 1223 025c F6000000 		.4byte	.LVL30
+ 1224 0260 FC000000 		.4byte	.LVL31
+ 1225 0264 0100     		.2byte	0x1
+ 1226 0266 5C       		.byte	0x5c
+ 1227 0267 FC000000 		.4byte	.LVL31
+ 1228 026b 52010000 		.4byte	.LVL45
+ 1229 026f 0300     		.2byte	0x3
+ 1230 0271 91       		.byte	0x91
+ 1231 0272 50       		.sleb128 -48
+ 1232 0273 9F       		.byte	0x9f
+ 1233 0274 52010000 		.4byte	.LVL45
+ 1234 0278 5D010000 		.4byte	.LVL47-1
+ 1235 027c 0100     		.2byte	0x1
+ 1236 027e 53       		.byte	0x53
+ 1237 027f 5D010000 		.4byte	.LVL47-1
+ 1238 0283 88010000 		.4byte	.LFE34
+ 1239 0287 0300     		.2byte	0x3
+ 1240 0289 91       		.byte	0x91
+ 1241 028a 50       		.sleb128 -48
+ 1242 028b 9F       		.byte	0x9f
+ 1243 028c 00000000 		.4byte	0
+ 1244 0290 00000000 		.4byte	0
+ 1245              	.LLST7:
+ 1246 0294 22000000 		.4byte	.LVL3
+ 1247 0298 26000000 		.4byte	.LVL4
+ 1248 029c 0300     		.2byte	0x3
+ 1249 029e 91       		.byte	0x91
+ 1250 029f 50       		.sleb128 -48
+ 1251 02a0 06       		.byte	0x6
+ 1252 02a1 00000000 		.4byte	0
+ 1253 02a5 00000000 		.4byte	0
+ 1254              	.LLST8:
+ 1255 02a9 76000000 		.4byte	.LVL10
+ 1256 02ad 7B000000 		.4byte	.LVL12-1
+ 1257 02b1 0100     		.2byte	0x1
+ 1258 02b3 50       		.byte	0x50
+ 1259 02b4 00000000 		.4byte	0
+ 1260 02b8 00000000 		.4byte	0
+ 1261              	.LLST9:
+ 1262 02bc CA000000 		.4byte	.LVL24
+ 1263 02c0 D0000000 		.4byte	.LVL25
+ 1264 02c4 0900     		.2byte	0x9
+ 1265 02c6 74       		.byte	0x74
+ 1266 02c7 00       		.sleb128 0
+ 1267 02c8 06       		.byte	0x6
+ 1268 02c9 03       		.byte	0x3
+ 1269 02ca 00000000 		.4byte	.LC3
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 26
+
+
+ 1270 02ce 22       		.byte	0x22
+ 1271 02cf D0000000 		.4byte	.LVL25
+ 1272 02d3 D5000000 		.4byte	.LVL26-1
+ 1273 02d7 0800     		.2byte	0x8
+ 1274 02d9 72       		.byte	0x72
+ 1275 02da 00       		.sleb128 0
+ 1276 02db 03       		.byte	0x3
+ 1277 02dc 00000000 		.4byte	.LC3
+ 1278 02e0 22       		.byte	0x22
+ 1279 02e1 00000000 		.4byte	0
+ 1280 02e5 00000000 		.4byte	0
+ 1281              	.LLST10:
+ 1282 02e9 34010000 		.4byte	.LVL41
+ 1283 02ed 3B010000 		.4byte	.LVL42-1
+ 1284 02f1 0800     		.2byte	0x8
+ 1285 02f3 72       		.byte	0x72
+ 1286 02f4 00       		.sleb128 0
+ 1287 02f5 03       		.byte	0x3
+ 1288 02f6 00000000 		.4byte	.LC3
+ 1289 02fa 22       		.byte	0x22
+ 1290 02fb 00000000 		.4byte	0
+ 1291 02ff 00000000 		.4byte	0
+ 1292              		.section	.debug_aranges,"",%progbits
+ 1293 0000 1C000000 		.4byte	0x1c
+ 1294 0004 0200     		.2byte	0x2
+ 1295 0006 00000000 		.4byte	.Ldebug_info0
+ 1296 000a 04       		.byte	0x4
+ 1297 000b 00       		.byte	0
+ 1298 000c 0000     		.2byte	0
+ 1299 000e 0000     		.2byte	0
+ 1300 0010 00000000 		.4byte	.LFB34
+ 1301 0014 88010000 		.4byte	.LFE34-.LFB34
+ 1302 0018 00000000 		.4byte	0
+ 1303 001c 00000000 		.4byte	0
+ 1304              		.section	.debug_ranges,"",%progbits
+ 1305              	.Ldebug_ranges0:
+ 1306 0000 00000000 		.4byte	.LFB34
+ 1307 0004 88010000 		.4byte	.LFE34
+ 1308 0008 00000000 		.4byte	0
+ 1309 000c 00000000 		.4byte	0
+ 1310              		.section	.debug_line,"",%progbits
+ 1311              	.Ldebug_line0:
+ 1312 0000 0F010000 		.section	.debug_str,"MS",%progbits,1
+ 1312      02005700 
+ 1312      00000201 
+ 1312      FB0E0D00 
+ 1312      01010101 
+ 1313              	.LASF30:
+ 1314 0000 69707269 		.ascii	"iprintf\000"
+ 1314      6E746600 
+ 1315              	.LASF21:
+ 1316 0008 62756666 		.ascii	"buffer\000"
+ 1316      657200
+ 1317              	.LASF3:
+ 1318 000f 73686F72 		.ascii	"short unsigned int\000"
+ 1318      7420756E 
+ 1318      7369676E 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 27
+
+
+ 1318      65642069 
+ 1318      6E7400
+ 1319              	.LASF31:
+ 1320 0022 70737A46 		.ascii	"pszFmt\000"
+ 1320      6D7400
+ 1321              	.LASF11:
+ 1322 0029 666C6F61 		.ascii	"float\000"
+ 1322      7400
+ 1323              	.LASF1:
+ 1324 002f 756E7369 		.ascii	"unsigned char\000"
+ 1324      676E6564 
+ 1324      20636861 
+ 1324      7200
+ 1325              	.LASF23:
+ 1326 003d 6356616C 		.ascii	"cVal\000"
+ 1326      00
+ 1327              	.LASF13:
+ 1328 0042 63686172 		.ascii	"char8\000"
+ 1328      3800
+ 1329              	.LASF18:
+ 1330 0048 70737A56 		.ascii	"pszVal\000"
+ 1330      616C00
+ 1331              	.LASF5:
+ 1332 004f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1332      20756E73 
+ 1332      69676E65 
+ 1332      6420696E 
+ 1332      7400
+ 1333              	.LASF26:
+ 1334 0061 69707269 		.ascii	"iprintf.c\000"
+ 1334      6E74662E 
+ 1334      6300
+ 1335              	.LASF9:
+ 1336 006b 75696E74 		.ascii	"uint8\000"
+ 1336      3800
+ 1337              	.LASF25:
+ 1338 0071 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1338      43313120 
+ 1338      352E342E 
+ 1338      31203230 
+ 1338      31363036 
+ 1339 00a4 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1339      20726576 
+ 1339      6973696F 
+ 1339      6E203233 
+ 1339      37373135 
+ 1340 00d7 32202D66 		.ascii	"2 -ffunction-sections -ffat-lto-objects\000"
+ 1340      66756E63 
+ 1340      74696F6E 
+ 1340      2D736563 
+ 1340      74696F6E 
+ 1341              	.LASF12:
+ 1342 00ff 646F7562 		.ascii	"double\000"
+ 1342      6C6500
+ 1343              	.LASF10:
+ 1344 0106 75696E74 		.ascii	"uint32\000"
+ 1344      333200
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 28
+
+
+ 1345              	.LASF8:
+ 1346 010d 756E7369 		.ascii	"unsigned int\000"
+ 1346      676E6564 
+ 1346      20696E74 
+ 1346      00
+ 1347              	.LASF19:
+ 1348 011a 6956616C 		.ascii	"iVal\000"
+ 1348      00
+ 1349              	.LASF7:
+ 1350 011f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1350      206C6F6E 
+ 1350      6720756E 
+ 1350      7369676E 
+ 1350      65642069 
+ 1351              	.LASF20:
+ 1352 0136 7856616C 		.ascii	"xVal\000"
+ 1352      00
+ 1353              	.LASF29:
+ 1354 013b 6368616E 		.ascii	"change\000"
+ 1354      676500
+ 1355              	.LASF27:
+ 1356 0142 433A5C55 		.ascii	"C:\\Users\\jrdia\\OneDrive\\Sync\\Documents\\GitHub"
+ 1356      73657273 
+ 1356      5C6A7264 
+ 1356      69615C4F 
+ 1356      6E654472 
+ 1357 016f 5C50536F 		.ascii	"\\PSoC-Bluetooth-Dualshock\\Bluetooth_Dev.cydsn\000"
+ 1357      432D426C 
+ 1357      7565746F 
+ 1357      6F74682D 
+ 1357      4475616C 
+ 1358              	.LASF16:
+ 1359 019d 73697A65 		.ascii	"sizetype\000"
+ 1359      74797065 
+ 1359      00
+ 1360              	.LASF6:
+ 1361 01a6 6C6F6E67 		.ascii	"long long int\000"
+ 1361      206C6F6E 
+ 1361      6720696E 
+ 1361      7400
+ 1362              	.LASF24:
+ 1363 01b4 70417267 		.ascii	"pArg\000"
+ 1363      00
+ 1364              	.LASF32:
+ 1365 01b9 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ 1365      5F537069 
+ 1365      55617274 
+ 1365      57726974 
+ 1365      65547844 
+ 1366              	.LASF22:
+ 1367 01d1 696E6465 		.ascii	"index\000"
+ 1367      7800
+ 1368              	.LASF2:
+ 1369 01d7 73686F72 		.ascii	"short int\000"
+ 1369      7420696E 
+ 1369      7400
+ 1370              	.LASF28:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccjOn683.s 			page 29
+
+
+ 1371 01e1 69707574 		.ascii	"iputc\000"
+ 1371      6300
+ 1372              	.LASF4:
+ 1373 01e7 6C6F6E67 		.ascii	"long int\000"
+ 1373      20696E74 
+ 1373      00
+ 1374              	.LASF14:
+ 1375 01f0 63686172 		.ascii	"char\000"
+ 1375      00
+ 1376              	.LASF15:
+ 1377 01f5 6C6F6E67 		.ascii	"long double\000"
+ 1377      20646F75 
+ 1377      626C6500 
+ 1378              	.LASF0:
+ 1379 0201 7369676E 		.ascii	"signed char\000"
+ 1379      65642063 
+ 1379      68617200 
+ 1380              	.LASF17:
+ 1381 020d 496E6465 		.ascii	"Index\000"
+ 1381      7800
+ 1382              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

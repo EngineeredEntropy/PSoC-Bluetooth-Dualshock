@@ -1,0 +1,308 @@
+--------------- Build Started: 09/16/2017 08:27:21 Project: Bluetooth_Dev, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c main.c -o .\CortexM0\ARM_GCC_541\Debug\main.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from ./version_helper.h:24,
+                 from ./settings.h:90,
+                 from ./Usb.h:27,
+                 from ./BTD.h:21,
+                 from ./BTHID.h:21,
+                 from ./PS4BT.h:21,
+                 from main.c:67:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from ./Usb.h:28:0,
+                 from ./BTD.h:21,
+                 from ./BTHID.h:21,
+                 from ./PS4BT.h:21,
+                 from main.c:67:
+./printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from ./Usb.h:36:0,
+                 from ./BTD.h:21,
+                 from ./BTHID.h:21,
+                 from ./PS4BT.h:21,
+                 from main.c:67:
+./usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/usbhub.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c usbhub.c -o .\CortexM0\ARM_GCC_541\Debug\usbhub.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from usbhub.h:20,
+                 from usbhub.c:17:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from usbhub.h:20,
+                 from usbhub.c:17:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from usbhub.h:20,
+                 from usbhub.c:17:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/Arduino.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c Arduino.c -o .\CortexM0\ARM_GCC_541\Debug\Arduino.o
+In file included from Print.h:26:0,
+                 from Stream.h:26,
+                 from HardwareSerial.h:29,
+                 from Arduino.h:228,
+                 from Arduino.c:15:
+WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/Usb.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c Usb.c -o .\CortexM0\ARM_GCC_541\Debug\Usb.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from Usb.c:19:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from Usb.c:19:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from Usb.c:19:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/usbhid.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c usbhid.c -o .\CortexM0\ARM_GCC_541\Debug\usbhid.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from usbhid.h:20,
+                 from usbhid.c:18:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from usbhid.h:20,
+                 from usbhid.c:18:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from usbhid.h:20,
+                 from usbhid.c:18:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/PS4Parser.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c PS4Parser.c -o .\CortexM0\ARM_GCC_541\Debug\PS4Parser.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from PS4Parser.h:21,
+                 from PS4Parser.c:18:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from PS4Parser.h:21,
+                 from PS4Parser.c:18:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from PS4Parser.h:21,
+                 from PS4Parser.c:18:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/parsetools.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c parsetools.c -o .\CortexM0\ARM_GCC_541\Debug\parsetools.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from parsetools.c:17:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from parsetools.c:17:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from parsetools.c:17:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/message.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c message.c -o .\CortexM0\ARM_GCC_541\Debug\message.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from message.c:18:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from message.c:18:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from message.c:18:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+message.c:24:2: warning: #warning "Need to fix Serial stuff here." [-Wcpp]
+ #warning "Need to fix Serial stuff here."
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/hidboot.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c hidboot.c -o .\CortexM0\ARM_GCC_541\Debug\hidboot.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from usbhid.h:20,
+                 from hidboot.h:20,
+                 from hidboot.c:17:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from usbhid.h:20,
+                 from hidboot.h:20,
+                 from hidboot.c:17:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from usbhid.h:20,
+                 from hidboot.h:20,
+                 from hidboot.c:17:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/BTHID.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c BTHID.c -o .\CortexM0\ARM_GCC_541\Debug\BTHID.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from BTD.h:21,
+                 from BTHID.h:21,
+                 from BTHID.c:18:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from BTD.h:21,
+                 from BTHID.h:21,
+                 from BTHID.c:18:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from BTD.h:21,
+                 from BTHID.h:21,
+                 from BTHID.c:18:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/BTD.lst -g -D DEBUG -D CY_CORE_ID=0 -D ARDUINO=101 -D __AVR_ATmega328P__ -D __AVR__ -D USE_PORTB -Wall -ffunction-sections -ffat-lto-objects -O2 -x c++ -c BTD.c -o .\CortexM0\ARM_GCC_541\Debug\BTD.o
+In file included from ./Print.h:26:0,
+                 from ./Stream.h:26,
+                 from ./HardwareSerial.h:29,
+                 from ./Arduino.h:228,
+                 from version_helper.h:24,
+                 from settings.h:90,
+                 from Usb.h:27,
+                 from BTD.h:21,
+                 from BTD.c:18:
+./WString.h:25:10: warning: missing terminating " character
+ #warning "Should probably remove this file and any includes of it.
+          ^
+./WString.h:25:2: warning: #warning "Should probably remove this file and any includes of it. [-Wcpp]
+ #warning "Should probably remove this file and any includes of it.
+  ^
+In file included from Usb.h:28:0,
+                 from BTD.h:21,
+                 from BTD.c:18:
+printhex.h:52:18: warning: #warning need to implement serial print here [-Wcpp]
+                 #warning need to implement serial print here
+                  ^
+In file included from Usb.h:36:0,
+                 from BTD.h:21,
+                 from BTD.c:18:
+usbhost.h:30:2: warning: #warning "Need to clean up a lot of stuff in usbhost.h" [-Wcpp]
+ #warning "Need to clean up a lot of stuff in usbhost.h"
+  ^
+arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.a .\CortexM0\ARM_GCC_541\Debug\CyFlash.o .\CortexM0\ARM_GCC_541\Debug\CyLib.o .\CortexM0\ARM_GCC_541\Debug\cyPm.o .\CortexM0\ARM_GCC_541\Debug\cyutils.o .\CortexM0\ARM_GCC_541\Debug\CyLFClk.o .\CortexM0\ARM_GCC_541\Debug\UART.o .\CortexM0\ARM_GCC_541\Debug\UART_SPI_UART.o .\CortexM0\ARM_GCC_541\Debug\UART_SPI_UART_INT.o .\CortexM0\ARM_GCC_541\Debug\UART_PM.o .\CortexM0\ARM_GCC_541\Debug\UART_UART.o .\CortexM0\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM0\ARM_GCC_541\Debug\UART_UART_BOOT.o .\CortexM0\ARM_GCC_541\Debug\UART_SCBCLK.o .\CortexM0\ARM_GCC_541\Debug\UART_tx.o .\CortexM0\ARM_GCC_541\Debug\UART_tx_PM.o .\CortexM0\ARM_GCC_541\Debug\UART_rx.o .\CortexM0\ARM_GCC_541\Debug\UART_rx_PM.o .\CortexM0\ARM_GCC_541\Debug\MISO.o .\CortexM0\ARM_GCC_541\Debug\MISO_PM.o .\CortexM0\ARM_GCC_541\Debug\MOSI.o .\CortexM0\ARM_GCC_541\Debug\MOSI_PM.o .\CortexM0\ARM_GCC_541\Debug\SCK.o .\CortexM0\ARM_GCC_541\Debug\SCK_PM.o .\CortexM0\ARM_GCC_541\Debug\SS.o .\CortexM0\ARM_GCC_541\Debug\SS_PM.o .\CortexM0\ARM_GCC_541\Debug\Clock_1.o .\CortexM0\ARM_GCC_541\Debug\SPI.o .\CortexM0\ARM_GCC_541\Debug\SPI_PM.o .\CortexM0\ARM_GCC_541\Debug\SPI_INT.o .\CortexM0\ARM_GCC_541\Debug\INT_PIN.o .\CortexM0\ARM_GCC_541\Debug\INT_PIN_PM.o .\CortexM0\ARM_GCC_541\Debug\timer_clock.o .\CortexM0\ARM_GCC_541\Debug\isr_1.o .\CortexM0\ARM_GCC_541\Debug\Millis_Timer.o .\CortexM0\ARM_GCC_541\Debug\Millis_Timer_PM.o .\CortexM0\ARM_GCC_541\Debug\CyBootAsmGnu.o
+arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\jrdia\OneDrive\Sync\Documents\GitHub\PSoC-Bluetooth-Dualshock\Bluetooth_Dev.cydsn\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.elf .\CortexM0\ARM_GCC_541\Debug\main.o .\CortexM0\ARM_GCC_541\Debug\usbhub.o .\CortexM0\ARM_GCC_541\Debug\Arduino.o .\CortexM0\ARM_GCC_541\Debug\Usb.o .\CortexM0\ARM_GCC_541\Debug\usbhid.o .\CortexM0\ARM_GCC_541\Debug\PS4Parser.o .\CortexM0\ARM_GCC_541\Debug\parsetools.o .\CortexM0\ARM_GCC_541\Debug\message.o .\CortexM0\ARM_GCC_541\Debug\hidboot.o .\CortexM0\ARM_GCC_541\Debug\BTHID.o .\CortexM0\ARM_GCC_541\Debug\BTD.o .\CortexM0\ARM_GCC_541\Debug\iprintf.o .\CortexM0\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_541\Debug\cymetadata.o .\CortexM0\ARM_GCC_541\Debug\Cm0Start.o .\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m0 -mthumb -L Generated_Source\PSoC4 -Wl,-Map,.\CortexM0\ARM_GCC_541\Debug/Bluetooth_Dev.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -lstdc++ -g -ffunction-sections -O2 -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C C:\Users\jrdia\OneDrive\Sync\Documents\GitHub\PSoC-Bluetooth-Dualshock\Bluetooth_Dev.cydsn\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.elf --flash_row_size 128 --flash_size 32768 --flash_offset 0x00000000
+cyelftool.exe -S C:\Users\jrdia\OneDrive\Sync\Documents\GitHub\PSoC-Bluetooth-Dualshock\Bluetooth_Dev.cydsn\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.elf
+Flash used: 28856 of 32768 bytes (88.1 %).
+SRAM used: 2208 of 4096 bytes (53.9 %). Stack: 1024 bytes. Heap: 128 bytes.
+--------------- Build Succeeded: 09/16/2017 08:27:27 ---------------

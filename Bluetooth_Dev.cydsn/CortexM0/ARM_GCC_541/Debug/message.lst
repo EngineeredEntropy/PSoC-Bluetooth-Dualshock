@@ -1,0 +1,1038 @@
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"message.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text._Z9E_Notifycci,"ax",%progbits
+  20              		.align	2
+  21              		.global	_Z9E_Notifycci
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	_Z9E_Notifycci, %function
+  25              	_Z9E_Notifycci:
+  26              		.fnstart
+  27              	.LFB220:
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              		@ sp needed
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE220:
+  36              		.cantunwind
+  37              		.fnend
+  38              		.size	_Z9E_Notifycci, .-_Z9E_Notifycci
+  39 0002 C046     		.section	.text._Z11E_NotifyStrPKci,"ax",%progbits
+  40              		.align	2
+  41              		.global	_Z11E_NotifyStrPKci
+  42              		.code	16
+  43              		.thumb_func
+  44              		.type	_Z11E_NotifyStrPKci, %function
+  45              	_Z11E_NotifyStrPKci:
+  46              		.fnstart
+  47              	.LFB215:
+  48              		.file 1 "message.c"
+   1:message.c     **** /* Copyright (C) 2011 Circuits At Home, LTD. All rights reserved.
+   2:message.c     **** 
+   3:message.c     **** This software may be distributed and modified under the terms of the GNU
+   4:message.c     **** General Public License version 2 (GPL2) as published by the Free Software
+   5:message.c     **** Foundation and appearing in the file GPL2.TXT included in the packaging of
+   6:message.c     **** this file. Please note that GPL2 Section 2[b] requires that all works based
+   7:message.c     **** on this software must also be made publicly available under the terms of
+   8:message.c     **** the GPL2 ("Copyleft").
+   9:message.c     **** 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 2
+
+
+  10:message.c     **** Contact information
+  11:message.c     **** -------------------
+  12:message.c     **** 
+  13:message.c     **** Circuits At Home, LTD
+  14:message.c     **** Web      :  http://www.circuitsathome.com
+  15:message.c     **** e-mail   :  support@circuitsathome.com
+  16:message.c     ****  */
+  17:message.c     **** 
+  18:message.c     **** #include "Usb.h"
+  19:message.c     **** // 0x80 is the default (i.e. trace) to turn off set this global to something lower.
+  20:message.c     **** // this allows for 126 other debugging levels.
+  21:message.c     **** // TO-DO: Allow assignment to a different serial port by software
+  22:message.c     **** int UsbDEBUGlvl = 0x80;
+  23:message.c     **** 
+  24:message.c     **** #warning "Need to fix Serial stuff here."
+  25:message.c     **** void E_Notifyc(char c, int lvl) {
+  26:message.c     ****         if(UsbDEBUGlvl < lvl) return;
+  27:message.c     **** #if defined(ARDUINO) && ARDUINO >=100
+  28:message.c     ****         //UNC USB_HOST_SERIAL.print(c);
+  29:message.c     **** #else
+  30:message.c     ****         USB_HOST_SERIAL.print(c, BYTE);
+  31:message.c     **** #endif
+  32:message.c     ****         //USB_HOST_SERIAL.flush();
+  33:message.c     **** }
+  34:message.c     **** 
+  35:message.c     **** void E_Notify(char const * msg, int lvl) {
+  36:message.c     ****         if(UsbDEBUGlvl < lvl) return;
+  37:message.c     ****         if(!msg) return;
+  38:message.c     ****         char c;
+  39:message.c     **** 
+  40:message.c     ****         while((c = pgm_read_byte(msg++))) E_Notifyc(c, lvl);
+  41:message.c     **** }
+  42:message.c     **** 
+  43:message.c     **** void E_NotifyStr(char const * msg, int lvl) {
+  49              		.loc 1 43 0
+  50              		.cfi_startproc
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 0, uses_anonymous_args = 0
+  53              		@ link register save eliminated.
+  54              	.LVL0:
+  44:message.c     ****         if(UsbDEBUGlvl < lvl) return;
+  55              		.loc 1 44 0
+  56 0000 054B     		ldr	r3, .L10
+  57 0002 1B68     		ldr	r3, [r3]
+  58 0004 8B42     		cmp	r3, r1
+  59 0006 06DB     		blt	.L2
+  45:message.c     ****         if(!msg) return;
+  60              		.loc 1 45 0
+  61 0008 0028     		cmp	r0, #0
+  62 000a 04D0     		beq	.L2
+  63              	.L4:
+  64              	.LVL1:
+  65 000c 0130     		adds	r0, r0, #1
+  66              	.LVL2:
+  46:message.c     ****         char c;
+  47:message.c     **** 
+  48:message.c     ****         while((c = *msg++)) E_Notifyc(c, lvl);
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 3
+
+
+  67              		.loc 1 48 0 discriminator 2
+  68 000e 431E     		subs	r3, r0, #1
+  69              	.LVL3:
+  70 0010 1B78     		ldrb	r3, [r3]
+  71              	.LVL4:
+  72 0012 002B     		cmp	r3, #0
+  73 0014 FAD1     		bne	.L4
+  74              	.LVL5:
+  75              	.L2:
+  49:message.c     **** }
+  76              		.loc 1 49 0
+  77              		@ sp needed
+  78 0016 7047     		bx	lr
+  79              	.L11:
+  80              		.align	2
+  81              	.L10:
+  82 0018 00000000 		.word	.LANCHOR0
+  83              		.cfi_endproc
+  84              	.LFE215:
+  85              		.cantunwind
+  86              		.fnend
+  87              		.size	_Z11E_NotifyStrPKci, .-_Z11E_NotifyStrPKci
+  88              		.section	.text._Z8E_NotifyPKci,"ax",%progbits
+  89              		.align	2
+  90              		.global	_Z8E_NotifyPKci
+  91              		.code	16
+  92              		.thumb_func
+  93              		.type	_Z8E_NotifyPKci, %function
+  94              	_Z8E_NotifyPKci:
+  95              		.fnstart
+  96              	.LFB222:
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100 0000 10B5     		push	{r4, lr}
+ 101              		.cfi_def_cfa_offset 8
+ 102              		.cfi_offset 4, -8
+ 103              		.cfi_offset 14, -4
+ 104 0002 FFF7FEFF 		bl	_Z11E_NotifyStrPKci
+ 105              		@ sp needed
+ 106 0006 10BD     		pop	{r4, pc}
+ 107              		.cfi_endproc
+ 108              	.LFE222:
+ 109              		.cantunwind
+ 110              		.fnend
+ 111              		.size	_Z8E_NotifyPKci, .-_Z8E_NotifyPKci
+ 112              		.section	.text._Z8E_Notifyhi,"ax",%progbits
+ 113              		.align	2
+ 114              		.global	_Z8E_Notifyhi
+ 115              		.code	16
+ 116              		.thumb_func
+ 117              		.type	_Z8E_Notifyhi, %function
+ 118              	_Z8E_Notifyhi:
+ 119              		.fnstart
+ 120              	.LFB216:
+  50:message.c     **** 
+  51:message.c     **** void E_Notify(uint8_t b, int lvl) {
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 4
+
+
+ 121              		.loc 1 51 0
+ 122              		.cfi_startproc
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125              		@ link register save eliminated.
+ 126              	.LVL6:
+  52:message.c     ****         if(UsbDEBUGlvl < lvl) return;
+  53:message.c     **** #if defined(ARDUINO) && ARDUINO >=100
+  54:message.c     ****         //UNC USB_HOST_SERIAL.print(b);
+  55:message.c     **** #else
+  56:message.c     ****         USB_HOST_SERIAL.print(b, DEC);
+  57:message.c     **** #endif
+  58:message.c     ****         //USB_HOST_SERIAL.flush();
+  59:message.c     **** }
+ 127              		.loc 1 59 0
+ 128              		@ sp needed
+ 129 0000 7047     		bx	lr
+ 130              		.cfi_endproc
+ 131              	.LFE216:
+ 132              		.cantunwind
+ 133              		.fnend
+ 134              		.size	_Z8E_Notifyhi, .-_Z8E_Notifyhi
+ 135 0002 C046     		.section	.text._Z8E_Notifydi,"ax",%progbits
+ 136              		.align	2
+ 137              		.global	_Z8E_Notifydi
+ 138              		.code	16
+ 139              		.thumb_func
+ 140              		.type	_Z8E_Notifydi, %function
+ 141              	_Z8E_Notifydi:
+ 142              		.fnstart
+ 143              	.LFB217:
+  60:message.c     **** 
+  61:message.c     **** void E_Notify(double d, int lvl) {
+ 144              		.loc 1 61 0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              		@ link register save eliminated.
+ 149              	.LVL7:
+  62:message.c     ****         if(UsbDEBUGlvl < lvl) return;
+  63:message.c     ****         //UNC USB_HOST_SERIAL.print(d);
+  64:message.c     ****         //USB_HOST_SERIAL.flush();
+  65:message.c     **** }
+ 150              		.loc 1 65 0
+ 151              		@ sp needed
+ 152 0000 7047     		bx	lr
+ 153              		.cfi_endproc
+ 154              	.LFE217:
+ 155              		.cantunwind
+ 156              		.fnend
+ 157              		.size	_Z8E_Notifydi, .-_Z8E_Notifydi
+ 158              		.global	UsbDEBUGlvl
+ 159 0002 C046     		.data
+ 160              		.align	2
+ 161              		.set	.LANCHOR0,. + 0
+ 162              		.type	UsbDEBUGlvl, %object
+ 163              		.size	UsbDEBUGlvl, 4
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 5
+
+
+ 164              	UsbDEBUGlvl:
+ 165 0000 80000000 		.word	128
+ 166              		.text
+ 167              	.Letext0:
+ 168              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 169              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 170              		.file 4 "avrpins.h"
+ 171              		.file 5 "./Stream.h"
+ 172              		.section	.debug_info,"",%progbits
+ 173              	.Ldebug_info0:
+ 174 0000 F2010000 		.4byte	0x1f2
+ 175 0004 0400     		.2byte	0x4
+ 176 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 177 000a 04       		.byte	0x4
+ 178 000b 01       		.uleb128 0x1
+ 179 000c D2010000 		.4byte	.LASF31
+ 180 0010 04       		.byte	0x4
+ 181 0011 0D010000 		.4byte	.LASF32
+ 182 0015 0A000000 		.4byte	.LASF33
+ 183 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 184 001d 00000000 		.4byte	0
+ 185 0021 00000000 		.4byte	.Ldebug_line0
+ 186 0025 02       		.uleb128 0x2
+ 187 0026 01       		.byte	0x1
+ 188 0027 06       		.byte	0x6
+ 189 0028 C6010000 		.4byte	.LASF0
+ 190 002c 03       		.uleb128 0x3
+ 191 002d 00000000 		.4byte	.LASF9
+ 192 0031 02       		.byte	0x2
+ 193 0032 1D       		.byte	0x1d
+ 194 0033 37000000 		.4byte	0x37
+ 195 0037 02       		.uleb128 0x2
+ 196 0038 01       		.byte	0x1
+ 197 0039 08       		.byte	0x8
+ 198 003a AE000000 		.4byte	.LASF1
+ 199 003e 02       		.uleb128 0x2
+ 200 003f 02       		.byte	0x2
+ 201 0040 05       		.byte	0x5
+ 202 0041 9B010000 		.4byte	.LASF2
+ 203 0045 02       		.uleb128 0x2
+ 204 0046 02       		.byte	0x2
+ 205 0047 07       		.byte	0x7
+ 206 0048 CE000000 		.4byte	.LASF3
+ 207 004c 02       		.uleb128 0x2
+ 208 004d 04       		.byte	0x4
+ 209 004e 05       		.byte	0x5
+ 210 004f B1010000 		.4byte	.LASF4
+ 211 0053 02       		.uleb128 0x2
+ 212 0054 04       		.byte	0x4
+ 213 0055 07       		.byte	0x7
+ 214 0056 BC000000 		.4byte	.LASF5
+ 215 005a 02       		.uleb128 0x2
+ 216 005b 08       		.byte	0x8
+ 217 005c 05       		.byte	0x5
+ 218 005d 79010000 		.4byte	.LASF6
+ 219 0061 02       		.uleb128 0x2
+ 220 0062 08       		.byte	0x8
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 6
+
+
+ 221 0063 07       		.byte	0x7
+ 222 0064 97000000 		.4byte	.LASF7
+ 223 0068 04       		.uleb128 0x4
+ 224 0069 04       		.byte	0x4
+ 225 006a 05       		.byte	0x5
+ 226 006b 696E7400 		.ascii	"int\000"
+ 227 006f 02       		.uleb128 0x2
+ 228 0070 04       		.byte	0x4
+ 229 0071 07       		.byte	0x7
+ 230 0072 38010000 		.4byte	.LASF8
+ 231 0076 03       		.uleb128 0x3
+ 232 0077 5A010000 		.4byte	.LASF10
+ 233 007b 03       		.byte	0x3
+ 234 007c 18       		.byte	0x18
+ 235 007d 2C000000 		.4byte	0x2c
+ 236 0081 02       		.uleb128 0x2
+ 237 0082 04       		.byte	0x4
+ 238 0083 07       		.byte	0x7
+ 239 0084 70010000 		.4byte	.LASF11
+ 240 0088 02       		.uleb128 0x2
+ 241 0089 01       		.byte	0x1
+ 242 008a 08       		.byte	0x8
+ 243 008b 55010000 		.4byte	.LASF12
+ 244 008f 05       		.uleb128 0x5
+ 245 0090 04       		.byte	0x4
+ 246 0091 95000000 		.4byte	0x95
+ 247 0095 06       		.uleb128 0x6
+ 248 0096 88000000 		.4byte	0x88
+ 249 009a 02       		.uleb128 0x2
+ 250 009b 08       		.byte	0x8
+ 251 009c 04       		.byte	0x4
+ 252 009d 17010000 		.4byte	.LASF13
+ 253 00a1 02       		.uleb128 0x2
+ 254 00a2 04       		.byte	0x4
+ 255 00a3 04       		.byte	0x4
+ 256 00a4 83000000 		.4byte	.LASF14
+ 257 00a8 02       		.uleb128 0x2
+ 258 00a9 08       		.byte	0x8
+ 259 00aa 04       		.byte	0x4
+ 260 00ab BA010000 		.4byte	.LASF15
+ 261 00af 02       		.uleb128 0x2
+ 262 00b0 01       		.byte	0x1
+ 263 00b1 02       		.byte	0x2
+ 264 00b2 6F000000 		.4byte	.LASF16
+ 265 00b6 07       		.uleb128 0x7
+ 266 00b7 62010000 		.4byte	.LASF34
+ 267 00bb 01       		.byte	0x1
+ 268 00bc 37000000 		.4byte	0x37
+ 269 00c0 05       		.byte	0x5
+ 270 00c1 29       		.byte	0x29
+ 271 00c2 D9000000 		.4byte	0xd9
+ 272 00c6 08       		.uleb128 0x8
+ 273 00c7 1E010000 		.4byte	.LASF17
+ 274 00cb 00       		.byte	0
+ 275 00cc 08       		.uleb128 0x8
+ 276 00cd E1000000 		.4byte	.LASF18
+ 277 00d1 01       		.byte	0x1
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 7
+
+
+ 278 00d2 08       		.uleb128 0x8
+ 279 00d3 45010000 		.4byte	.LASF19
+ 280 00d7 02       		.byte	0x2
+ 281 00d8 00       		.byte	0
+ 282 00d9 09       		.uleb128 0x9
+ 283 00da 65000000 		.4byte	.LASF20
+ 284 00de 01       		.byte	0x1
+ 285 00df 19       		.byte	0x19
+ 286 00e0 74000000 		.4byte	.LASF22
+ 287 00e4 01       		.byte	0x1
+ 288 00e5 FE000000 		.4byte	0xfe
+ 289 00e9 0A       		.uleb128 0xa
+ 290 00ea 6300     		.ascii	"c\000"
+ 291 00ec 01       		.byte	0x1
+ 292 00ed 19       		.byte	0x19
+ 293 00ee 88000000 		.4byte	0x88
+ 294 00f2 0A       		.uleb128 0xa
+ 295 00f3 6C766C00 		.ascii	"lvl\000"
+ 296 00f7 01       		.byte	0x1
+ 297 00f8 19       		.byte	0x19
+ 298 00f9 68000000 		.4byte	0x68
+ 299 00fd 00       		.byte	0
+ 300 00fe 0B       		.uleb128 0xb
+ 301 00ff A5010000 		.4byte	.LASF24
+ 302 0103 01       		.byte	0x1
+ 303 0104 2B       		.byte	0x2b
+ 304 0105 87010000 		.4byte	.LASF25
+ 305 0109 00000000 		.4byte	.LFB215
+ 306 010d 1C000000 		.4byte	.LFE215-.LFB215
+ 307 0111 01       		.uleb128 0x1
+ 308 0112 9C       		.byte	0x9c
+ 309 0113 41010000 		.4byte	0x141
+ 310 0117 0C       		.uleb128 0xc
+ 311 0118 6D736700 		.ascii	"msg\000"
+ 312 011c 01       		.byte	0x1
+ 313 011d 2B       		.byte	0x2b
+ 314 011e 8F000000 		.4byte	0x8f
+ 315 0122 00000000 		.4byte	.LLST0
+ 316 0126 0D       		.uleb128 0xd
+ 317 0127 6C766C00 		.ascii	"lvl\000"
+ 318 012b 01       		.byte	0x1
+ 319 012c 2B       		.byte	0x2b
+ 320 012d 68000000 		.4byte	0x68
+ 321 0131 01       		.uleb128 0x1
+ 322 0132 51       		.byte	0x51
+ 323 0133 0E       		.uleb128 0xe
+ 324 0134 6300     		.ascii	"c\000"
+ 325 0136 01       		.byte	0x1
+ 326 0137 2E       		.byte	0x2e
+ 327 0138 88000000 		.4byte	0x88
+ 328 013c 2B000000 		.4byte	.LLST1
+ 329 0140 00       		.byte	0
+ 330 0141 09       		.uleb128 0x9
+ 331 0142 FE000000 		.4byte	.LASF21
+ 332 0146 01       		.byte	0x1
+ 333 0147 33       		.byte	0x33
+ 334 0148 EB000000 		.4byte	.LASF23
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 8
+
+
+ 335 014c 01       		.byte	0x1
+ 336 014d 66010000 		.4byte	0x166
+ 337 0151 0A       		.uleb128 0xa
+ 338 0152 6200     		.ascii	"b\000"
+ 339 0154 01       		.byte	0x1
+ 340 0155 33       		.byte	0x33
+ 341 0156 76000000 		.4byte	0x76
+ 342 015a 0A       		.uleb128 0xa
+ 343 015b 6C766C00 		.ascii	"lvl\000"
+ 344 015f 01       		.byte	0x1
+ 345 0160 33       		.byte	0x33
+ 346 0161 68000000 		.4byte	0x68
+ 347 0165 00       		.byte	0
+ 348 0166 0F       		.uleb128 0xf
+ 349 0167 41010000 		.4byte	0x141
+ 350 016b EB000000 		.4byte	.LASF23
+ 351 016f 00000000 		.4byte	.LFB216
+ 352 0173 02000000 		.4byte	.LFE216-.LFB216
+ 353 0177 01       		.uleb128 0x1
+ 354 0178 9C       		.byte	0x9c
+ 355 0179 8C010000 		.4byte	0x18c
+ 356 017d 10       		.uleb128 0x10
+ 357 017e 51010000 		.4byte	0x151
+ 358 0182 01       		.uleb128 0x1
+ 359 0183 50       		.byte	0x50
+ 360 0184 10       		.uleb128 0x10
+ 361 0185 5A010000 		.4byte	0x15a
+ 362 0189 01       		.uleb128 0x1
+ 363 018a 51       		.byte	0x51
+ 364 018b 00       		.byte	0
+ 365 018c 0B       		.uleb128 0xb
+ 366 018d FE000000 		.4byte	.LASF21
+ 367 0191 01       		.byte	0x1
+ 368 0192 3D       		.byte	0x3d
+ 369 0193 89000000 		.4byte	.LASF26
+ 370 0197 00000000 		.4byte	.LFB217
+ 371 019b 02000000 		.4byte	.LFE217-.LFB217
+ 372 019f 01       		.uleb128 0x1
+ 373 01a0 9C       		.byte	0x9c
+ 374 01a1 C3010000 		.4byte	0x1c3
+ 375 01a5 0D       		.uleb128 0xd
+ 376 01a6 6400     		.ascii	"d\000"
+ 377 01a8 01       		.byte	0x1
+ 378 01a9 3D       		.byte	0x3d
+ 379 01aa 9A000000 		.4byte	0x9a
+ 380 01ae 06       		.uleb128 0x6
+ 381 01af 50       		.byte	0x50
+ 382 01b0 93       		.byte	0x93
+ 383 01b1 04       		.uleb128 0x4
+ 384 01b2 51       		.byte	0x51
+ 385 01b3 93       		.byte	0x93
+ 386 01b4 04       		.uleb128 0x4
+ 387 01b5 0D       		.uleb128 0xd
+ 388 01b6 6C766C00 		.ascii	"lvl\000"
+ 389 01ba 01       		.byte	0x1
+ 390 01bb 3D       		.byte	0x3d
+ 391 01bc 68000000 		.4byte	0x68
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 9
+
+
+ 392 01c0 01       		.uleb128 0x1
+ 393 01c1 52       		.byte	0x52
+ 394 01c2 00       		.byte	0
+ 395 01c3 11       		.uleb128 0x11
+ 396 01c4 27010000 		.4byte	.LASF27
+ 397 01c8 01       		.byte	0x1
+ 398 01c9 16       		.byte	0x16
+ 399 01ca 68000000 		.4byte	0x68
+ 400 01ce 05       		.uleb128 0x5
+ 401 01cf 03       		.byte	0x3
+ 402 01d0 00000000 		.4byte	UsbDEBUGlvl
+ 403 01d4 12       		.uleb128 0x12
+ 404 01d5 07010000 		.4byte	.LASF28
+ 405 01d9 04       		.byte	0x4
+ 406 01da 19       		.byte	0x19
+ 407 01db 68000000 		.4byte	0x68
+ 408 01df 12       		.uleb128 0x12
+ 409 01e0 33010000 		.4byte	.LASF29
+ 410 01e4 04       		.byte	0x4
+ 411 01e5 1A       		.byte	0x1a
+ 412 01e6 68000000 		.4byte	0x68
+ 413 01ea 12       		.uleb128 0x12
+ 414 01eb F9000000 		.4byte	.LASF30
+ 415 01ef 04       		.byte	0x4
+ 416 01f0 1B       		.byte	0x1b
+ 417 01f1 68000000 		.4byte	0x68
+ 418 01f5 00       		.byte	0
+ 419              		.section	.debug_abbrev,"",%progbits
+ 420              	.Ldebug_abbrev0:
+ 421 0000 01       		.uleb128 0x1
+ 422 0001 11       		.uleb128 0x11
+ 423 0002 01       		.byte	0x1
+ 424 0003 25       		.uleb128 0x25
+ 425 0004 0E       		.uleb128 0xe
+ 426 0005 13       		.uleb128 0x13
+ 427 0006 0B       		.uleb128 0xb
+ 428 0007 03       		.uleb128 0x3
+ 429 0008 0E       		.uleb128 0xe
+ 430 0009 1B       		.uleb128 0x1b
+ 431 000a 0E       		.uleb128 0xe
+ 432 000b 55       		.uleb128 0x55
+ 433 000c 17       		.uleb128 0x17
+ 434 000d 11       		.uleb128 0x11
+ 435 000e 01       		.uleb128 0x1
+ 436 000f 10       		.uleb128 0x10
+ 437 0010 17       		.uleb128 0x17
+ 438 0011 00       		.byte	0
+ 439 0012 00       		.byte	0
+ 440 0013 02       		.uleb128 0x2
+ 441 0014 24       		.uleb128 0x24
+ 442 0015 00       		.byte	0
+ 443 0016 0B       		.uleb128 0xb
+ 444 0017 0B       		.uleb128 0xb
+ 445 0018 3E       		.uleb128 0x3e
+ 446 0019 0B       		.uleb128 0xb
+ 447 001a 03       		.uleb128 0x3
+ 448 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 10
+
+
+ 449 001c 00       		.byte	0
+ 450 001d 00       		.byte	0
+ 451 001e 03       		.uleb128 0x3
+ 452 001f 16       		.uleb128 0x16
+ 453 0020 00       		.byte	0
+ 454 0021 03       		.uleb128 0x3
+ 455 0022 0E       		.uleb128 0xe
+ 456 0023 3A       		.uleb128 0x3a
+ 457 0024 0B       		.uleb128 0xb
+ 458 0025 3B       		.uleb128 0x3b
+ 459 0026 0B       		.uleb128 0xb
+ 460 0027 49       		.uleb128 0x49
+ 461 0028 13       		.uleb128 0x13
+ 462 0029 00       		.byte	0
+ 463 002a 00       		.byte	0
+ 464 002b 04       		.uleb128 0x4
+ 465 002c 24       		.uleb128 0x24
+ 466 002d 00       		.byte	0
+ 467 002e 0B       		.uleb128 0xb
+ 468 002f 0B       		.uleb128 0xb
+ 469 0030 3E       		.uleb128 0x3e
+ 470 0031 0B       		.uleb128 0xb
+ 471 0032 03       		.uleb128 0x3
+ 472 0033 08       		.uleb128 0x8
+ 473 0034 00       		.byte	0
+ 474 0035 00       		.byte	0
+ 475 0036 05       		.uleb128 0x5
+ 476 0037 0F       		.uleb128 0xf
+ 477 0038 00       		.byte	0
+ 478 0039 0B       		.uleb128 0xb
+ 479 003a 0B       		.uleb128 0xb
+ 480 003b 49       		.uleb128 0x49
+ 481 003c 13       		.uleb128 0x13
+ 482 003d 00       		.byte	0
+ 483 003e 00       		.byte	0
+ 484 003f 06       		.uleb128 0x6
+ 485 0040 26       		.uleb128 0x26
+ 486 0041 00       		.byte	0
+ 487 0042 49       		.uleb128 0x49
+ 488 0043 13       		.uleb128 0x13
+ 489 0044 00       		.byte	0
+ 490 0045 00       		.byte	0
+ 491 0046 07       		.uleb128 0x7
+ 492 0047 04       		.uleb128 0x4
+ 493 0048 01       		.byte	0x1
+ 494 0049 03       		.uleb128 0x3
+ 495 004a 0E       		.uleb128 0xe
+ 496 004b 0B       		.uleb128 0xb
+ 497 004c 0B       		.uleb128 0xb
+ 498 004d 49       		.uleb128 0x49
+ 499 004e 13       		.uleb128 0x13
+ 500 004f 3A       		.uleb128 0x3a
+ 501 0050 0B       		.uleb128 0xb
+ 502 0051 3B       		.uleb128 0x3b
+ 503 0052 0B       		.uleb128 0xb
+ 504 0053 01       		.uleb128 0x1
+ 505 0054 13       		.uleb128 0x13
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 11
+
+
+ 506 0055 00       		.byte	0
+ 507 0056 00       		.byte	0
+ 508 0057 08       		.uleb128 0x8
+ 509 0058 28       		.uleb128 0x28
+ 510 0059 00       		.byte	0
+ 511 005a 03       		.uleb128 0x3
+ 512 005b 0E       		.uleb128 0xe
+ 513 005c 1C       		.uleb128 0x1c
+ 514 005d 0B       		.uleb128 0xb
+ 515 005e 00       		.byte	0
+ 516 005f 00       		.byte	0
+ 517 0060 09       		.uleb128 0x9
+ 518 0061 2E       		.uleb128 0x2e
+ 519 0062 01       		.byte	0x1
+ 520 0063 3F       		.uleb128 0x3f
+ 521 0064 19       		.uleb128 0x19
+ 522 0065 03       		.uleb128 0x3
+ 523 0066 0E       		.uleb128 0xe
+ 524 0067 3A       		.uleb128 0x3a
+ 525 0068 0B       		.uleb128 0xb
+ 526 0069 3B       		.uleb128 0x3b
+ 527 006a 0B       		.uleb128 0xb
+ 528 006b 6E       		.uleb128 0x6e
+ 529 006c 0E       		.uleb128 0xe
+ 530 006d 20       		.uleb128 0x20
+ 531 006e 0B       		.uleb128 0xb
+ 532 006f 01       		.uleb128 0x1
+ 533 0070 13       		.uleb128 0x13
+ 534 0071 00       		.byte	0
+ 535 0072 00       		.byte	0
+ 536 0073 0A       		.uleb128 0xa
+ 537 0074 05       		.uleb128 0x5
+ 538 0075 00       		.byte	0
+ 539 0076 03       		.uleb128 0x3
+ 540 0077 08       		.uleb128 0x8
+ 541 0078 3A       		.uleb128 0x3a
+ 542 0079 0B       		.uleb128 0xb
+ 543 007a 3B       		.uleb128 0x3b
+ 544 007b 0B       		.uleb128 0xb
+ 545 007c 49       		.uleb128 0x49
+ 546 007d 13       		.uleb128 0x13
+ 547 007e 00       		.byte	0
+ 548 007f 00       		.byte	0
+ 549 0080 0B       		.uleb128 0xb
+ 550 0081 2E       		.uleb128 0x2e
+ 551 0082 01       		.byte	0x1
+ 552 0083 3F       		.uleb128 0x3f
+ 553 0084 19       		.uleb128 0x19
+ 554 0085 03       		.uleb128 0x3
+ 555 0086 0E       		.uleb128 0xe
+ 556 0087 3A       		.uleb128 0x3a
+ 557 0088 0B       		.uleb128 0xb
+ 558 0089 3B       		.uleb128 0x3b
+ 559 008a 0B       		.uleb128 0xb
+ 560 008b 6E       		.uleb128 0x6e
+ 561 008c 0E       		.uleb128 0xe
+ 562 008d 11       		.uleb128 0x11
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 12
+
+
+ 563 008e 01       		.uleb128 0x1
+ 564 008f 12       		.uleb128 0x12
+ 565 0090 06       		.uleb128 0x6
+ 566 0091 40       		.uleb128 0x40
+ 567 0092 18       		.uleb128 0x18
+ 568 0093 9742     		.uleb128 0x2117
+ 569 0095 19       		.uleb128 0x19
+ 570 0096 01       		.uleb128 0x1
+ 571 0097 13       		.uleb128 0x13
+ 572 0098 00       		.byte	0
+ 573 0099 00       		.byte	0
+ 574 009a 0C       		.uleb128 0xc
+ 575 009b 05       		.uleb128 0x5
+ 576 009c 00       		.byte	0
+ 577 009d 03       		.uleb128 0x3
+ 578 009e 08       		.uleb128 0x8
+ 579 009f 3A       		.uleb128 0x3a
+ 580 00a0 0B       		.uleb128 0xb
+ 581 00a1 3B       		.uleb128 0x3b
+ 582 00a2 0B       		.uleb128 0xb
+ 583 00a3 49       		.uleb128 0x49
+ 584 00a4 13       		.uleb128 0x13
+ 585 00a5 02       		.uleb128 0x2
+ 586 00a6 17       		.uleb128 0x17
+ 587 00a7 00       		.byte	0
+ 588 00a8 00       		.byte	0
+ 589 00a9 0D       		.uleb128 0xd
+ 590 00aa 05       		.uleb128 0x5
+ 591 00ab 00       		.byte	0
+ 592 00ac 03       		.uleb128 0x3
+ 593 00ad 08       		.uleb128 0x8
+ 594 00ae 3A       		.uleb128 0x3a
+ 595 00af 0B       		.uleb128 0xb
+ 596 00b0 3B       		.uleb128 0x3b
+ 597 00b1 0B       		.uleb128 0xb
+ 598 00b2 49       		.uleb128 0x49
+ 599 00b3 13       		.uleb128 0x13
+ 600 00b4 02       		.uleb128 0x2
+ 601 00b5 18       		.uleb128 0x18
+ 602 00b6 00       		.byte	0
+ 603 00b7 00       		.byte	0
+ 604 00b8 0E       		.uleb128 0xe
+ 605 00b9 34       		.uleb128 0x34
+ 606 00ba 00       		.byte	0
+ 607 00bb 03       		.uleb128 0x3
+ 608 00bc 08       		.uleb128 0x8
+ 609 00bd 3A       		.uleb128 0x3a
+ 610 00be 0B       		.uleb128 0xb
+ 611 00bf 3B       		.uleb128 0x3b
+ 612 00c0 0B       		.uleb128 0xb
+ 613 00c1 49       		.uleb128 0x49
+ 614 00c2 13       		.uleb128 0x13
+ 615 00c3 02       		.uleb128 0x2
+ 616 00c4 17       		.uleb128 0x17
+ 617 00c5 00       		.byte	0
+ 618 00c6 00       		.byte	0
+ 619 00c7 0F       		.uleb128 0xf
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 13
+
+
+ 620 00c8 2E       		.uleb128 0x2e
+ 621 00c9 01       		.byte	0x1
+ 622 00ca 31       		.uleb128 0x31
+ 623 00cb 13       		.uleb128 0x13
+ 624 00cc 6E       		.uleb128 0x6e
+ 625 00cd 0E       		.uleb128 0xe
+ 626 00ce 11       		.uleb128 0x11
+ 627 00cf 01       		.uleb128 0x1
+ 628 00d0 12       		.uleb128 0x12
+ 629 00d1 06       		.uleb128 0x6
+ 630 00d2 40       		.uleb128 0x40
+ 631 00d3 18       		.uleb128 0x18
+ 632 00d4 9742     		.uleb128 0x2117
+ 633 00d6 19       		.uleb128 0x19
+ 634 00d7 01       		.uleb128 0x1
+ 635 00d8 13       		.uleb128 0x13
+ 636 00d9 00       		.byte	0
+ 637 00da 00       		.byte	0
+ 638 00db 10       		.uleb128 0x10
+ 639 00dc 05       		.uleb128 0x5
+ 640 00dd 00       		.byte	0
+ 641 00de 31       		.uleb128 0x31
+ 642 00df 13       		.uleb128 0x13
+ 643 00e0 02       		.uleb128 0x2
+ 644 00e1 18       		.uleb128 0x18
+ 645 00e2 00       		.byte	0
+ 646 00e3 00       		.byte	0
+ 647 00e4 11       		.uleb128 0x11
+ 648 00e5 34       		.uleb128 0x34
+ 649 00e6 00       		.byte	0
+ 650 00e7 03       		.uleb128 0x3
+ 651 00e8 0E       		.uleb128 0xe
+ 652 00e9 3A       		.uleb128 0x3a
+ 653 00ea 0B       		.uleb128 0xb
+ 654 00eb 3B       		.uleb128 0x3b
+ 655 00ec 0B       		.uleb128 0xb
+ 656 00ed 49       		.uleb128 0x49
+ 657 00ee 13       		.uleb128 0x13
+ 658 00ef 3F       		.uleb128 0x3f
+ 659 00f0 19       		.uleb128 0x19
+ 660 00f1 02       		.uleb128 0x2
+ 661 00f2 18       		.uleb128 0x18
+ 662 00f3 00       		.byte	0
+ 663 00f4 00       		.byte	0
+ 664 00f5 12       		.uleb128 0x12
+ 665 00f6 34       		.uleb128 0x34
+ 666 00f7 00       		.byte	0
+ 667 00f8 03       		.uleb128 0x3
+ 668 00f9 0E       		.uleb128 0xe
+ 669 00fa 3A       		.uleb128 0x3a
+ 670 00fb 0B       		.uleb128 0xb
+ 671 00fc 3B       		.uleb128 0x3b
+ 672 00fd 0B       		.uleb128 0xb
+ 673 00fe 49       		.uleb128 0x49
+ 674 00ff 13       		.uleb128 0x13
+ 675 0100 3F       		.uleb128 0x3f
+ 676 0101 19       		.uleb128 0x19
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 14
+
+
+ 677 0102 3C       		.uleb128 0x3c
+ 678 0103 19       		.uleb128 0x19
+ 679 0104 00       		.byte	0
+ 680 0105 00       		.byte	0
+ 681 0106 00       		.byte	0
+ 682              		.section	.debug_loc,"",%progbits
+ 683              	.Ldebug_loc0:
+ 684              	.LLST0:
+ 685 0000 00000000 		.4byte	.LVL0
+ 686 0004 0C000000 		.4byte	.LVL1
+ 687 0008 0100     		.2byte	0x1
+ 688 000a 50       		.byte	0x50
+ 689 000b 0C000000 		.4byte	.LVL1
+ 690 000f 0E000000 		.4byte	.LVL2
+ 691 0013 0300     		.2byte	0x3
+ 692 0015 70       		.byte	0x70
+ 693 0016 01       		.sleb128 1
+ 694 0017 9F       		.byte	0x9f
+ 695 0018 0E000000 		.4byte	.LVL2
+ 696 001c 1C000000 		.4byte	.LFE215
+ 697 0020 0100     		.2byte	0x1
+ 698 0022 50       		.byte	0x50
+ 699 0023 00000000 		.4byte	0
+ 700 0027 00000000 		.4byte	0
+ 701              	.LLST1:
+ 702 002b 0E000000 		.4byte	.LVL2
+ 703 002f 10000000 		.4byte	.LVL3
+ 704 0033 0200     		.2byte	0x2
+ 705 0035 70       		.byte	0x70
+ 706 0036 7F       		.sleb128 -1
+ 707 0037 10000000 		.4byte	.LVL3
+ 708 003b 12000000 		.4byte	.LVL4
+ 709 003f 0200     		.2byte	0x2
+ 710 0041 73       		.byte	0x73
+ 711 0042 00       		.sleb128 0
+ 712 0043 12000000 		.4byte	.LVL4
+ 713 0047 16000000 		.4byte	.LVL5
+ 714 004b 0200     		.2byte	0x2
+ 715 004d 70       		.byte	0x70
+ 716 004e 7F       		.sleb128 -1
+ 717 004f 00000000 		.4byte	0
+ 718 0053 00000000 		.4byte	0
+ 719              		.section	.debug_aranges,"",%progbits
+ 720 0000 2C000000 		.4byte	0x2c
+ 721 0004 0200     		.2byte	0x2
+ 722 0006 00000000 		.4byte	.Ldebug_info0
+ 723 000a 04       		.byte	0x4
+ 724 000b 00       		.byte	0
+ 725 000c 0000     		.2byte	0
+ 726 000e 0000     		.2byte	0
+ 727 0010 00000000 		.4byte	.LFB215
+ 728 0014 1C000000 		.4byte	.LFE215-.LFB215
+ 729 0018 00000000 		.4byte	.LFB216
+ 730 001c 02000000 		.4byte	.LFE216-.LFB216
+ 731 0020 00000000 		.4byte	.LFB217
+ 732 0024 02000000 		.4byte	.LFE217-.LFB217
+ 733 0028 00000000 		.4byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 15
+
+
+ 734 002c 00000000 		.4byte	0
+ 735              		.section	.debug_ranges,"",%progbits
+ 736              	.Ldebug_ranges0:
+ 737 0000 00000000 		.4byte	.LFB215
+ 738 0004 1C000000 		.4byte	.LFE215
+ 739 0008 00000000 		.4byte	.LFB216
+ 740 000c 02000000 		.4byte	.LFE216
+ 741 0010 00000000 		.4byte	.LFB217
+ 742 0014 02000000 		.4byte	.LFE217
+ 743 0018 00000000 		.4byte	0
+ 744 001c 00000000 		.4byte	0
+ 745              		.section	.debug_line,"",%progbits
+ 746              	.Ldebug_line0:
+ 747 0000 75010000 		.section	.debug_str,"MS",%progbits,1
+ 747      02003801 
+ 747      00000201 
+ 747      FB0E0D00 
+ 747      01010101 
+ 748              	.LASF9:
+ 749 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 749      6E74385F 
+ 749      7400
+ 750              	.LASF33:
+ 751 000a 433A5C55 		.ascii	"C:\\Users\\jrdia\\OneDrive\\Sync\\Documents\\GitHub"
+ 751      73657273 
+ 751      5C6A7264 
+ 751      69615C4F 
+ 751      6E654472 
+ 752 0037 5C50536F 		.ascii	"\\PSoC-Bluetooth-Dualshock\\Bluetooth_Dev.cydsn\000"
+ 752      432D426C 
+ 752      7565746F 
+ 752      6F74682D 
+ 752      4475616C 
+ 753              	.LASF20:
+ 754 0065 455F4E6F 		.ascii	"E_Notifyc\000"
+ 754      74696679 
+ 754      6300
+ 755              	.LASF16:
+ 756 006f 626F6F6C 		.ascii	"bool\000"
+ 756      00
+ 757              	.LASF22:
+ 758 0074 5F5A3945 		.ascii	"_Z9E_Notifycci\000"
+ 758      5F4E6F74 
+ 758      69667963 
+ 758      636900
+ 759              	.LASF14:
+ 760 0083 666C6F61 		.ascii	"float\000"
+ 760      7400
+ 761              	.LASF26:
+ 762 0089 5F5A3845 		.ascii	"_Z8E_Notifydi\000"
+ 762      5F4E6F74 
+ 762      69667964 
+ 762      6900
+ 763              	.LASF7:
+ 764 0097 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 764      206C6F6E 
+ 764      6720756E 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 16
+
+
+ 764      7369676E 
+ 764      65642069 
+ 765              	.LASF1:
+ 766 00ae 756E7369 		.ascii	"unsigned char\000"
+ 766      676E6564 
+ 766      20636861 
+ 766      7200
+ 767              	.LASF5:
+ 768 00bc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 768      20756E73 
+ 768      69676E65 
+ 768      6420696E 
+ 768      7400
+ 769              	.LASF3:
+ 770 00ce 73686F72 		.ascii	"short unsigned int\000"
+ 770      7420756E 
+ 770      7369676E 
+ 770      65642069 
+ 770      6E7400
+ 771              	.LASF18:
+ 772 00e1 534B4950 		.ascii	"SKIP_NONE\000"
+ 772      5F4E4F4E 
+ 772      4500
+ 773              	.LASF23:
+ 774 00eb 5F5A3845 		.ascii	"_Z8E_Notifyhi\000"
+ 774      5F4E6F74 
+ 774      69667968 
+ 774      6900
+ 775              	.LASF30:
+ 776 00f9 50494E42 		.ascii	"PINB\000"
+ 776      00
+ 777              	.LASF21:
+ 778 00fe 455F4E6F 		.ascii	"E_Notify\000"
+ 778      74696679 
+ 778      00
+ 779              	.LASF28:
+ 780 0107 504F5254 		.ascii	"PORTB\000"
+ 780      4200
+ 781              	.LASF32:
+ 782 010d 6D657373 		.ascii	"message.c\000"
+ 782      6167652E 
+ 782      6300
+ 783              	.LASF13:
+ 784 0117 646F7562 		.ascii	"double\000"
+ 784      6C6500
+ 785              	.LASF17:
+ 786 011e 534B4950 		.ascii	"SKIP_ALL\000"
+ 786      5F414C4C 
+ 786      00
+ 787              	.LASF27:
+ 788 0127 55736244 		.ascii	"UsbDEBUGlvl\000"
+ 788      45425547 
+ 788      6C766C00 
+ 789              	.LASF29:
+ 790 0133 44445242 		.ascii	"DDRB\000"
+ 790      00
+ 791              	.LASF8:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 17
+
+
+ 792 0138 756E7369 		.ascii	"unsigned int\000"
+ 792      676E6564 
+ 792      20696E74 
+ 792      00
+ 793              	.LASF19:
+ 794 0145 534B4950 		.ascii	"SKIP_WHITESPACE\000"
+ 794      5F574849 
+ 794      54455350 
+ 794      41434500 
+ 795              	.LASF12:
+ 796 0155 63686172 		.ascii	"char\000"
+ 796      00
+ 797              	.LASF10:
+ 798 015a 75696E74 		.ascii	"uint8_t\000"
+ 798      385F7400 
+ 799              	.LASF34:
+ 800 0162 4C6F6F6B 		.ascii	"LookaheadMode\000"
+ 800      61686561 
+ 800      644D6F64 
+ 800      6500
+ 801              	.LASF11:
+ 802 0170 73697A65 		.ascii	"sizetype\000"
+ 802      74797065 
+ 802      00
+ 803              	.LASF6:
+ 804 0179 6C6F6E67 		.ascii	"long long int\000"
+ 804      206C6F6E 
+ 804      6720696E 
+ 804      7400
+ 805              	.LASF25:
+ 806 0187 5F5A3131 		.ascii	"_Z11E_NotifyStrPKci\000"
+ 806      455F4E6F 
+ 806      74696679 
+ 806      53747250 
+ 806      4B636900 
+ 807              	.LASF2:
+ 808 019b 73686F72 		.ascii	"short int\000"
+ 808      7420696E 
+ 808      7400
+ 809              	.LASF24:
+ 810 01a5 455F4E6F 		.ascii	"E_NotifyStr\000"
+ 810      74696679 
+ 810      53747200 
+ 811              	.LASF4:
+ 812 01b1 6C6F6E67 		.ascii	"long int\000"
+ 812      20696E74 
+ 812      00
+ 813              	.LASF15:
+ 814 01ba 6C6F6E67 		.ascii	"long double\000"
+ 814      20646F75 
+ 814      626C6500 
+ 815              	.LASF0:
+ 816 01c6 7369676E 		.ascii	"signed char\000"
+ 816      65642063 
+ 816      68617200 
+ 817              	.LASF31:
+ 818 01d2 474E5520 		.ascii	"GNU C++ 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmGUnxs.s 			page 18
+
+
+ 818      432B2B20 
+ 818      352E342E 
+ 818      31203230 
+ 818      31363036 
+ 819 0205 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 819      20726576 
+ 819      6973696F 
+ 819      6E203233 
+ 819      37373135 
+ 820 0238 32202D66 		.ascii	"2 -ffunction-sections -ffat-lto-objects\000"
+ 820      66756E63 
+ 820      74696F6E 
+ 820      2D736563 
+ 820      74696F6E 
+ 821              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

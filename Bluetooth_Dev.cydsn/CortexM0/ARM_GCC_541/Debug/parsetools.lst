@@ -1,0 +1,2557 @@
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"parsetools.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text._ZN20MultiByteValueParser5ParseEPPhPt.part.0,"ax",%progbits
+  20              		.align	2
+  21              		.code	16
+  22              		.thumb_func
+  23              		.type	_ZN20MultiByteValueParser5ParseEPPhPt.part.0, %function
+  24              	_ZN20MultiByteValueParser5ParseEPPhPt.part.0:
+  25              		.fnstart
+  26              	.LFB216:
+  27              		.file 1 "parsetools.c"
+   1:parsetools.c  **** /* Copyright (C) 2011 Circuits At Home, LTD. All rights reserved.
+   2:parsetools.c  **** 
+   3:parsetools.c  **** This software may be distributed and modified under the terms of the GNU
+   4:parsetools.c  **** General Public License version 2 (GPL2) as published by the Free Software
+   5:parsetools.c  **** Foundation and appearing in the file GPL2.TXT included in the packaging of
+   6:parsetools.c  **** this file. Please note that GPL2 Section 2[b] requires that all works based
+   7:parsetools.c  **** on this software must also be made publicly available under the terms of
+   8:parsetools.c  **** the GPL2 ("Copyleft").
+   9:parsetools.c  **** 
+  10:parsetools.c  **** Contact information
+  11:parsetools.c  **** -------------------
+  12:parsetools.c  **** 
+  13:parsetools.c  **** Circuits At Home, LTD
+  14:parsetools.c  **** Web      :  http://www.circuitsathome.com
+  15:parsetools.c  **** e-mail   :  support@circuitsathome.com
+  16:parsetools.c  ****  */
+  17:parsetools.c  **** #include "Usb.h"
+  18:parsetools.c  **** 
+  19:parsetools.c  **** bool MultiByteValueParser::Parse(uint8_t **pp, uint16_t *pcntdn) {
+  28              		.loc 1 19 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 30B5     		push	{r4, r5, lr}
+  34              		.cfi_def_cfa_offset 12
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  20:parsetools.c  ****         if(!pBuf) {
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 2
+
+
+  21:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+  22:parsetools.c  ****                 return false;
+  23:parsetools.c  ****         }
+  24:parsetools.c  ****         for(; countDown && (*pcntdn); countDown--, (*pcntdn)--, (*pp)++)
+  38              		.loc 1 24 0
+  39 0002 0579     		ldrb	r5, [r0, #4]
+  40 0004 002D     		cmp	r5, #0
+  41 0006 18D0     		beq	.L2
+  42 0008 1388     		ldrh	r3, [r2]
+  43 000a 002B     		cmp	r3, #0
+  44 000c 19D0     		beq	.L3
+  45 000e 0C68     		ldr	r4, [r1]
+  46 0010 01E0     		b	.L4
+  47              	.L19:
+  48 0012 002B     		cmp	r3, #0
+  49 0014 15D0     		beq	.L3
+  50              	.L4:
+  25:parsetools.c  ****                 pBuf[valueSize - countDown] = (**pp);
+  51              		.loc 1 25 0
+  52 0016 4379     		ldrb	r3, [r0, #5]
+  53 0018 2478     		ldrb	r4, [r4]
+  54 001a 5B1B     		subs	r3, r3, r5
+  55 001c 0568     		ldr	r5, [r0]
+  56 001e EC54     		strb	r4, [r5, r3]
+  24:parsetools.c  ****                 pBuf[valueSize - countDown] = (**pp);
+  57              		.loc 1 24 0
+  58 0020 0379     		ldrb	r3, [r0, #4]
+  59 0022 013B     		subs	r3, r3, #1
+  60 0024 0371     		strb	r3, [r0, #4]
+  61 0026 1388     		ldrh	r3, [r2]
+  62 0028 0C68     		ldr	r4, [r1]
+  63 002a 013B     		subs	r3, r3, #1
+  64 002c 9BB2     		uxth	r3, r3
+  65 002e 0134     		adds	r4, r4, #1
+  66 0030 1380     		strh	r3, [r2]
+  67 0032 0C60     		str	r4, [r1]
+  68 0034 0579     		ldrb	r5, [r0, #4]
+  69 0036 002D     		cmp	r5, #0
+  70 0038 EBD1     		bne	.L19
+  71              	.L2:
+  26:parsetools.c  **** 
+  27:parsetools.c  ****         if(countDown)
+  28:parsetools.c  ****                 return false;
+  29:parsetools.c  **** 
+  30:parsetools.c  ****         countDown = valueSize;
+  72              		.loc 1 30 0
+  73 003a 4379     		ldrb	r3, [r0, #5]
+  74 003c 0371     		strb	r3, [r0, #4]
+  31:parsetools.c  ****         return true;
+  75              		.loc 1 31 0
+  76 003e 0120     		movs	r0, #1
+  77              	.LVL1:
+  78              	.L20:
+  32:parsetools.c  **** }
+  79              		.loc 1 32 0
+  80              		@ sp needed
+  81 0040 30BD     		pop	{r4, r5, pc}
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 3
+
+
+  82              	.LVL2:
+  83              	.L3:
+  28:parsetools.c  **** 
+  84              		.loc 1 28 0
+  85 0042 0020     		movs	r0, #0
+  86              	.LVL3:
+  87 0044 FCE7     		b	.L20
+  88              		.cfi_endproc
+  89              	.LFE216:
+  90              		.cantunwind
+  91              		.fnend
+  92              		.size	_ZN20MultiByteValueParser5ParseEPPhPt.part.0, .-_ZN20MultiByteValueParser5ParseEPPhPt.part.0
+  93 0046 C046     		.section	.text._ZN20MultiByteValueParser5ParseEPPhPt,"ax",%progbits
+  94              		.align	2
+  95              		.global	_ZN20MultiByteValueParser5ParseEPPhPt
+  96              		.code	16
+  97              		.thumb_func
+  98              		.type	_ZN20MultiByteValueParser5ParseEPPhPt, %function
+  99              	_ZN20MultiByteValueParser5ParseEPPhPt:
+ 100              		.fnstart
+ 101              	.LFB213:
+  19:parsetools.c  ****         if(!pBuf) {
+ 102              		.loc 1 19 0
+ 103              		.cfi_startproc
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106              	.LVL4:
+  20:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+ 107              		.loc 1 20 0
+ 108 0000 0368     		ldr	r3, [r0]
+  19:parsetools.c  ****         if(!pBuf) {
+ 109              		.loc 1 19 0
+ 110 0002 10B5     		push	{r4, lr}
+ 111              		.cfi_def_cfa_offset 8
+ 112              		.cfi_offset 4, -8
+ 113              		.cfi_offset 14, -4
+  20:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+ 114              		.loc 1 20 0
+ 115 0004 002B     		cmp	r3, #0
+ 116 0006 02D0     		beq	.L24
+ 117 0008 FFF7FEFF 		bl	_ZN20MultiByteValueParser5ParseEPPhPt.part.0
+ 118              	.LVL5:
+ 119              	.L23:
+ 120              		.loc 1 32 0
+ 121              		@ sp needed
+ 122 000c 10BD     		pop	{r4, pc}
+ 123              	.LVL6:
+ 124              	.L24:
+  22:parsetools.c  ****         }
+ 125              		.loc 1 22 0
+ 126 000e 0020     		movs	r0, #0
+ 127              	.LVL7:
+ 128 0010 FCE7     		b	.L23
+ 129              		.cfi_endproc
+ 130              	.LFE213:
+ 131              		.cantunwind
+ 132              		.fnend
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 4
+
+
+ 133              		.size	_ZN20MultiByteValueParser5ParseEPPhPt, .-_ZN20MultiByteValueParser5ParseEPPhPt
+ 134 0012 C046     		.section	.text._ZN13PTPListParser5ParseEPPhPtPFvPK16MultiValueBuffermPKvES7_,"ax",%progbits
+ 135              		.align	2
+ 136              		.global	_ZN13PTPListParser5ParseEPPhPtPFvPK16MultiValueBuffermPKvES7_
+ 137              		.code	16
+ 138              		.thumb_func
+ 139              		.type	_ZN13PTPListParser5ParseEPPhPtPFvPK16MultiValueBuffermPKvES7_, %function
+ 140              	_ZN13PTPListParser5ParseEPPhPtPFvPK16MultiValueBuffermPKvES7_:
+ 141              		.fnstart
+ 142              	.LFB214:
+  33:parsetools.c  **** 
+  34:parsetools.c  **** bool PTPListParser::Parse(uint8_t **pp, uint16_t *pcntdn, PTP_ARRAY_EL_FUNC pf, const void *me) {
+ 143              		.loc 1 34 0
+ 144              		.cfi_startproc
+ 145              		@ args = 4, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147              	.LVL8:
+ 148 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 149              		.save {r4, r5, r6, r7, lr}
+ 150              		.cfi_def_cfa_offset 20
+ 151              		.cfi_offset 4, -20
+ 152              		.cfi_offset 5, -16
+ 153              		.cfi_offset 6, -12
+ 154              		.cfi_offset 7, -8
+ 155              		.cfi_offset 14, -4
+ 156 0002 4746     		mov	r7, r8
+ 157 0004 80B4     		push	{r7}
+ 158              		.save {r8}
+ 159              		.cfi_def_cfa_offset 24
+ 160              		.cfi_offset 8, -24
+ 161              		.loc 1 34 0
+ 162 0006 1D00     		movs	r5, r3
+  35:parsetools.c  ****         switch(nStage) {
+ 163              		.loc 1 35 0
+ 164 0008 0378     		ldrb	r3, [r0]
+ 165              	.LVL9:
+  34:parsetools.c  ****         switch(nStage) {
+ 166              		.loc 1 34 0
+ 167 000a 0400     		movs	r4, r0
+ 168 000c 0E00     		movs	r6, r1
+ 169 000e 1700     		movs	r7, r2
+ 170              		.loc 1 35 0
+ 171 0010 012B     		cmp	r3, #1
+ 172 0012 00D1     		bne	.LCB145
+ 173 0014 78E0     		b	.L27	@long jump
+ 174              	.LCB145:
+ 175 0016 002B     		cmp	r3, #0
+ 176 0018 41D0     		beq	.L28
+ 177 001a 022B     		cmp	r3, #2
+ 178 001c 05D0     		beq	.L29
+ 179 001e 032B     		cmp	r3, #3
+ 180 0020 17D0     		beq	.L30
+  36:parsetools.c  ****                 case 0:
+  37:parsetools.c  ****                         pBuf->valueSize = lenSize;
+  38:parsetools.c  ****                         theParser.Initialize(pBuf);
+  39:parsetools.c  ****                         nStage = 1;
+  40:parsetools.c  **** 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 5
+
+
+  41:parsetools.c  ****                 case 1:
+  42:parsetools.c  ****                         if(!theParser.Parse(pp, pcntdn))
+  43:parsetools.c  ****                                 return false;
+  44:parsetools.c  **** 
+  45:parsetools.c  ****                         arLen = 0;
+  46:parsetools.c  ****                         arLen = (pBuf->valueSize >= 4) ? *((uint32_t*)pBuf->pValue) : (uint32_t)(*(
+  47:parsetools.c  ****                         arLenCntdn = arLen;
+  48:parsetools.c  ****                         nStage = 2;
+  49:parsetools.c  **** 
+  50:parsetools.c  ****                 case 2:
+  51:parsetools.c  ****                         pBuf->valueSize = valSize;
+  52:parsetools.c  ****                         theParser.Initialize(pBuf);
+  53:parsetools.c  ****                         nStage = 3;
+  54:parsetools.c  **** 
+  55:parsetools.c  ****                 case 3:
+  56:parsetools.c  ****                         for(; arLenCntdn; arLenCntdn--) {
+  57:parsetools.c  ****                                 if(!theParser.Parse(pp, pcntdn))
+  58:parsetools.c  ****                                         return false;
+  59:parsetools.c  **** 
+  60:parsetools.c  ****                                 if(pf)
+  61:parsetools.c  ****                                         pf(pBuf, (arLen - arLenCntdn), me);
+  62:parsetools.c  ****                         }
+  63:parsetools.c  **** 
+  64:parsetools.c  ****                         nStage = 0;
+  65:parsetools.c  ****         }
+  66:parsetools.c  ****         return true;
+ 181              		.loc 1 66 0
+ 182 0022 0120     		movs	r0, #1
+ 183              	.LVL10:
+ 184              	.L26:
+  67:parsetools.c  **** }
+ 185              		.loc 1 67 0
+ 186              		@ sp needed
+ 187              	.LVL11:
+ 188              	.LVL12:
+ 189              	.LVL13:
+ 190              	.LVL14:
+ 191 0024 04BC     		pop	{r2}
+ 192 0026 9046     		mov	r8, r2
+ 193 0028 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 194              	.LVL15:
+ 195              	.L29:
+ 196 002a 0369     		ldr	r3, [r0, #16]
+ 197              	.LVL16:
+ 198              	.L31:
+  51:parsetools.c  ****                         theParser.Initialize(pBuf);
+ 199              		.loc 1 51 0
+ 200 002c 627B     		ldrb	r2, [r4, #13]
+ 201 002e 1A70     		strb	r2, [r3]
+  52:parsetools.c  ****                         nStage = 3;
+ 202              		.loc 1 52 0
+ 203 0030 2169     		ldr	r1, [r4, #16]
+ 204              	.LVL17:
+ 205              	.LBB10:
+ 206              	.LBB11:
+ 207              		.file 2 "parsetools.h"
+   1:parsetools.h  **** /* Copyright (C) 2011 Circuits At Home, LTD. All rights reserved.
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 6
+
+
+   2:parsetools.h  **** 
+   3:parsetools.h  **** This software may be distributed and modified under the terms of the GNU
+   4:parsetools.h  **** General Public License version 2 (GPL2) as published by the Free Software
+   5:parsetools.h  **** Foundation and appearing in the file GPL2.TXT included in the packaging of
+   6:parsetools.h  **** this file. Please note that GPL2 Section 2[b] requires that all works based
+   7:parsetools.h  **** on this software must also be made publicly available under the terms of
+   8:parsetools.h  **** the GPL2 ("Copyleft").
+   9:parsetools.h  **** 
+  10:parsetools.h  **** Contact information
+  11:parsetools.h  **** -------------------
+  12:parsetools.h  **** 
+  13:parsetools.h  **** Circuits At Home, LTD
+  14:parsetools.h  **** Web      :  http://www.circuitsathome.com
+  15:parsetools.h  **** e-mail   :  support@circuitsathome.com
+  16:parsetools.h  ****  */
+  17:parsetools.h  **** 
+  18:parsetools.h  **** #if !defined(_usb_h_) || defined(__PARSETOOLS_H__)
+  19:parsetools.h  **** #error "Never include parsetools.h directly; include Usb.h instead"
+  20:parsetools.h  **** #else
+  21:parsetools.h  **** #define __PARSETOOLS_H__
+  22:parsetools.h  **** 
+  23:parsetools.h  **** struct MultiValueBuffer {
+  24:parsetools.h  ****         uint8_t valueSize;
+  25:parsetools.h  ****         void *pValue;
+  26:parsetools.h  **** } __attribute__((packed));
+  27:parsetools.h  **** 
+  28:parsetools.h  **** class MultiByteValueParser {
+  29:parsetools.h  ****         uint8_t * pBuf;
+  30:parsetools.h  ****         uint8_t countDown;
+  31:parsetools.h  ****         uint8_t valueSize;
+  32:parsetools.h  **** 
+  33:parsetools.h  **** public:
+  34:parsetools.h  **** 
+  35:parsetools.h  ****         MultiByteValueParser() : pBuf(NULL), countDown(0), valueSize(0) {
+  36:parsetools.h  ****         };
+  37:parsetools.h  **** 
+  38:parsetools.h  ****         const uint8_t* GetBuffer() {
+  39:parsetools.h  ****                 return pBuf;
+  40:parsetools.h  ****         };
+  41:parsetools.h  **** 
+  42:parsetools.h  ****         void Initialize(MultiValueBuffer * const pbuf) {
+  43:parsetools.h  ****                 pBuf = (uint8_t*)pbuf->pValue;
+ 208              		.loc 2 43 0
+ 209 0032 8A78     		ldrb	r2, [r1, #2]
+ 210 0034 4878     		ldrb	r0, [r1, #1]
+ 211 0036 CB78     		ldrb	r3, [r1, #3]
+ 212 0038 1202     		lsls	r2, r2, #8
+ 213 003a 1B04     		lsls	r3, r3, #16
+ 214 003c 0243     		orrs	r2, r0
+ 215 003e 1A43     		orrs	r2, r3
+ 216 0040 0B79     		ldrb	r3, [r1, #4]
+ 217 0042 1B06     		lsls	r3, r3, #24
+ 218 0044 1343     		orrs	r3, r2
+ 219 0046 6361     		str	r3, [r4, #20]
+  44:parsetools.h  ****                 countDown = valueSize = pbuf->valueSize;
+ 220              		.loc 2 44 0
+ 221 0048 0B78     		ldrb	r3, [r1]
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 7
+
+
+ 222 004a 6376     		strb	r3, [r4, #25]
+ 223 004c 2376     		strb	r3, [r4, #24]
+ 224              	.LVL18:
+ 225              	.LBE11:
+ 226              	.LBE10:
+  53:parsetools.c  **** 
+ 227              		.loc 1 53 0
+ 228 004e 0323     		movs	r3, #3
+ 229 0050 2370     		strb	r3, [r4]
+ 230              	.L30:
+  56:parsetools.c  ****                                 if(!theParser.Parse(pp, pcntdn))
+ 231              		.loc 1 56 0 discriminator 1
+ 232 0052 A368     		ldr	r3, [r4, #8]
+ 233 0054 002B     		cmp	r3, #0
+ 234 0056 1ED0     		beq	.L40
+  57:parsetools.c  ****                                         return false;
+ 235              		.loc 1 57 0
+ 236 0058 1423     		movs	r3, #20
+ 237 005a 9846     		mov	r8, r3
+ 238              	.LBB12:
+ 239              	.LBB13:
+  20:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+ 240              		.loc 1 20 0
+ 241 005c 6369     		ldr	r3, [r4, #20]
+ 242              	.LBE13:
+ 243              	.LBE12:
+  57:parsetools.c  ****                                         return false;
+ 244              		.loc 1 57 0
+ 245 005e A044     		add	r8, r8, r4
+ 246              	.LVL19:
+ 247              	.LBB16:
+ 248              	.LBB14:
+  20:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+ 249              		.loc 1 20 0
+ 250 0060 002B     		cmp	r3, #0
+ 251 0062 16D0     		beq	.L34
+ 252              	.L38:
+ 253 0064 3A00     		movs	r2, r7
+ 254 0066 3100     		movs	r1, r6
+ 255 0068 4046     		mov	r0, r8
+ 256 006a FFF7FEFF 		bl	_ZN20MultiByteValueParser5ParseEPPhPt.part.0
+ 257              	.LVL20:
+ 258              	.LBE14:
+ 259              	.LBE16:
+  57:parsetools.c  ****                                         return false;
+ 260              		.loc 1 57 0
+ 261 006e 0028     		cmp	r0, #0
+ 262 0070 0FD0     		beq	.L34
+  60:parsetools.c  ****                                         pf(pBuf, (arLen - arLenCntdn), me);
+ 263              		.loc 1 60 0
+ 264 0072 002D     		cmp	r5, #0
+ 265 0074 05D0     		beq	.L39
+  61:parsetools.c  ****                         }
+ 266              		.loc 1 61 0
+ 267 0076 A268     		ldr	r2, [r4, #8]
+ 268 0078 6368     		ldr	r3, [r4, #4]
+ 269 007a 2069     		ldr	r0, [r4, #16]
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 8
+
+
+ 270 007c 991A     		subs	r1, r3, r2
+ 271 007e 069A     		ldr	r2, [sp, #24]
+ 272 0080 A847     		blx	r5
+ 273              	.LVL21:
+ 274              	.L39:
+  56:parsetools.c  ****                                 if(!theParser.Parse(pp, pcntdn))
+ 275              		.loc 1 56 0
+ 276 0082 A368     		ldr	r3, [r4, #8]
+ 277 0084 013B     		subs	r3, r3, #1
+ 278 0086 A360     		str	r3, [r4, #8]
+ 279 0088 002B     		cmp	r3, #0
+ 280 008a 04D0     		beq	.L40
+ 281              	.LVL22:
+ 282              	.LBB17:
+ 283              	.LBB15:
+  20:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+ 284              		.loc 1 20 0
+ 285 008c 6369     		ldr	r3, [r4, #20]
+ 286 008e 002B     		cmp	r3, #0
+ 287 0090 E8D1     		bne	.L38
+ 288              	.LVL23:
+ 289              	.L34:
+ 290              	.LBE15:
+ 291              	.LBE17:
+  43:parsetools.c  **** 
+ 292              		.loc 1 43 0
+ 293 0092 0020     		movs	r0, #0
+ 294 0094 C6E7     		b	.L26
+ 295              	.L40:
+  64:parsetools.c  ****         }
+ 296              		.loc 1 64 0
+ 297 0096 0023     		movs	r3, #0
+  66:parsetools.c  **** }
+ 298              		.loc 1 66 0
+ 299 0098 0120     		movs	r0, #1
+  64:parsetools.c  ****         }
+ 300              		.loc 1 64 0
+ 301 009a 2370     		strb	r3, [r4]
+ 302 009c C2E7     		b	.L26
+ 303              	.LVL24:
+ 304              	.L28:
+  37:parsetools.c  ****                         theParser.Initialize(pBuf);
+ 305              		.loc 1 37 0
+ 306 009e 037B     		ldrb	r3, [r0, #12]
+ 307 00a0 0269     		ldr	r2, [r0, #16]
+ 308              	.LVL25:
+ 309 00a2 1370     		strb	r3, [r2]
+  38:parsetools.c  ****                         nStage = 1;
+ 310              		.loc 1 38 0
+ 311 00a4 0169     		ldr	r1, [r0, #16]
+ 312              	.LVL26:
+ 313              	.LBB18:
+ 314              	.LBB19:
+  43:parsetools.h  ****                 countDown = valueSize = pbuf->valueSize;
+ 315              		.loc 2 43 0
+ 316 00a6 8A78     		ldrb	r2, [r1, #2]
+ 317 00a8 4878     		ldrb	r0, [r1, #1]
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 9
+
+
+ 318              	.LVL27:
+ 319 00aa CB78     		ldrb	r3, [r1, #3]
+ 320 00ac 1202     		lsls	r2, r2, #8
+ 321 00ae 1B04     		lsls	r3, r3, #16
+ 322 00b0 0243     		orrs	r2, r0
+ 323 00b2 1A43     		orrs	r2, r3
+ 324 00b4 0B79     		ldrb	r3, [r1, #4]
+ 325 00b6 1B06     		lsls	r3, r3, #24
+ 326 00b8 1343     		orrs	r3, r2
+ 327 00ba 6361     		str	r3, [r4, #20]
+ 328              		.loc 2 44 0
+ 329 00bc 0A78     		ldrb	r2, [r1]
+ 330 00be 6276     		strb	r2, [r4, #25]
+ 331 00c0 2276     		strb	r2, [r4, #24]
+ 332              	.LVL28:
+ 333              	.LBE19:
+ 334              	.LBE18:
+  39:parsetools.c  **** 
+ 335              		.loc 1 39 0
+ 336 00c2 0122     		movs	r2, #1
+ 337 00c4 2270     		strb	r2, [r4]
+ 338              	.L32:
+ 339              	.LVL29:
+ 340              	.LBB20:
+ 341              	.LBB21:
+  20:parsetools.c  ****                 Notify(PSTR("Buffer pointer is NULL!\r\n"), 0x80);
+ 342              		.loc 1 20 0
+ 343 00c6 002B     		cmp	r3, #0
+ 344 00c8 E3D0     		beq	.L34
+ 345 00ca 2000     		movs	r0, r4
+ 346 00cc 3A00     		movs	r2, r7
+ 347 00ce 3100     		movs	r1, r6
+ 348 00d0 1430     		adds	r0, r0, #20
+ 349              	.LVL30:
+ 350 00d2 FFF7FEFF 		bl	_ZN20MultiByteValueParser5ParseEPPhPt.part.0
+ 351              	.LVL31:
+ 352              	.LBE21:
+ 353              	.LBE20:
+  42:parsetools.c  ****                                 return false;
+ 354              		.loc 1 42 0
+ 355 00d6 0028     		cmp	r0, #0
+ 356 00d8 DBD0     		beq	.L34
+  45:parsetools.c  ****                         arLen = (pBuf->valueSize >= 4) ? *((uint32_t*)pBuf->pValue) : (uint32_t)(*(
+ 357              		.loc 1 45 0
+ 358 00da 0023     		movs	r3, #0
+ 359 00dc 6360     		str	r3, [r4, #4]
+  46:parsetools.c  ****                         arLenCntdn = arLen;
+ 360              		.loc 1 46 0
+ 361 00de 2369     		ldr	r3, [r4, #16]
+ 362 00e0 1A78     		ldrb	r2, [r3]
+ 363 00e2 032A     		cmp	r2, #3
+ 364 00e4 12D8     		bhi	.L67
+  46:parsetools.c  ****                         arLenCntdn = arLen;
+ 365              		.loc 1 46 0 is_stmt 0 discriminator 2
+ 366 00e6 9978     		ldrb	r1, [r3, #2]
+ 367 00e8 5A78     		ldrb	r2, [r3, #1]
+ 368 00ea 0902     		lsls	r1, r1, #8
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 10
+
+
+ 369 00ec 1143     		orrs	r1, r2
+ 370 00ee DA78     		ldrb	r2, [r3, #3]
+ 371 00f0 1204     		lsls	r2, r2, #16
+ 372 00f2 0A43     		orrs	r2, r1
+ 373 00f4 1100     		movs	r1, r2
+ 374 00f6 1A79     		ldrb	r2, [r3, #4]
+ 375 00f8 1206     		lsls	r2, r2, #24
+ 376 00fa 0A43     		orrs	r2, r1
+ 377 00fc 1288     		ldrh	r2, [r2]
+ 378              	.L36:
+  46:parsetools.c  ****                         arLenCntdn = arLen;
+ 379              		.loc 1 46 0 discriminator 4
+ 380 00fe 6260     		str	r2, [r4, #4]
+  47:parsetools.c  ****                         nStage = 2;
+ 381              		.loc 1 47 0 is_stmt 1 discriminator 4
+ 382 0100 A260     		str	r2, [r4, #8]
+  48:parsetools.c  **** 
+ 383              		.loc 1 48 0 discriminator 4
+ 384 0102 0222     		movs	r2, #2
+ 385 0104 2270     		strb	r2, [r4]
+ 386 0106 91E7     		b	.L31
+ 387              	.LVL32:
+ 388              	.L27:
+ 389 0108 4369     		ldr	r3, [r0, #20]
+ 390 010a DCE7     		b	.L32
+ 391              	.LVL33:
+ 392              	.L67:
+  46:parsetools.c  ****                         arLenCntdn = arLen;
+ 393              		.loc 1 46 0 discriminator 1
+ 394 010c 9978     		ldrb	r1, [r3, #2]
+ 395 010e 5A78     		ldrb	r2, [r3, #1]
+ 396 0110 0902     		lsls	r1, r1, #8
+ 397 0112 1143     		orrs	r1, r2
+ 398 0114 DA78     		ldrb	r2, [r3, #3]
+ 399 0116 1204     		lsls	r2, r2, #16
+ 400 0118 0A43     		orrs	r2, r1
+ 401 011a 1100     		movs	r1, r2
+ 402 011c 1A79     		ldrb	r2, [r3, #4]
+ 403 011e 1206     		lsls	r2, r2, #24
+ 404 0120 0A43     		orrs	r2, r1
+ 405 0122 1268     		ldr	r2, [r2]
+ 406 0124 EBE7     		b	.L36
+ 407              		.cfi_endproc
+ 408              	.LFE214:
+ 409              		.fnend
+ 410              		.size	_ZN13PTPListParser5ParseEPPhPtPFvPK16MultiValueBuffermPKvES7_, .-_ZN13PTPListParser5ParseEPP
+ 411 0126 C046     		.text
+ 412              	.Letext0:
+ 413              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 414              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 415              		.file 5 "sink_parser.h"
+ 416              		.file 6 "avrpins.h"
+ 417              		.file 7 "./Stream.h"
+ 418              		.section	.debug_info,"",%progbits
+ 419              	.Ldebug_info0:
+ 420 0000 88050000 		.4byte	0x588
+ 421 0004 0400     		.2byte	0x4
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 11
+
+
+ 422 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 423 000a 04       		.byte	0x4
+ 424 000b 01       		.uleb128 0x1
+ 425 000c 21000000 		.4byte	.LASF56
+ 426 0010 04       		.byte	0x4
+ 427 0011 63030000 		.4byte	.LASF57
+ 428 0015 70030000 		.4byte	.LASF58
+ 429 0019 20000000 		.4byte	.Ldebug_ranges0+0x20
+ 430 001d 00000000 		.4byte	0
+ 431 0021 00000000 		.4byte	.Ldebug_line0
+ 432 0025 02       		.uleb128 0x2
+ 433 0026 01       		.byte	0x1
+ 434 0027 06       		.byte	0x6
+ 435 0028 29020000 		.4byte	.LASF0
+ 436 002c 03       		.uleb128 0x3
+ 437 002d C1010000 		.4byte	.LASF3
+ 438 0031 03       		.byte	0x3
+ 439 0032 1D       		.byte	0x1d
+ 440 0033 37000000 		.4byte	0x37
+ 441 0037 02       		.uleb128 0x2
+ 442 0038 01       		.byte	0x1
+ 443 0039 08       		.byte	0x8
+ 444 003a 1B020000 		.4byte	.LASF1
+ 445 003e 02       		.uleb128 0x2
+ 446 003f 02       		.byte	0x2
+ 447 0040 05       		.byte	0x5
+ 448 0041 B7000000 		.4byte	.LASF2
+ 449 0045 03       		.uleb128 0x3
+ 450 0046 EF000000 		.4byte	.LASF4
+ 451 004a 03       		.byte	0x3
+ 452 004b 2B       		.byte	0x2b
+ 453 004c 50000000 		.4byte	0x50
+ 454 0050 02       		.uleb128 0x2
+ 455 0051 02       		.byte	0x2
+ 456 0052 07       		.byte	0x7
+ 457 0053 F0020000 		.4byte	.LASF5
+ 458 0057 02       		.uleb128 0x2
+ 459 0058 04       		.byte	0x4
+ 460 0059 05       		.byte	0x5
+ 461 005a B0010000 		.4byte	.LASF6
+ 462 005e 03       		.uleb128 0x3
+ 463 005f E4000000 		.4byte	.LASF7
+ 464 0063 03       		.byte	0x3
+ 465 0064 41       		.byte	0x41
+ 466 0065 69000000 		.4byte	0x69
+ 467 0069 02       		.uleb128 0x2
+ 468 006a 04       		.byte	0x4
+ 469 006b 07       		.byte	0x7
+ 470 006c 3A030000 		.4byte	.LASF8
+ 471 0070 02       		.uleb128 0x2
+ 472 0071 08       		.byte	0x8
+ 473 0072 05       		.byte	0x5
+ 474 0073 7C010000 		.4byte	.LASF9
+ 475 0077 02       		.uleb128 0x2
+ 476 0078 08       		.byte	0x8
+ 477 0079 07       		.byte	0x7
+ 478 007a 35020000 		.4byte	.LASF10
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 12
+
+
+ 479 007e 04       		.uleb128 0x4
+ 480 007f 04       		.byte	0x4
+ 481 0080 05       		.byte	0x5
+ 482 0081 696E7400 		.ascii	"int\000"
+ 483 0085 02       		.uleb128 0x2
+ 484 0086 04       		.byte	0x4
+ 485 0087 07       		.byte	0x7
+ 486 0088 55020000 		.4byte	.LASF11
+ 487 008c 03       		.uleb128 0x3
+ 488 008d 0A010000 		.4byte	.LASF12
+ 489 0091 04       		.byte	0x4
+ 490 0092 18       		.byte	0x18
+ 491 0093 2C000000 		.4byte	0x2c
+ 492 0097 03       		.uleb128 0x3
+ 493 0098 D0020000 		.4byte	.LASF13
+ 494 009c 04       		.byte	0x4
+ 495 009d 24       		.byte	0x24
+ 496 009e 45000000 		.4byte	0x45
+ 497 00a2 03       		.uleb128 0x3
+ 498 00a3 4C020000 		.4byte	.LASF14
+ 499 00a7 04       		.byte	0x4
+ 500 00a8 30       		.byte	0x30
+ 501 00a9 5E000000 		.4byte	0x5e
+ 502 00ad 05       		.uleb128 0x5
+ 503 00ae 04       		.byte	0x4
+ 504 00af 02       		.uleb128 0x2
+ 505 00b0 04       		.byte	0x4
+ 506 00b1 07       		.byte	0x7
+ 507 00b2 C1000000 		.4byte	.LASF15
+ 508 00b6 02       		.uleb128 0x2
+ 509 00b7 01       		.byte	0x1
+ 510 00b8 08       		.byte	0x8
+ 511 00b9 CB020000 		.4byte	.LASF16
+ 512 00bd 06       		.uleb128 0x6
+ 513 00be 04       		.byte	0x4
+ 514 00bf C3000000 		.4byte	0xc3
+ 515 00c3 07       		.uleb128 0x7
+ 516 00c4 02       		.uleb128 0x2
+ 517 00c5 08       		.byte	0x8
+ 518 00c6 04       		.byte	0x4
+ 519 00c7 4C030000 		.4byte	.LASF17
+ 520 00cb 02       		.uleb128 0x2
+ 521 00cc 04       		.byte	0x4
+ 522 00cd 04       		.byte	0x4
+ 523 00ce 38010000 		.4byte	.LASF18
+ 524 00d2 02       		.uleb128 0x2
+ 525 00d3 08       		.byte	0x8
+ 526 00d4 04       		.byte	0x4
+ 527 00d5 D5010000 		.4byte	.LASF19
+ 528 00d9 02       		.uleb128 0x2
+ 529 00da 01       		.byte	0x1
+ 530 00db 02       		.byte	0x2
+ 531 00dc 33010000 		.4byte	.LASF20
+ 532 00e0 08       		.uleb128 0x8
+ 533 00e1 BD020000 		.4byte	.LASF59
+ 534 00e5 01       		.byte	0x1
+ 535 00e6 37000000 		.4byte	0x37
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 13
+
+
+ 536 00ea 07       		.byte	0x7
+ 537 00eb 29       		.byte	0x29
+ 538 00ec 03010000 		.4byte	0x103
+ 539 00f0 09       		.uleb128 0x9
+ 540 00f1 CA000000 		.4byte	.LASF21
+ 541 00f5 00       		.byte	0
+ 542 00f6 09       		.uleb128 0x9
+ 543 00f7 17040000 		.4byte	.LASF22
+ 544 00fb 01       		.byte	0x1
+ 545 00fc 09       		.uleb128 0x9
+ 546 00fd 53030000 		.4byte	.LASF23
+ 547 0101 02       		.byte	0x2
+ 548 0102 00       		.byte	0
+ 549 0103 06       		.uleb128 0x6
+ 550 0104 04       		.byte	0x4
+ 551 0105 8C000000 		.4byte	0x8c
+ 552 0109 06       		.uleb128 0x6
+ 553 010a 04       		.byte	0x4
+ 554 010b 97000000 		.4byte	0x97
+ 555 010f 0A       		.uleb128 0xa
+ 556 0110 8A010000 		.4byte	.LASF60
+ 557 0114 05       		.byte	0x5
+ 558 0115 02       		.byte	0x2
+ 559 0116 17       		.byte	0x17
+ 560 0117 34010000 		.4byte	0x134
+ 561 011b 0B       		.uleb128 0xb
+ 562 011c 00010000 		.4byte	.LASF24
+ 563 0120 02       		.byte	0x2
+ 564 0121 18       		.byte	0x18
+ 565 0122 8C000000 		.4byte	0x8c
+ 566 0126 00       		.byte	0
+ 567 0127 0B       		.uleb128 0xb
+ 568 0128 CB030000 		.4byte	.LASF25
+ 569 012c 02       		.byte	0x2
+ 570 012d 19       		.byte	0x19
+ 571 012e AD000000 		.4byte	0xad
+ 572 0132 01       		.byte	0x1
+ 573 0133 00       		.byte	0
+ 574 0134 0C       		.uleb128 0xc
+ 575 0135 9B010000 		.4byte	.LASF28
+ 576 0139 08       		.byte	0x8
+ 577 013a 02       		.byte	0x2
+ 578 013b 1C       		.byte	0x1c
+ 579 013c E4010000 		.4byte	0x1e4
+ 580 0140 0B       		.uleb128 0xb
+ 581 0141 03030000 		.4byte	.LASF26
+ 582 0145 02       		.byte	0x2
+ 583 0146 1D       		.byte	0x1d
+ 584 0147 03010000 		.4byte	0x103
+ 585 014b 00       		.byte	0
+ 586 014c 0B       		.uleb128 0xb
+ 587 014d 29010000 		.4byte	.LASF27
+ 588 0151 02       		.byte	0x2
+ 589 0152 1E       		.byte	0x1e
+ 590 0153 8C000000 		.4byte	0x8c
+ 591 0157 04       		.byte	0x4
+ 592 0158 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 14
+
+
+ 593 0159 00010000 		.4byte	.LASF24
+ 594 015d 02       		.byte	0x2
+ 595 015e 1F       		.byte	0x1f
+ 596 015f 8C000000 		.4byte	0x8c
+ 597 0163 05       		.byte	0x5
+ 598 0164 0D       		.uleb128 0xd
+ 599 0165 9B010000 		.4byte	.LASF28
+ 600 0169 02       		.byte	0x2
+ 601 016a 23       		.byte	0x23
+ 602 016b 9F020000 		.4byte	.LASF30
+ 603 016f E4010000 		.4byte	0x1e4
+ 604 0173 01       		.byte	0x1
+ 605 0174 7C010000 		.4byte	0x17c
+ 606 0178 82010000 		.4byte	0x182
+ 607 017c 0E       		.uleb128 0xe
+ 608 017d E4010000 		.4byte	0x1e4
+ 609 0181 00       		.byte	0
+ 610 0182 0D       		.uleb128 0xd
+ 611 0183 CB010000 		.4byte	.LASF29
+ 612 0187 02       		.byte	0x2
+ 613 0188 26       		.byte	0x26
+ 614 0189 62020000 		.4byte	.LASF31
+ 615 018d EA010000 		.4byte	0x1ea
+ 616 0191 01       		.byte	0x1
+ 617 0192 9A010000 		.4byte	0x19a
+ 618 0196 A0010000 		.4byte	0x1a0
+ 619 019a 0E       		.uleb128 0xe
+ 620 019b E4010000 		.4byte	0x1e4
+ 621 019f 00       		.byte	0
+ 622 01a0 0F       		.uleb128 0xf
+ 623 01a1 D3000000 		.4byte	.LASF32
+ 624 01a5 02       		.byte	0x2
+ 625 01a6 2A       		.byte	0x2a
+ 626 01a7 E1010000 		.4byte	.LASF34
+ 627 01ab 01       		.byte	0x1
+ 628 01ac B4010000 		.4byte	0x1b4
+ 629 01b0 BF010000 		.4byte	0x1bf
+ 630 01b4 0E       		.uleb128 0xe
+ 631 01b5 E4010000 		.4byte	0x1e4
+ 632 01b9 10       		.uleb128 0x10
+ 633 01ba F5010000 		.4byte	0x1f5
+ 634 01be 00       		.byte	0
+ 635 01bf 11       		.uleb128 0x11
+ 636 01c0 DE000000 		.4byte	.LASF33
+ 637 01c4 02       		.byte	0x2
+ 638 01c5 2F       		.byte	0x2f
+ 639 01c6 0D030000 		.4byte	.LASF35
+ 640 01ca D9000000 		.4byte	0xd9
+ 641 01ce 01       		.byte	0x1
+ 642 01cf D3010000 		.4byte	0x1d3
+ 643 01d3 0E       		.uleb128 0xe
+ 644 01d4 E4010000 		.4byte	0x1e4
+ 645 01d8 10       		.uleb128 0x10
+ 646 01d9 FB010000 		.4byte	0x1fb
+ 647 01dd 10       		.uleb128 0x10
+ 648 01de 09010000 		.4byte	0x109
+ 649 01e2 00       		.byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 15
+
+
+ 650 01e3 00       		.byte	0
+ 651 01e4 06       		.uleb128 0x6
+ 652 01e5 04       		.byte	0x4
+ 653 01e6 34010000 		.4byte	0x134
+ 654 01ea 06       		.uleb128 0x6
+ 655 01eb 04       		.byte	0x4
+ 656 01ec F0010000 		.4byte	0x1f0
+ 657 01f0 12       		.uleb128 0x12
+ 658 01f1 8C000000 		.4byte	0x8c
+ 659 01f5 06       		.uleb128 0x6
+ 660 01f6 04       		.byte	0x4
+ 661 01f7 0F010000 		.4byte	0x10f
+ 662 01fb 06       		.uleb128 0x6
+ 663 01fc 04       		.byte	0x4
+ 664 01fd 03010000 		.4byte	0x103
+ 665 0201 03       		.uleb128 0x3
+ 666 0202 8D020000 		.4byte	.LASF36
+ 667 0206 02       		.byte	0x2
+ 668 0207 51       		.byte	0x51
+ 669 0208 0C020000 		.4byte	0x20c
+ 670 020c 06       		.uleb128 0x6
+ 671 020d 04       		.byte	0x4
+ 672 020e 12020000 		.4byte	0x212
+ 673 0212 13       		.uleb128 0x13
+ 674 0213 27020000 		.4byte	0x227
+ 675 0217 10       		.uleb128 0x10
+ 676 0218 27020000 		.4byte	0x227
+ 677 021c 10       		.uleb128 0x10
+ 678 021d A2000000 		.4byte	0xa2
+ 679 0221 10       		.uleb128 0x10
+ 680 0222 BD000000 		.4byte	0xbd
+ 681 0226 00       		.byte	0
+ 682 0227 06       		.uleb128 0x6
+ 683 0228 04       		.byte	0x4
+ 684 0229 2D020000 		.4byte	0x22d
+ 685 022d 12       		.uleb128 0x12
+ 686 022e 0F010000 		.4byte	0x10f
+ 687 0232 0C       		.uleb128 0xc
+ 688 0233 06000000 		.4byte	.LASF37
+ 689 0237 20       		.byte	0x20
+ 690 0238 02       		.byte	0x2
+ 691 0239 53       		.byte	0x53
+ 692 023a 25030000 		.4byte	0x325
+ 693 023e 0B       		.uleb128 0xb
+ 694 023f D2030000 		.4byte	.LASF38
+ 695 0243 02       		.byte	0x2
+ 696 0244 5B       		.byte	0x5b
+ 697 0245 8C000000 		.4byte	0x8c
+ 698 0249 00       		.byte	0
+ 699 024a 0B       		.uleb128 0xb
+ 700 024b B9010000 		.4byte	.LASF39
+ 701 024f 02       		.byte	0x2
+ 702 0250 5C       		.byte	0x5c
+ 703 0251 8C000000 		.4byte	0x8c
+ 704 0255 01       		.byte	0x1
+ 705 0256 0B       		.uleb128 0xb
+ 706 0257 FA000000 		.4byte	.LASF40
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 16
+
+
+ 707 025b 02       		.byte	0x2
+ 708 025c 5E       		.byte	0x5e
+ 709 025d A2000000 		.4byte	0xa2
+ 710 0261 04       		.byte	0x4
+ 711 0262 0B       		.uleb128 0xb
+ 712 0263 E5020000 		.4byte	.LASF41
+ 713 0267 02       		.byte	0x2
+ 714 0268 5F       		.byte	0x5f
+ 715 0269 A2000000 		.4byte	0xa2
+ 716 026d 08       		.byte	0x8
+ 717 026e 0B       		.uleb128 0xb
+ 718 026f 3E010000 		.4byte	.LASF42
+ 719 0273 02       		.byte	0x2
+ 720 0274 61       		.byte	0x61
+ 721 0275 8C000000 		.4byte	0x8c
+ 722 0279 0C       		.byte	0xc
+ 723 027a 0B       		.uleb128 0xb
+ 724 027b AF000000 		.4byte	.LASF43
+ 725 027f 02       		.byte	0x2
+ 726 0280 62       		.byte	0x62
+ 727 0281 8C000000 		.4byte	0x8c
+ 728 0285 0D       		.byte	0xd
+ 729 0286 0B       		.uleb128 0xb
+ 730 0287 03030000 		.4byte	.LASF26
+ 731 028b 02       		.byte	0x2
+ 732 028c 64       		.byte	0x64
+ 733 028d F5010000 		.4byte	0x1f5
+ 734 0291 10       		.byte	0x10
+ 735 0292 0B       		.uleb128 0xb
+ 736 0293 21040000 		.4byte	.LASF44
+ 737 0297 02       		.byte	0x2
+ 738 0298 67       		.byte	0x67
+ 739 0299 34010000 		.4byte	0x134
+ 740 029d 14       		.byte	0x14
+ 741 029e 0B       		.uleb128 0xb
+ 742 029f 19000000 		.4byte	.LASF45
+ 743 02a3 02       		.byte	0x2
+ 744 02a4 69       		.byte	0x69
+ 745 02a5 8C000000 		.4byte	0x8c
+ 746 02a9 1C       		.byte	0x1c
+ 747 02aa 0D       		.uleb128 0xd
+ 748 02ab 06000000 		.4byte	.LASF37
+ 749 02af 02       		.byte	0x2
+ 750 02b0 6D       		.byte	0x6d
+ 751 02b1 12010000 		.4byte	.LASF46
+ 752 02b5 25030000 		.4byte	0x325
+ 753 02b9 01       		.byte	0x1
+ 754 02ba C2020000 		.4byte	0x2c2
+ 755 02be C8020000 		.4byte	0x2c8
+ 756 02c2 0E       		.uleb128 0xe
+ 757 02c3 25030000 		.4byte	0x325
+ 758 02c7 00       		.byte	0
+ 759 02c8 0F       		.uleb128 0xf
+ 760 02c9 D3000000 		.4byte	.LASF32
+ 761 02cd 02       		.byte	0x2
+ 762 02ce 78       		.byte	0x78
+ 763 02cf 46010000 		.4byte	.LASF47
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 17
+
+
+ 764 02d3 01       		.byte	0x1
+ 765 02d4 DC020000 		.4byte	0x2dc
+ 766 02d8 F6020000 		.4byte	0x2f6
+ 767 02dc 0E       		.uleb128 0xe
+ 768 02dd 25030000 		.4byte	0x325
+ 769 02e1 10       		.uleb128 0x10
+ 770 02e2 8C000000 		.4byte	0x8c
+ 771 02e6 10       		.uleb128 0x10
+ 772 02e7 8C000000 		.4byte	0x8c
+ 773 02eb 10       		.uleb128 0x10
+ 774 02ec F5010000 		.4byte	0x1f5
+ 775 02f0 10       		.uleb128 0x10
+ 776 02f1 8C000000 		.4byte	0x8c
+ 777 02f5 00       		.byte	0
+ 778 02f6 11       		.uleb128 0x11
+ 779 02f7 DE000000 		.4byte	.LASF33
+ 780 02fb 02       		.byte	0x2
+ 781 02fc 89       		.byte	0x89
+ 782 02fd D9030000 		.4byte	.LASF48
+ 783 0301 D9000000 		.4byte	0xd9
+ 784 0305 01       		.byte	0x1
+ 785 0306 0A030000 		.4byte	0x30a
+ 786 030a 0E       		.uleb128 0xe
+ 787 030b 25030000 		.4byte	0x325
+ 788 030f 10       		.uleb128 0x10
+ 789 0310 FB010000 		.4byte	0x1fb
+ 790 0314 10       		.uleb128 0x10
+ 791 0315 09010000 		.4byte	0x109
+ 792 0319 10       		.uleb128 0x10
+ 793 031a 01020000 		.4byte	0x201
+ 794 031e 10       		.uleb128 0x10
+ 795 031f BD000000 		.4byte	0xbd
+ 796 0323 00       		.byte	0
+ 797 0324 00       		.byte	0
+ 798 0325 06       		.uleb128 0x6
+ 799 0326 04       		.byte	0x4
+ 800 0327 32020000 		.4byte	0x232
+ 801 032b 14       		.uleb128 0x14
+ 802 032c BF010000 		.4byte	0x1bf
+ 803 0330 01       		.byte	0x1
+ 804 0331 13       		.byte	0x13
+ 805 0332 01       		.byte	0x1
+ 806 0333 3B030000 		.4byte	0x33b
+ 807 0337 5A030000 		.4byte	0x35a
+ 808 033b 15       		.uleb128 0x15
+ 809 033c 08030000 		.4byte	.LASF50
+ 810 0340 5A030000 		.4byte	0x35a
+ 811 0344 16       		.uleb128 0x16
+ 812 0345 707000   		.ascii	"pp\000"
+ 813 0348 01       		.byte	0x1
+ 814 0349 13       		.byte	0x13
+ 815 034a FB010000 		.4byte	0x1fb
+ 816 034e 17       		.uleb128 0x17
+ 817 034f 33030000 		.4byte	.LASF49
+ 818 0353 01       		.byte	0x1
+ 819 0354 13       		.byte	0x13
+ 820 0355 09010000 		.4byte	0x109
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 18
+
+
+ 821 0359 00       		.byte	0
+ 822 035a 12       		.uleb128 0x12
+ 823 035b E4010000 		.4byte	0x1e4
+ 824 035f 18       		.uleb128 0x18
+ 825 0360 A0010000 		.4byte	0x1a0
+ 826 0364 03       		.byte	0x3
+ 827 0365 6D030000 		.4byte	0x36d
+ 828 0369 82030000 		.4byte	0x382
+ 829 036d 15       		.uleb128 0x15
+ 830 036e 08030000 		.4byte	.LASF50
+ 831 0372 5A030000 		.4byte	0x35a
+ 832 0376 17       		.uleb128 0x17
+ 833 0377 2B040000 		.4byte	.LASF51
+ 834 037b 02       		.byte	0x2
+ 835 037c 2A       		.byte	0x2a
+ 836 037d 82030000 		.4byte	0x382
+ 837 0381 00       		.byte	0
+ 838 0382 12       		.uleb128 0x12
+ 839 0383 F5010000 		.4byte	0x1f5
+ 840 0387 19       		.uleb128 0x19
+ 841 0388 2B030000 		.4byte	0x32b
+ 842 038c 00000000 		.4byte	.LFB216
+ 843 0390 46000000 		.4byte	.LFE216-.LFB216
+ 844 0394 01       		.uleb128 0x1
+ 845 0395 9C       		.byte	0x9c
+ 846 0396 9E030000 		.4byte	0x39e
+ 847 039a B6030000 		.4byte	0x3b6
+ 848 039e 1A       		.uleb128 0x1a
+ 849 039f 3B030000 		.4byte	0x33b
+ 850 03a3 00000000 		.4byte	.LLST0
+ 851 03a7 1B       		.uleb128 0x1b
+ 852 03a8 44030000 		.4byte	0x344
+ 853 03ac 01       		.uleb128 0x1
+ 854 03ad 51       		.byte	0x51
+ 855 03ae 1B       		.uleb128 0x1b
+ 856 03af 4E030000 		.4byte	0x34e
+ 857 03b3 01       		.uleb128 0x1
+ 858 03b4 52       		.byte	0x52
+ 859 03b5 00       		.byte	0
+ 860 03b6 1C       		.uleb128 0x1c
+ 861 03b7 2B030000 		.4byte	0x32b
+ 862 03bb 0D030000 		.4byte	.LASF35
+ 863 03bf 00000000 		.4byte	.LFB213
+ 864 03c3 12000000 		.4byte	.LFE213-.LFB213
+ 865 03c7 01       		.uleb128 0x1
+ 866 03c8 9C       		.byte	0x9c
+ 867 03c9 D1030000 		.4byte	0x3d1
+ 868 03cd 0C040000 		.4byte	0x40c
+ 869 03d1 1A       		.uleb128 0x1a
+ 870 03d2 3B030000 		.4byte	0x33b
+ 871 03d6 3A000000 		.4byte	.LLST1
+ 872 03da 1A       		.uleb128 0x1a
+ 873 03db 44030000 		.4byte	0x344
+ 874 03df 74000000 		.4byte	.LLST2
+ 875 03e3 1A       		.uleb128 0x1a
+ 876 03e4 4E030000 		.4byte	0x34e
+ 877 03e8 A0000000 		.4byte	.LLST3
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 19
+
+
+ 878 03ec 1D       		.uleb128 0x1d
+ 879 03ed 0C000000 		.4byte	.LVL5
+ 880 03f1 87030000 		.4byte	0x387
+ 881 03f5 1E       		.uleb128 0x1e
+ 882 03f6 01       		.uleb128 0x1
+ 883 03f7 50       		.byte	0x50
+ 884 03f8 03       		.uleb128 0x3
+ 885 03f9 F3       		.byte	0xf3
+ 886 03fa 01       		.uleb128 0x1
+ 887 03fb 50       		.byte	0x50
+ 888 03fc 1E       		.uleb128 0x1e
+ 889 03fd 01       		.uleb128 0x1
+ 890 03fe 51       		.byte	0x51
+ 891 03ff 03       		.uleb128 0x3
+ 892 0400 F3       		.byte	0xf3
+ 893 0401 01       		.uleb128 0x1
+ 894 0402 51       		.byte	0x51
+ 895 0403 1E       		.uleb128 0x1e
+ 896 0404 01       		.uleb128 0x1
+ 897 0405 52       		.byte	0x52
+ 898 0406 03       		.uleb128 0x3
+ 899 0407 F3       		.byte	0xf3
+ 900 0408 01       		.uleb128 0x1
+ 901 0409 52       		.byte	0x52
+ 902 040a 00       		.byte	0
+ 903 040b 00       		.byte	0
+ 904 040c 1F       		.uleb128 0x1f
+ 905 040d F6020000 		.4byte	0x2f6
+ 906 0411 01       		.byte	0x1
+ 907 0412 22       		.byte	0x22
+ 908 0413 00000000 		.4byte	.LFB214
+ 909 0417 26010000 		.4byte	.LFE214-.LFB214
+ 910 041b 01       		.uleb128 0x1
+ 911 041c 9C       		.byte	0x9c
+ 912 041d 25040000 		.4byte	0x425
+ 913 0421 5A050000 		.4byte	0x55a
+ 914 0425 20       		.uleb128 0x20
+ 915 0426 08030000 		.4byte	.LASF50
+ 916 042a 5A050000 		.4byte	0x55a
+ 917 042e CC000000 		.4byte	.LLST4
+ 918 0432 21       		.uleb128 0x21
+ 919 0433 707000   		.ascii	"pp\000"
+ 920 0436 01       		.byte	0x1
+ 921 0437 22       		.byte	0x22
+ 922 0438 FB010000 		.4byte	0x1fb
+ 923 043c 3A010000 		.4byte	.LLST5
+ 924 0440 22       		.uleb128 0x22
+ 925 0441 33030000 		.4byte	.LASF49
+ 926 0445 01       		.byte	0x1
+ 927 0446 22       		.byte	0x22
+ 928 0447 09010000 		.4byte	0x109
+ 929 044b A8010000 		.4byte	.LLST6
+ 930 044f 21       		.uleb128 0x21
+ 931 0450 706600   		.ascii	"pf\000"
+ 932 0453 01       		.byte	0x1
+ 933 0454 22       		.byte	0x22
+ 934 0455 01020000 		.4byte	0x201
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 20
+
+
+ 935 0459 16020000 		.4byte	.LLST7
+ 936 045d 23       		.uleb128 0x23
+ 937 045e 6D6500   		.ascii	"me\000"
+ 938 0461 01       		.byte	0x1
+ 939 0462 22       		.byte	0x22
+ 940 0463 BD000000 		.4byte	0xbd
+ 941 0467 02       		.uleb128 0x2
+ 942 0468 91       		.byte	0x91
+ 943 0469 00       		.sleb128 0
+ 944 046a 24       		.uleb128 0x24
+ 945 046b 5F030000 		.4byte	0x35f
+ 946 046f 32000000 		.4byte	.LBB10
+ 947 0473 1C000000 		.4byte	.LBE10-.LBB10
+ 948 0477 01       		.byte	0x1
+ 949 0478 34       		.byte	0x34
+ 950 0479 90040000 		.4byte	0x490
+ 951 047d 1A       		.uleb128 0x1a
+ 952 047e 76030000 		.4byte	0x376
+ 953 0482 4D020000 		.4byte	.LLST8
+ 954 0486 1A       		.uleb128 0x1a
+ 955 0487 6D030000 		.4byte	0x36d
+ 956 048b 60020000 		.4byte	.LLST9
+ 957 048f 00       		.byte	0
+ 958 0490 25       		.uleb128 0x25
+ 959 0491 2B030000 		.4byte	0x32b
+ 960 0495 5C000000 		.4byte	.LBB12
+ 961 0499 00000000 		.4byte	.Ldebug_ranges0+0
+ 962 049d 01       		.byte	0x1
+ 963 049e 39       		.byte	0x39
+ 964 049f DB040000 		.4byte	0x4db
+ 965 04a3 1A       		.uleb128 0x1a
+ 966 04a4 4E030000 		.4byte	0x34e
+ 967 04a8 75020000 		.4byte	.LLST10
+ 968 04ac 1A       		.uleb128 0x1a
+ 969 04ad 44030000 		.4byte	0x344
+ 970 04b1 93020000 		.4byte	.LLST11
+ 971 04b5 1A       		.uleb128 0x1a
+ 972 04b6 3B030000 		.4byte	0x33b
+ 973 04ba B1020000 		.4byte	.LLST12
+ 974 04be 1D       		.uleb128 0x1d
+ 975 04bf 6E000000 		.4byte	.LVL20
+ 976 04c3 87030000 		.4byte	0x387
+ 977 04c7 1E       		.uleb128 0x1e
+ 978 04c8 01       		.uleb128 0x1
+ 979 04c9 50       		.byte	0x50
+ 980 04ca 02       		.uleb128 0x2
+ 981 04cb 78       		.byte	0x78
+ 982 04cc 00       		.sleb128 0
+ 983 04cd 1E       		.uleb128 0x1e
+ 984 04ce 01       		.uleb128 0x1
+ 985 04cf 51       		.byte	0x51
+ 986 04d0 02       		.uleb128 0x2
+ 987 04d1 76       		.byte	0x76
+ 988 04d2 00       		.sleb128 0
+ 989 04d3 1E       		.uleb128 0x1e
+ 990 04d4 01       		.uleb128 0x1
+ 991 04d5 52       		.byte	0x52
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 21
+
+
+ 992 04d6 02       		.uleb128 0x2
+ 993 04d7 77       		.byte	0x77
+ 994 04d8 00       		.sleb128 0
+ 995 04d9 00       		.byte	0
+ 996 04da 00       		.byte	0
+ 997 04db 24       		.uleb128 0x24
+ 998 04dc 5F030000 		.4byte	0x35f
+ 999 04e0 A6000000 		.4byte	.LBB18
+ 1000 04e4 1C000000 		.4byte	.LBE18-.LBB18
+ 1001 04e8 01       		.byte	0x1
+ 1002 04e9 26       		.byte	0x26
+ 1003 04ea 01050000 		.4byte	0x501
+ 1004 04ee 1A       		.uleb128 0x1a
+ 1005 04ef 76030000 		.4byte	0x376
+ 1006 04f3 CF020000 		.4byte	.LLST13
+ 1007 04f7 1A       		.uleb128 0x1a
+ 1008 04f8 6D030000 		.4byte	0x36d
+ 1009 04fc E2020000 		.4byte	.LLST14
+ 1010 0500 00       		.byte	0
+ 1011 0501 24       		.uleb128 0x24
+ 1012 0502 2B030000 		.4byte	0x32b
+ 1013 0506 C6000000 		.4byte	.LBB20
+ 1014 050a 10000000 		.4byte	.LBE20-.LBB20
+ 1015 050e 01       		.byte	0x1
+ 1016 050f 2A       		.byte	0x2a
+ 1017 0510 4C050000 		.4byte	0x54c
+ 1018 0514 1A       		.uleb128 0x1a
+ 1019 0515 4E030000 		.4byte	0x34e
+ 1020 0519 04030000 		.4byte	.LLST15
+ 1021 051d 1A       		.uleb128 0x1a
+ 1022 051e 44030000 		.4byte	0x344
+ 1023 0522 17030000 		.4byte	.LLST16
+ 1024 0526 1A       		.uleb128 0x1a
+ 1025 0527 3B030000 		.4byte	0x33b
+ 1026 052b 2A030000 		.4byte	.LLST17
+ 1027 052f 1D       		.uleb128 0x1d
+ 1028 0530 D6000000 		.4byte	.LVL31
+ 1029 0534 87030000 		.4byte	0x387
+ 1030 0538 1E       		.uleb128 0x1e
+ 1031 0539 01       		.uleb128 0x1
+ 1032 053a 50       		.byte	0x50
+ 1033 053b 02       		.uleb128 0x2
+ 1034 053c 74       		.byte	0x74
+ 1035 053d 14       		.sleb128 20
+ 1036 053e 1E       		.uleb128 0x1e
+ 1037 053f 01       		.uleb128 0x1
+ 1038 0540 51       		.byte	0x51
+ 1039 0541 02       		.uleb128 0x2
+ 1040 0542 76       		.byte	0x76
+ 1041 0543 00       		.sleb128 0
+ 1042 0544 1E       		.uleb128 0x1e
+ 1043 0545 01       		.uleb128 0x1
+ 1044 0546 52       		.byte	0x52
+ 1045 0547 02       		.uleb128 0x2
+ 1046 0548 77       		.byte	0x77
+ 1047 0549 00       		.sleb128 0
+ 1048 054a 00       		.byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 22
+
+
+ 1049 054b 00       		.byte	0
+ 1050 054c 26       		.uleb128 0x26
+ 1051 054d 82000000 		.4byte	.LVL21
+ 1052 0551 1E       		.uleb128 0x1e
+ 1053 0552 01       		.uleb128 0x1
+ 1054 0553 52       		.byte	0x52
+ 1055 0554 03       		.uleb128 0x3
+ 1056 0555 91       		.byte	0x91
+ 1057 0556 00       		.sleb128 0
+ 1058 0557 06       		.byte	0x6
+ 1059 0558 00       		.byte	0
+ 1060 0559 00       		.byte	0
+ 1061 055a 12       		.uleb128 0x12
+ 1062 055b 25030000 		.4byte	0x325
+ 1063 055f 27       		.uleb128 0x27
+ 1064 0560 D9020000 		.4byte	.LASF52
+ 1065 0564 05       		.byte	0x5
+ 1066 0565 16       		.byte	0x16
+ 1067 0566 7E000000 		.4byte	0x7e
+ 1068 056a 27       		.uleb128 0x27
+ 1069 056b 00000000 		.4byte	.LASF53
+ 1070 056f 06       		.byte	0x6
+ 1071 0570 19       		.byte	0x19
+ 1072 0571 7E000000 		.4byte	0x7e
+ 1073 0575 27       		.uleb128 0x27
+ 1074 0576 88020000 		.4byte	.LASF54
+ 1075 057a 06       		.byte	0x6
+ 1076 057b 1A       		.byte	0x1a
+ 1077 057c 7E000000 		.4byte	0x7e
+ 1078 0580 27       		.uleb128 0x27
+ 1079 0581 14000000 		.4byte	.LASF55
+ 1080 0585 06       		.byte	0x6
+ 1081 0586 1B       		.byte	0x1b
+ 1082 0587 7E000000 		.4byte	0x7e
+ 1083 058b 00       		.byte	0
+ 1084              		.section	.debug_abbrev,"",%progbits
+ 1085              	.Ldebug_abbrev0:
+ 1086 0000 01       		.uleb128 0x1
+ 1087 0001 11       		.uleb128 0x11
+ 1088 0002 01       		.byte	0x1
+ 1089 0003 25       		.uleb128 0x25
+ 1090 0004 0E       		.uleb128 0xe
+ 1091 0005 13       		.uleb128 0x13
+ 1092 0006 0B       		.uleb128 0xb
+ 1093 0007 03       		.uleb128 0x3
+ 1094 0008 0E       		.uleb128 0xe
+ 1095 0009 1B       		.uleb128 0x1b
+ 1096 000a 0E       		.uleb128 0xe
+ 1097 000b 55       		.uleb128 0x55
+ 1098 000c 17       		.uleb128 0x17
+ 1099 000d 11       		.uleb128 0x11
+ 1100 000e 01       		.uleb128 0x1
+ 1101 000f 10       		.uleb128 0x10
+ 1102 0010 17       		.uleb128 0x17
+ 1103 0011 00       		.byte	0
+ 1104 0012 00       		.byte	0
+ 1105 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 23
+
+
+ 1106 0014 24       		.uleb128 0x24
+ 1107 0015 00       		.byte	0
+ 1108 0016 0B       		.uleb128 0xb
+ 1109 0017 0B       		.uleb128 0xb
+ 1110 0018 3E       		.uleb128 0x3e
+ 1111 0019 0B       		.uleb128 0xb
+ 1112 001a 03       		.uleb128 0x3
+ 1113 001b 0E       		.uleb128 0xe
+ 1114 001c 00       		.byte	0
+ 1115 001d 00       		.byte	0
+ 1116 001e 03       		.uleb128 0x3
+ 1117 001f 16       		.uleb128 0x16
+ 1118 0020 00       		.byte	0
+ 1119 0021 03       		.uleb128 0x3
+ 1120 0022 0E       		.uleb128 0xe
+ 1121 0023 3A       		.uleb128 0x3a
+ 1122 0024 0B       		.uleb128 0xb
+ 1123 0025 3B       		.uleb128 0x3b
+ 1124 0026 0B       		.uleb128 0xb
+ 1125 0027 49       		.uleb128 0x49
+ 1126 0028 13       		.uleb128 0x13
+ 1127 0029 00       		.byte	0
+ 1128 002a 00       		.byte	0
+ 1129 002b 04       		.uleb128 0x4
+ 1130 002c 24       		.uleb128 0x24
+ 1131 002d 00       		.byte	0
+ 1132 002e 0B       		.uleb128 0xb
+ 1133 002f 0B       		.uleb128 0xb
+ 1134 0030 3E       		.uleb128 0x3e
+ 1135 0031 0B       		.uleb128 0xb
+ 1136 0032 03       		.uleb128 0x3
+ 1137 0033 08       		.uleb128 0x8
+ 1138 0034 00       		.byte	0
+ 1139 0035 00       		.byte	0
+ 1140 0036 05       		.uleb128 0x5
+ 1141 0037 0F       		.uleb128 0xf
+ 1142 0038 00       		.byte	0
+ 1143 0039 0B       		.uleb128 0xb
+ 1144 003a 0B       		.uleb128 0xb
+ 1145 003b 00       		.byte	0
+ 1146 003c 00       		.byte	0
+ 1147 003d 06       		.uleb128 0x6
+ 1148 003e 0F       		.uleb128 0xf
+ 1149 003f 00       		.byte	0
+ 1150 0040 0B       		.uleb128 0xb
+ 1151 0041 0B       		.uleb128 0xb
+ 1152 0042 49       		.uleb128 0x49
+ 1153 0043 13       		.uleb128 0x13
+ 1154 0044 00       		.byte	0
+ 1155 0045 00       		.byte	0
+ 1156 0046 07       		.uleb128 0x7
+ 1157 0047 26       		.uleb128 0x26
+ 1158 0048 00       		.byte	0
+ 1159 0049 00       		.byte	0
+ 1160 004a 00       		.byte	0
+ 1161 004b 08       		.uleb128 0x8
+ 1162 004c 04       		.uleb128 0x4
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 24
+
+
+ 1163 004d 01       		.byte	0x1
+ 1164 004e 03       		.uleb128 0x3
+ 1165 004f 0E       		.uleb128 0xe
+ 1166 0050 0B       		.uleb128 0xb
+ 1167 0051 0B       		.uleb128 0xb
+ 1168 0052 49       		.uleb128 0x49
+ 1169 0053 13       		.uleb128 0x13
+ 1170 0054 3A       		.uleb128 0x3a
+ 1171 0055 0B       		.uleb128 0xb
+ 1172 0056 3B       		.uleb128 0x3b
+ 1173 0057 0B       		.uleb128 0xb
+ 1174 0058 01       		.uleb128 0x1
+ 1175 0059 13       		.uleb128 0x13
+ 1176 005a 00       		.byte	0
+ 1177 005b 00       		.byte	0
+ 1178 005c 09       		.uleb128 0x9
+ 1179 005d 28       		.uleb128 0x28
+ 1180 005e 00       		.byte	0
+ 1181 005f 03       		.uleb128 0x3
+ 1182 0060 0E       		.uleb128 0xe
+ 1183 0061 1C       		.uleb128 0x1c
+ 1184 0062 0B       		.uleb128 0xb
+ 1185 0063 00       		.byte	0
+ 1186 0064 00       		.byte	0
+ 1187 0065 0A       		.uleb128 0xa
+ 1188 0066 13       		.uleb128 0x13
+ 1189 0067 01       		.byte	0x1
+ 1190 0068 03       		.uleb128 0x3
+ 1191 0069 0E       		.uleb128 0xe
+ 1192 006a 0B       		.uleb128 0xb
+ 1193 006b 0B       		.uleb128 0xb
+ 1194 006c 3A       		.uleb128 0x3a
+ 1195 006d 0B       		.uleb128 0xb
+ 1196 006e 3B       		.uleb128 0x3b
+ 1197 006f 0B       		.uleb128 0xb
+ 1198 0070 01       		.uleb128 0x1
+ 1199 0071 13       		.uleb128 0x13
+ 1200 0072 00       		.byte	0
+ 1201 0073 00       		.byte	0
+ 1202 0074 0B       		.uleb128 0xb
+ 1203 0075 0D       		.uleb128 0xd
+ 1204 0076 00       		.byte	0
+ 1205 0077 03       		.uleb128 0x3
+ 1206 0078 0E       		.uleb128 0xe
+ 1207 0079 3A       		.uleb128 0x3a
+ 1208 007a 0B       		.uleb128 0xb
+ 1209 007b 3B       		.uleb128 0x3b
+ 1210 007c 0B       		.uleb128 0xb
+ 1211 007d 49       		.uleb128 0x49
+ 1212 007e 13       		.uleb128 0x13
+ 1213 007f 38       		.uleb128 0x38
+ 1214 0080 0B       		.uleb128 0xb
+ 1215 0081 00       		.byte	0
+ 1216 0082 00       		.byte	0
+ 1217 0083 0C       		.uleb128 0xc
+ 1218 0084 02       		.uleb128 0x2
+ 1219 0085 01       		.byte	0x1
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 25
+
+
+ 1220 0086 03       		.uleb128 0x3
+ 1221 0087 0E       		.uleb128 0xe
+ 1222 0088 0B       		.uleb128 0xb
+ 1223 0089 0B       		.uleb128 0xb
+ 1224 008a 3A       		.uleb128 0x3a
+ 1225 008b 0B       		.uleb128 0xb
+ 1226 008c 3B       		.uleb128 0x3b
+ 1227 008d 0B       		.uleb128 0xb
+ 1228 008e 01       		.uleb128 0x1
+ 1229 008f 13       		.uleb128 0x13
+ 1230 0090 00       		.byte	0
+ 1231 0091 00       		.byte	0
+ 1232 0092 0D       		.uleb128 0xd
+ 1233 0093 2E       		.uleb128 0x2e
+ 1234 0094 01       		.byte	0x1
+ 1235 0095 3F       		.uleb128 0x3f
+ 1236 0096 19       		.uleb128 0x19
+ 1237 0097 03       		.uleb128 0x3
+ 1238 0098 0E       		.uleb128 0xe
+ 1239 0099 3A       		.uleb128 0x3a
+ 1240 009a 0B       		.uleb128 0xb
+ 1241 009b 3B       		.uleb128 0x3b
+ 1242 009c 0B       		.uleb128 0xb
+ 1243 009d 6E       		.uleb128 0x6e
+ 1244 009e 0E       		.uleb128 0xe
+ 1245 009f 49       		.uleb128 0x49
+ 1246 00a0 13       		.uleb128 0x13
+ 1247 00a1 32       		.uleb128 0x32
+ 1248 00a2 0B       		.uleb128 0xb
+ 1249 00a3 3C       		.uleb128 0x3c
+ 1250 00a4 19       		.uleb128 0x19
+ 1251 00a5 64       		.uleb128 0x64
+ 1252 00a6 13       		.uleb128 0x13
+ 1253 00a7 01       		.uleb128 0x1
+ 1254 00a8 13       		.uleb128 0x13
+ 1255 00a9 00       		.byte	0
+ 1256 00aa 00       		.byte	0
+ 1257 00ab 0E       		.uleb128 0xe
+ 1258 00ac 05       		.uleb128 0x5
+ 1259 00ad 00       		.byte	0
+ 1260 00ae 49       		.uleb128 0x49
+ 1261 00af 13       		.uleb128 0x13
+ 1262 00b0 34       		.uleb128 0x34
+ 1263 00b1 19       		.uleb128 0x19
+ 1264 00b2 00       		.byte	0
+ 1265 00b3 00       		.byte	0
+ 1266 00b4 0F       		.uleb128 0xf
+ 1267 00b5 2E       		.uleb128 0x2e
+ 1268 00b6 01       		.byte	0x1
+ 1269 00b7 3F       		.uleb128 0x3f
+ 1270 00b8 19       		.uleb128 0x19
+ 1271 00b9 03       		.uleb128 0x3
+ 1272 00ba 0E       		.uleb128 0xe
+ 1273 00bb 3A       		.uleb128 0x3a
+ 1274 00bc 0B       		.uleb128 0xb
+ 1275 00bd 3B       		.uleb128 0x3b
+ 1276 00be 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 26
+
+
+ 1277 00bf 6E       		.uleb128 0x6e
+ 1278 00c0 0E       		.uleb128 0xe
+ 1279 00c1 32       		.uleb128 0x32
+ 1280 00c2 0B       		.uleb128 0xb
+ 1281 00c3 3C       		.uleb128 0x3c
+ 1282 00c4 19       		.uleb128 0x19
+ 1283 00c5 64       		.uleb128 0x64
+ 1284 00c6 13       		.uleb128 0x13
+ 1285 00c7 01       		.uleb128 0x1
+ 1286 00c8 13       		.uleb128 0x13
+ 1287 00c9 00       		.byte	0
+ 1288 00ca 00       		.byte	0
+ 1289 00cb 10       		.uleb128 0x10
+ 1290 00cc 05       		.uleb128 0x5
+ 1291 00cd 00       		.byte	0
+ 1292 00ce 49       		.uleb128 0x49
+ 1293 00cf 13       		.uleb128 0x13
+ 1294 00d0 00       		.byte	0
+ 1295 00d1 00       		.byte	0
+ 1296 00d2 11       		.uleb128 0x11
+ 1297 00d3 2E       		.uleb128 0x2e
+ 1298 00d4 01       		.byte	0x1
+ 1299 00d5 3F       		.uleb128 0x3f
+ 1300 00d6 19       		.uleb128 0x19
+ 1301 00d7 03       		.uleb128 0x3
+ 1302 00d8 0E       		.uleb128 0xe
+ 1303 00d9 3A       		.uleb128 0x3a
+ 1304 00da 0B       		.uleb128 0xb
+ 1305 00db 3B       		.uleb128 0x3b
+ 1306 00dc 0B       		.uleb128 0xb
+ 1307 00dd 6E       		.uleb128 0x6e
+ 1308 00de 0E       		.uleb128 0xe
+ 1309 00df 49       		.uleb128 0x49
+ 1310 00e0 13       		.uleb128 0x13
+ 1311 00e1 32       		.uleb128 0x32
+ 1312 00e2 0B       		.uleb128 0xb
+ 1313 00e3 3C       		.uleb128 0x3c
+ 1314 00e4 19       		.uleb128 0x19
+ 1315 00e5 64       		.uleb128 0x64
+ 1316 00e6 13       		.uleb128 0x13
+ 1317 00e7 00       		.byte	0
+ 1318 00e8 00       		.byte	0
+ 1319 00e9 12       		.uleb128 0x12
+ 1320 00ea 26       		.uleb128 0x26
+ 1321 00eb 00       		.byte	0
+ 1322 00ec 49       		.uleb128 0x49
+ 1323 00ed 13       		.uleb128 0x13
+ 1324 00ee 00       		.byte	0
+ 1325 00ef 00       		.byte	0
+ 1326 00f0 13       		.uleb128 0x13
+ 1327 00f1 15       		.uleb128 0x15
+ 1328 00f2 01       		.byte	0x1
+ 1329 00f3 01       		.uleb128 0x1
+ 1330 00f4 13       		.uleb128 0x13
+ 1331 00f5 00       		.byte	0
+ 1332 00f6 00       		.byte	0
+ 1333 00f7 14       		.uleb128 0x14
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 27
+
+
+ 1334 00f8 2E       		.uleb128 0x2e
+ 1335 00f9 01       		.byte	0x1
+ 1336 00fa 47       		.uleb128 0x47
+ 1337 00fb 13       		.uleb128 0x13
+ 1338 00fc 3A       		.uleb128 0x3a
+ 1339 00fd 0B       		.uleb128 0xb
+ 1340 00fe 3B       		.uleb128 0x3b
+ 1341 00ff 0B       		.uleb128 0xb
+ 1342 0100 20       		.uleb128 0x20
+ 1343 0101 0B       		.uleb128 0xb
+ 1344 0102 64       		.uleb128 0x64
+ 1345 0103 13       		.uleb128 0x13
+ 1346 0104 01       		.uleb128 0x1
+ 1347 0105 13       		.uleb128 0x13
+ 1348 0106 00       		.byte	0
+ 1349 0107 00       		.byte	0
+ 1350 0108 15       		.uleb128 0x15
+ 1351 0109 05       		.uleb128 0x5
+ 1352 010a 00       		.byte	0
+ 1353 010b 03       		.uleb128 0x3
+ 1354 010c 0E       		.uleb128 0xe
+ 1355 010d 49       		.uleb128 0x49
+ 1356 010e 13       		.uleb128 0x13
+ 1357 010f 34       		.uleb128 0x34
+ 1358 0110 19       		.uleb128 0x19
+ 1359 0111 00       		.byte	0
+ 1360 0112 00       		.byte	0
+ 1361 0113 16       		.uleb128 0x16
+ 1362 0114 05       		.uleb128 0x5
+ 1363 0115 00       		.byte	0
+ 1364 0116 03       		.uleb128 0x3
+ 1365 0117 08       		.uleb128 0x8
+ 1366 0118 3A       		.uleb128 0x3a
+ 1367 0119 0B       		.uleb128 0xb
+ 1368 011a 3B       		.uleb128 0x3b
+ 1369 011b 0B       		.uleb128 0xb
+ 1370 011c 49       		.uleb128 0x49
+ 1371 011d 13       		.uleb128 0x13
+ 1372 011e 00       		.byte	0
+ 1373 011f 00       		.byte	0
+ 1374 0120 17       		.uleb128 0x17
+ 1375 0121 05       		.uleb128 0x5
+ 1376 0122 00       		.byte	0
+ 1377 0123 03       		.uleb128 0x3
+ 1378 0124 0E       		.uleb128 0xe
+ 1379 0125 3A       		.uleb128 0x3a
+ 1380 0126 0B       		.uleb128 0xb
+ 1381 0127 3B       		.uleb128 0x3b
+ 1382 0128 0B       		.uleb128 0xb
+ 1383 0129 49       		.uleb128 0x49
+ 1384 012a 13       		.uleb128 0x13
+ 1385 012b 00       		.byte	0
+ 1386 012c 00       		.byte	0
+ 1387 012d 18       		.uleb128 0x18
+ 1388 012e 2E       		.uleb128 0x2e
+ 1389 012f 01       		.byte	0x1
+ 1390 0130 47       		.uleb128 0x47
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 28
+
+
+ 1391 0131 13       		.uleb128 0x13
+ 1392 0132 20       		.uleb128 0x20
+ 1393 0133 0B       		.uleb128 0xb
+ 1394 0134 64       		.uleb128 0x64
+ 1395 0135 13       		.uleb128 0x13
+ 1396 0136 01       		.uleb128 0x1
+ 1397 0137 13       		.uleb128 0x13
+ 1398 0138 00       		.byte	0
+ 1399 0139 00       		.byte	0
+ 1400 013a 19       		.uleb128 0x19
+ 1401 013b 2E       		.uleb128 0x2e
+ 1402 013c 01       		.byte	0x1
+ 1403 013d 31       		.uleb128 0x31
+ 1404 013e 13       		.uleb128 0x13
+ 1405 013f 11       		.uleb128 0x11
+ 1406 0140 01       		.uleb128 0x1
+ 1407 0141 12       		.uleb128 0x12
+ 1408 0142 06       		.uleb128 0x6
+ 1409 0143 40       		.uleb128 0x40
+ 1410 0144 18       		.uleb128 0x18
+ 1411 0145 64       		.uleb128 0x64
+ 1412 0146 13       		.uleb128 0x13
+ 1413 0147 9742     		.uleb128 0x2117
+ 1414 0149 19       		.uleb128 0x19
+ 1415 014a 01       		.uleb128 0x1
+ 1416 014b 13       		.uleb128 0x13
+ 1417 014c 00       		.byte	0
+ 1418 014d 00       		.byte	0
+ 1419 014e 1A       		.uleb128 0x1a
+ 1420 014f 05       		.uleb128 0x5
+ 1421 0150 00       		.byte	0
+ 1422 0151 31       		.uleb128 0x31
+ 1423 0152 13       		.uleb128 0x13
+ 1424 0153 02       		.uleb128 0x2
+ 1425 0154 17       		.uleb128 0x17
+ 1426 0155 00       		.byte	0
+ 1427 0156 00       		.byte	0
+ 1428 0157 1B       		.uleb128 0x1b
+ 1429 0158 05       		.uleb128 0x5
+ 1430 0159 00       		.byte	0
+ 1431 015a 31       		.uleb128 0x31
+ 1432 015b 13       		.uleb128 0x13
+ 1433 015c 02       		.uleb128 0x2
+ 1434 015d 18       		.uleb128 0x18
+ 1435 015e 00       		.byte	0
+ 1436 015f 00       		.byte	0
+ 1437 0160 1C       		.uleb128 0x1c
+ 1438 0161 2E       		.uleb128 0x2e
+ 1439 0162 01       		.byte	0x1
+ 1440 0163 31       		.uleb128 0x31
+ 1441 0164 13       		.uleb128 0x13
+ 1442 0165 6E       		.uleb128 0x6e
+ 1443 0166 0E       		.uleb128 0xe
+ 1444 0167 11       		.uleb128 0x11
+ 1445 0168 01       		.uleb128 0x1
+ 1446 0169 12       		.uleb128 0x12
+ 1447 016a 06       		.uleb128 0x6
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 29
+
+
+ 1448 016b 40       		.uleb128 0x40
+ 1449 016c 18       		.uleb128 0x18
+ 1450 016d 64       		.uleb128 0x64
+ 1451 016e 13       		.uleb128 0x13
+ 1452 016f 9742     		.uleb128 0x2117
+ 1453 0171 19       		.uleb128 0x19
+ 1454 0172 01       		.uleb128 0x1
+ 1455 0173 13       		.uleb128 0x13
+ 1456 0174 00       		.byte	0
+ 1457 0175 00       		.byte	0
+ 1458 0176 1D       		.uleb128 0x1d
+ 1459 0177 898201   		.uleb128 0x4109
+ 1460 017a 01       		.byte	0x1
+ 1461 017b 11       		.uleb128 0x11
+ 1462 017c 01       		.uleb128 0x1
+ 1463 017d 31       		.uleb128 0x31
+ 1464 017e 13       		.uleb128 0x13
+ 1465 017f 00       		.byte	0
+ 1466 0180 00       		.byte	0
+ 1467 0181 1E       		.uleb128 0x1e
+ 1468 0182 8A8201   		.uleb128 0x410a
+ 1469 0185 00       		.byte	0
+ 1470 0186 02       		.uleb128 0x2
+ 1471 0187 18       		.uleb128 0x18
+ 1472 0188 9142     		.uleb128 0x2111
+ 1473 018a 18       		.uleb128 0x18
+ 1474 018b 00       		.byte	0
+ 1475 018c 00       		.byte	0
+ 1476 018d 1F       		.uleb128 0x1f
+ 1477 018e 2E       		.uleb128 0x2e
+ 1478 018f 01       		.byte	0x1
+ 1479 0190 47       		.uleb128 0x47
+ 1480 0191 13       		.uleb128 0x13
+ 1481 0192 3A       		.uleb128 0x3a
+ 1482 0193 0B       		.uleb128 0xb
+ 1483 0194 3B       		.uleb128 0x3b
+ 1484 0195 0B       		.uleb128 0xb
+ 1485 0196 11       		.uleb128 0x11
+ 1486 0197 01       		.uleb128 0x1
+ 1487 0198 12       		.uleb128 0x12
+ 1488 0199 06       		.uleb128 0x6
+ 1489 019a 40       		.uleb128 0x40
+ 1490 019b 18       		.uleb128 0x18
+ 1491 019c 64       		.uleb128 0x64
+ 1492 019d 13       		.uleb128 0x13
+ 1493 019e 9742     		.uleb128 0x2117
+ 1494 01a0 19       		.uleb128 0x19
+ 1495 01a1 01       		.uleb128 0x1
+ 1496 01a2 13       		.uleb128 0x13
+ 1497 01a3 00       		.byte	0
+ 1498 01a4 00       		.byte	0
+ 1499 01a5 20       		.uleb128 0x20
+ 1500 01a6 05       		.uleb128 0x5
+ 1501 01a7 00       		.byte	0
+ 1502 01a8 03       		.uleb128 0x3
+ 1503 01a9 0E       		.uleb128 0xe
+ 1504 01aa 49       		.uleb128 0x49
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 30
+
+
+ 1505 01ab 13       		.uleb128 0x13
+ 1506 01ac 34       		.uleb128 0x34
+ 1507 01ad 19       		.uleb128 0x19
+ 1508 01ae 02       		.uleb128 0x2
+ 1509 01af 17       		.uleb128 0x17
+ 1510 01b0 00       		.byte	0
+ 1511 01b1 00       		.byte	0
+ 1512 01b2 21       		.uleb128 0x21
+ 1513 01b3 05       		.uleb128 0x5
+ 1514 01b4 00       		.byte	0
+ 1515 01b5 03       		.uleb128 0x3
+ 1516 01b6 08       		.uleb128 0x8
+ 1517 01b7 3A       		.uleb128 0x3a
+ 1518 01b8 0B       		.uleb128 0xb
+ 1519 01b9 3B       		.uleb128 0x3b
+ 1520 01ba 0B       		.uleb128 0xb
+ 1521 01bb 49       		.uleb128 0x49
+ 1522 01bc 13       		.uleb128 0x13
+ 1523 01bd 02       		.uleb128 0x2
+ 1524 01be 17       		.uleb128 0x17
+ 1525 01bf 00       		.byte	0
+ 1526 01c0 00       		.byte	0
+ 1527 01c1 22       		.uleb128 0x22
+ 1528 01c2 05       		.uleb128 0x5
+ 1529 01c3 00       		.byte	0
+ 1530 01c4 03       		.uleb128 0x3
+ 1531 01c5 0E       		.uleb128 0xe
+ 1532 01c6 3A       		.uleb128 0x3a
+ 1533 01c7 0B       		.uleb128 0xb
+ 1534 01c8 3B       		.uleb128 0x3b
+ 1535 01c9 0B       		.uleb128 0xb
+ 1536 01ca 49       		.uleb128 0x49
+ 1537 01cb 13       		.uleb128 0x13
+ 1538 01cc 02       		.uleb128 0x2
+ 1539 01cd 17       		.uleb128 0x17
+ 1540 01ce 00       		.byte	0
+ 1541 01cf 00       		.byte	0
+ 1542 01d0 23       		.uleb128 0x23
+ 1543 01d1 05       		.uleb128 0x5
+ 1544 01d2 00       		.byte	0
+ 1545 01d3 03       		.uleb128 0x3
+ 1546 01d4 08       		.uleb128 0x8
+ 1547 01d5 3A       		.uleb128 0x3a
+ 1548 01d6 0B       		.uleb128 0xb
+ 1549 01d7 3B       		.uleb128 0x3b
+ 1550 01d8 0B       		.uleb128 0xb
+ 1551 01d9 49       		.uleb128 0x49
+ 1552 01da 13       		.uleb128 0x13
+ 1553 01db 02       		.uleb128 0x2
+ 1554 01dc 18       		.uleb128 0x18
+ 1555 01dd 00       		.byte	0
+ 1556 01de 00       		.byte	0
+ 1557 01df 24       		.uleb128 0x24
+ 1558 01e0 1D       		.uleb128 0x1d
+ 1559 01e1 01       		.byte	0x1
+ 1560 01e2 31       		.uleb128 0x31
+ 1561 01e3 13       		.uleb128 0x13
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 31
+
+
+ 1562 01e4 11       		.uleb128 0x11
+ 1563 01e5 01       		.uleb128 0x1
+ 1564 01e6 12       		.uleb128 0x12
+ 1565 01e7 06       		.uleb128 0x6
+ 1566 01e8 58       		.uleb128 0x58
+ 1567 01e9 0B       		.uleb128 0xb
+ 1568 01ea 59       		.uleb128 0x59
+ 1569 01eb 0B       		.uleb128 0xb
+ 1570 01ec 01       		.uleb128 0x1
+ 1571 01ed 13       		.uleb128 0x13
+ 1572 01ee 00       		.byte	0
+ 1573 01ef 00       		.byte	0
+ 1574 01f0 25       		.uleb128 0x25
+ 1575 01f1 1D       		.uleb128 0x1d
+ 1576 01f2 01       		.byte	0x1
+ 1577 01f3 31       		.uleb128 0x31
+ 1578 01f4 13       		.uleb128 0x13
+ 1579 01f5 52       		.uleb128 0x52
+ 1580 01f6 01       		.uleb128 0x1
+ 1581 01f7 55       		.uleb128 0x55
+ 1582 01f8 17       		.uleb128 0x17
+ 1583 01f9 58       		.uleb128 0x58
+ 1584 01fa 0B       		.uleb128 0xb
+ 1585 01fb 59       		.uleb128 0x59
+ 1586 01fc 0B       		.uleb128 0xb
+ 1587 01fd 01       		.uleb128 0x1
+ 1588 01fe 13       		.uleb128 0x13
+ 1589 01ff 00       		.byte	0
+ 1590 0200 00       		.byte	0
+ 1591 0201 26       		.uleb128 0x26
+ 1592 0202 898201   		.uleb128 0x4109
+ 1593 0205 01       		.byte	0x1
+ 1594 0206 11       		.uleb128 0x11
+ 1595 0207 01       		.uleb128 0x1
+ 1596 0208 00       		.byte	0
+ 1597 0209 00       		.byte	0
+ 1598 020a 27       		.uleb128 0x27
+ 1599 020b 34       		.uleb128 0x34
+ 1600 020c 00       		.byte	0
+ 1601 020d 03       		.uleb128 0x3
+ 1602 020e 0E       		.uleb128 0xe
+ 1603 020f 3A       		.uleb128 0x3a
+ 1604 0210 0B       		.uleb128 0xb
+ 1605 0211 3B       		.uleb128 0x3b
+ 1606 0212 0B       		.uleb128 0xb
+ 1607 0213 49       		.uleb128 0x49
+ 1608 0214 13       		.uleb128 0x13
+ 1609 0215 3F       		.uleb128 0x3f
+ 1610 0216 19       		.uleb128 0x19
+ 1611 0217 3C       		.uleb128 0x3c
+ 1612 0218 19       		.uleb128 0x19
+ 1613 0219 00       		.byte	0
+ 1614 021a 00       		.byte	0
+ 1615 021b 00       		.byte	0
+ 1616              		.section	.debug_loc,"",%progbits
+ 1617              	.Ldebug_loc0:
+ 1618              	.LLST0:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 32
+
+
+ 1619 0000 00000000 		.4byte	.LVL0
+ 1620 0004 40000000 		.4byte	.LVL1
+ 1621 0008 0100     		.2byte	0x1
+ 1622 000a 50       		.byte	0x50
+ 1623 000b 40000000 		.4byte	.LVL1
+ 1624 000f 42000000 		.4byte	.LVL2
+ 1625 0013 0400     		.2byte	0x4
+ 1626 0015 F3       		.byte	0xf3
+ 1627 0016 01       		.uleb128 0x1
+ 1628 0017 50       		.byte	0x50
+ 1629 0018 9F       		.byte	0x9f
+ 1630 0019 42000000 		.4byte	.LVL2
+ 1631 001d 44000000 		.4byte	.LVL3
+ 1632 0021 0100     		.2byte	0x1
+ 1633 0023 50       		.byte	0x50
+ 1634 0024 44000000 		.4byte	.LVL3
+ 1635 0028 46000000 		.4byte	.LFE216
+ 1636 002c 0400     		.2byte	0x4
+ 1637 002e F3       		.byte	0xf3
+ 1638 002f 01       		.uleb128 0x1
+ 1639 0030 50       		.byte	0x50
+ 1640 0031 9F       		.byte	0x9f
+ 1641 0032 00000000 		.4byte	0
+ 1642 0036 00000000 		.4byte	0
+ 1643              	.LLST1:
+ 1644 003a 00000000 		.4byte	.LVL4
+ 1645 003e 0B000000 		.4byte	.LVL5-1
+ 1646 0042 0100     		.2byte	0x1
+ 1647 0044 50       		.byte	0x50
+ 1648 0045 0B000000 		.4byte	.LVL5-1
+ 1649 0049 0E000000 		.4byte	.LVL6
+ 1650 004d 0400     		.2byte	0x4
+ 1651 004f F3       		.byte	0xf3
+ 1652 0050 01       		.uleb128 0x1
+ 1653 0051 50       		.byte	0x50
+ 1654 0052 9F       		.byte	0x9f
+ 1655 0053 0E000000 		.4byte	.LVL6
+ 1656 0057 10000000 		.4byte	.LVL7
+ 1657 005b 0100     		.2byte	0x1
+ 1658 005d 50       		.byte	0x50
+ 1659 005e 10000000 		.4byte	.LVL7
+ 1660 0062 12000000 		.4byte	.LFE213
+ 1661 0066 0400     		.2byte	0x4
+ 1662 0068 F3       		.byte	0xf3
+ 1663 0069 01       		.uleb128 0x1
+ 1664 006a 50       		.byte	0x50
+ 1665 006b 9F       		.byte	0x9f
+ 1666 006c 00000000 		.4byte	0
+ 1667 0070 00000000 		.4byte	0
+ 1668              	.LLST2:
+ 1669 0074 00000000 		.4byte	.LVL4
+ 1670 0078 0B000000 		.4byte	.LVL5-1
+ 1671 007c 0100     		.2byte	0x1
+ 1672 007e 51       		.byte	0x51
+ 1673 007f 0B000000 		.4byte	.LVL5-1
+ 1674 0083 0E000000 		.4byte	.LVL6
+ 1675 0087 0400     		.2byte	0x4
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 33
+
+
+ 1676 0089 F3       		.byte	0xf3
+ 1677 008a 01       		.uleb128 0x1
+ 1678 008b 51       		.byte	0x51
+ 1679 008c 9F       		.byte	0x9f
+ 1680 008d 0E000000 		.4byte	.LVL6
+ 1681 0091 12000000 		.4byte	.LFE213
+ 1682 0095 0100     		.2byte	0x1
+ 1683 0097 51       		.byte	0x51
+ 1684 0098 00000000 		.4byte	0
+ 1685 009c 00000000 		.4byte	0
+ 1686              	.LLST3:
+ 1687 00a0 00000000 		.4byte	.LVL4
+ 1688 00a4 0B000000 		.4byte	.LVL5-1
+ 1689 00a8 0100     		.2byte	0x1
+ 1690 00aa 52       		.byte	0x52
+ 1691 00ab 0B000000 		.4byte	.LVL5-1
+ 1692 00af 0E000000 		.4byte	.LVL6
+ 1693 00b3 0400     		.2byte	0x4
+ 1694 00b5 F3       		.byte	0xf3
+ 1695 00b6 01       		.uleb128 0x1
+ 1696 00b7 52       		.byte	0x52
+ 1697 00b8 9F       		.byte	0x9f
+ 1698 00b9 0E000000 		.4byte	.LVL6
+ 1699 00bd 12000000 		.4byte	.LFE213
+ 1700 00c1 0100     		.2byte	0x1
+ 1701 00c3 52       		.byte	0x52
+ 1702 00c4 00000000 		.4byte	0
+ 1703 00c8 00000000 		.4byte	0
+ 1704              	.LLST4:
+ 1705 00cc 00000000 		.4byte	.LVL8
+ 1706 00d0 24000000 		.4byte	.LVL10
+ 1707 00d4 0100     		.2byte	0x1
+ 1708 00d6 50       		.byte	0x50
+ 1709 00d7 24000000 		.4byte	.LVL10
+ 1710 00db 24000000 		.4byte	.LVL11
+ 1711 00df 0100     		.2byte	0x1
+ 1712 00e1 54       		.byte	0x54
+ 1713 00e2 24000000 		.4byte	.LVL11
+ 1714 00e6 2A000000 		.4byte	.LVL15
+ 1715 00ea 0400     		.2byte	0x4
+ 1716 00ec F3       		.byte	0xf3
+ 1717 00ed 01       		.uleb128 0x1
+ 1718 00ee 50       		.byte	0x50
+ 1719 00ef 9F       		.byte	0x9f
+ 1720 00f0 2A000000 		.4byte	.LVL15
+ 1721 00f4 2C000000 		.4byte	.LVL16
+ 1722 00f8 0100     		.2byte	0x1
+ 1723 00fa 50       		.byte	0x50
+ 1724 00fb 2C000000 		.4byte	.LVL16
+ 1725 00ff 9E000000 		.4byte	.LVL24
+ 1726 0103 0100     		.2byte	0x1
+ 1727 0105 54       		.byte	0x54
+ 1728 0106 9E000000 		.4byte	.LVL24
+ 1729 010a AA000000 		.4byte	.LVL27
+ 1730 010e 0100     		.2byte	0x1
+ 1731 0110 50       		.byte	0x50
+ 1732 0111 AA000000 		.4byte	.LVL27
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 34
+
+
+ 1733 0115 08010000 		.4byte	.LVL32
+ 1734 0119 0100     		.2byte	0x1
+ 1735 011b 54       		.byte	0x54
+ 1736 011c 08010000 		.4byte	.LVL32
+ 1737 0120 0C010000 		.4byte	.LVL33
+ 1738 0124 0100     		.2byte	0x1
+ 1739 0126 50       		.byte	0x50
+ 1740 0127 0C010000 		.4byte	.LVL33
+ 1741 012b 26010000 		.4byte	.LFE214
+ 1742 012f 0100     		.2byte	0x1
+ 1743 0131 54       		.byte	0x54
+ 1744 0132 00000000 		.4byte	0
+ 1745 0136 00000000 		.4byte	0
+ 1746              	.LLST5:
+ 1747 013a 00000000 		.4byte	.LVL8
+ 1748 013e 24000000 		.4byte	.LVL10
+ 1749 0142 0100     		.2byte	0x1
+ 1750 0144 51       		.byte	0x51
+ 1751 0145 24000000 		.4byte	.LVL10
+ 1752 0149 24000000 		.4byte	.LVL13
+ 1753 014d 0100     		.2byte	0x1
+ 1754 014f 56       		.byte	0x56
+ 1755 0150 24000000 		.4byte	.LVL13
+ 1756 0154 2A000000 		.4byte	.LVL15
+ 1757 0158 0400     		.2byte	0x4
+ 1758 015a F3       		.byte	0xf3
+ 1759 015b 01       		.uleb128 0x1
+ 1760 015c 51       		.byte	0x51
+ 1761 015d 9F       		.byte	0x9f
+ 1762 015e 2A000000 		.4byte	.LVL15
+ 1763 0162 2C000000 		.4byte	.LVL16
+ 1764 0166 0100     		.2byte	0x1
+ 1765 0168 51       		.byte	0x51
+ 1766 0169 2C000000 		.4byte	.LVL16
+ 1767 016d 9E000000 		.4byte	.LVL24
+ 1768 0171 0100     		.2byte	0x1
+ 1769 0173 56       		.byte	0x56
+ 1770 0174 9E000000 		.4byte	.LVL24
+ 1771 0178 A6000000 		.4byte	.LVL26
+ 1772 017c 0100     		.2byte	0x1
+ 1773 017e 51       		.byte	0x51
+ 1774 017f A6000000 		.4byte	.LVL26
+ 1775 0183 08010000 		.4byte	.LVL32
+ 1776 0187 0100     		.2byte	0x1
+ 1777 0189 56       		.byte	0x56
+ 1778 018a 08010000 		.4byte	.LVL32
+ 1779 018e 0C010000 		.4byte	.LVL33
+ 1780 0192 0100     		.2byte	0x1
+ 1781 0194 51       		.byte	0x51
+ 1782 0195 0C010000 		.4byte	.LVL33
+ 1783 0199 26010000 		.4byte	.LFE214
+ 1784 019d 0100     		.2byte	0x1
+ 1785 019f 56       		.byte	0x56
+ 1786 01a0 00000000 		.4byte	0
+ 1787 01a4 00000000 		.4byte	0
+ 1788              	.LLST6:
+ 1789 01a8 00000000 		.4byte	.LVL8
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 35
+
+
+ 1790 01ac 24000000 		.4byte	.LVL10
+ 1791 01b0 0100     		.2byte	0x1
+ 1792 01b2 52       		.byte	0x52
+ 1793 01b3 24000000 		.4byte	.LVL10
+ 1794 01b7 24000000 		.4byte	.LVL14
+ 1795 01bb 0100     		.2byte	0x1
+ 1796 01bd 57       		.byte	0x57
+ 1797 01be 24000000 		.4byte	.LVL14
+ 1798 01c2 2A000000 		.4byte	.LVL15
+ 1799 01c6 0400     		.2byte	0x4
+ 1800 01c8 F3       		.byte	0xf3
+ 1801 01c9 01       		.uleb128 0x1
+ 1802 01ca 52       		.byte	0x52
+ 1803 01cb 9F       		.byte	0x9f
+ 1804 01cc 2A000000 		.4byte	.LVL15
+ 1805 01d0 2C000000 		.4byte	.LVL16
+ 1806 01d4 0100     		.2byte	0x1
+ 1807 01d6 52       		.byte	0x52
+ 1808 01d7 2C000000 		.4byte	.LVL16
+ 1809 01db 9E000000 		.4byte	.LVL24
+ 1810 01df 0100     		.2byte	0x1
+ 1811 01e1 57       		.byte	0x57
+ 1812 01e2 9E000000 		.4byte	.LVL24
+ 1813 01e6 A2000000 		.4byte	.LVL25
+ 1814 01ea 0100     		.2byte	0x1
+ 1815 01ec 52       		.byte	0x52
+ 1816 01ed A2000000 		.4byte	.LVL25
+ 1817 01f1 08010000 		.4byte	.LVL32
+ 1818 01f5 0100     		.2byte	0x1
+ 1819 01f7 57       		.byte	0x57
+ 1820 01f8 08010000 		.4byte	.LVL32
+ 1821 01fc 0C010000 		.4byte	.LVL33
+ 1822 0200 0100     		.2byte	0x1
+ 1823 0202 52       		.byte	0x52
+ 1824 0203 0C010000 		.4byte	.LVL33
+ 1825 0207 26010000 		.4byte	.LFE214
+ 1826 020b 0100     		.2byte	0x1
+ 1827 020d 57       		.byte	0x57
+ 1828 020e 00000000 		.4byte	0
+ 1829 0212 00000000 		.4byte	0
+ 1830              	.LLST7:
+ 1831 0216 00000000 		.4byte	.LVL8
+ 1832 021a 0A000000 		.4byte	.LVL9
+ 1833 021e 0100     		.2byte	0x1
+ 1834 0220 53       		.byte	0x53
+ 1835 0221 0A000000 		.4byte	.LVL9
+ 1836 0225 24000000 		.4byte	.LVL12
+ 1837 0229 0100     		.2byte	0x1
+ 1838 022b 55       		.byte	0x55
+ 1839 022c 24000000 		.4byte	.LVL12
+ 1840 0230 2A000000 		.4byte	.LVL15
+ 1841 0234 0400     		.2byte	0x4
+ 1842 0236 F3       		.byte	0xf3
+ 1843 0237 01       		.uleb128 0x1
+ 1844 0238 53       		.byte	0x53
+ 1845 0239 9F       		.byte	0x9f
+ 1846 023a 2A000000 		.4byte	.LVL15
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 36
+
+
+ 1847 023e 26010000 		.4byte	.LFE214
+ 1848 0242 0100     		.2byte	0x1
+ 1849 0244 55       		.byte	0x55
+ 1850 0245 00000000 		.4byte	0
+ 1851 0249 00000000 		.4byte	0
+ 1852              	.LLST8:
+ 1853 024d 32000000 		.4byte	.LVL17
+ 1854 0251 4E000000 		.4byte	.LVL18
+ 1855 0255 0100     		.2byte	0x1
+ 1856 0257 51       		.byte	0x51
+ 1857 0258 00000000 		.4byte	0
+ 1858 025c 00000000 		.4byte	0
+ 1859              	.LLST9:
+ 1860 0260 32000000 		.4byte	.LVL17
+ 1861 0264 4E000000 		.4byte	.LVL18
+ 1862 0268 0300     		.2byte	0x3
+ 1863 026a 74       		.byte	0x74
+ 1864 026b 14       		.sleb128 20
+ 1865 026c 9F       		.byte	0x9f
+ 1866 026d 00000000 		.4byte	0
+ 1867 0271 00000000 		.4byte	0
+ 1868              	.LLST10:
+ 1869 0275 60000000 		.4byte	.LVL19
+ 1870 0279 6E000000 		.4byte	.LVL20
+ 1871 027d 0100     		.2byte	0x1
+ 1872 027f 57       		.byte	0x57
+ 1873 0280 8C000000 		.4byte	.LVL22
+ 1874 0284 92000000 		.4byte	.LVL23
+ 1875 0288 0100     		.2byte	0x1
+ 1876 028a 57       		.byte	0x57
+ 1877 028b 00000000 		.4byte	0
+ 1878 028f 00000000 		.4byte	0
+ 1879              	.LLST11:
+ 1880 0293 60000000 		.4byte	.LVL19
+ 1881 0297 6E000000 		.4byte	.LVL20
+ 1882 029b 0100     		.2byte	0x1
+ 1883 029d 56       		.byte	0x56
+ 1884 029e 8C000000 		.4byte	.LVL22
+ 1885 02a2 92000000 		.4byte	.LVL23
+ 1886 02a6 0100     		.2byte	0x1
+ 1887 02a8 56       		.byte	0x56
+ 1888 02a9 00000000 		.4byte	0
+ 1889 02ad 00000000 		.4byte	0
+ 1890              	.LLST12:
+ 1891 02b1 60000000 		.4byte	.LVL19
+ 1892 02b5 6E000000 		.4byte	.LVL20
+ 1893 02b9 0100     		.2byte	0x1
+ 1894 02bb 58       		.byte	0x58
+ 1895 02bc 8C000000 		.4byte	.LVL22
+ 1896 02c0 92000000 		.4byte	.LVL23
+ 1897 02c4 0100     		.2byte	0x1
+ 1898 02c6 58       		.byte	0x58
+ 1899 02c7 00000000 		.4byte	0
+ 1900 02cb 00000000 		.4byte	0
+ 1901              	.LLST13:
+ 1902 02cf A6000000 		.4byte	.LVL26
+ 1903 02d3 C2000000 		.4byte	.LVL28
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 37
+
+
+ 1904 02d7 0100     		.2byte	0x1
+ 1905 02d9 51       		.byte	0x51
+ 1906 02da 00000000 		.4byte	0
+ 1907 02de 00000000 		.4byte	0
+ 1908              	.LLST14:
+ 1909 02e2 A6000000 		.4byte	.LVL26
+ 1910 02e6 AA000000 		.4byte	.LVL27
+ 1911 02ea 0300     		.2byte	0x3
+ 1912 02ec 70       		.byte	0x70
+ 1913 02ed 14       		.sleb128 20
+ 1914 02ee 9F       		.byte	0x9f
+ 1915 02ef AA000000 		.4byte	.LVL27
+ 1916 02f3 C2000000 		.4byte	.LVL28
+ 1917 02f7 0300     		.2byte	0x3
+ 1918 02f9 74       		.byte	0x74
+ 1919 02fa 14       		.sleb128 20
+ 1920 02fb 9F       		.byte	0x9f
+ 1921 02fc 00000000 		.4byte	0
+ 1922 0300 00000000 		.4byte	0
+ 1923              	.LLST15:
+ 1924 0304 C6000000 		.4byte	.LVL29
+ 1925 0308 D6000000 		.4byte	.LVL31
+ 1926 030c 0100     		.2byte	0x1
+ 1927 030e 57       		.byte	0x57
+ 1928 030f 00000000 		.4byte	0
+ 1929 0313 00000000 		.4byte	0
+ 1930              	.LLST16:
+ 1931 0317 C6000000 		.4byte	.LVL29
+ 1932 031b D6000000 		.4byte	.LVL31
+ 1933 031f 0100     		.2byte	0x1
+ 1934 0321 56       		.byte	0x56
+ 1935 0322 00000000 		.4byte	0
+ 1936 0326 00000000 		.4byte	0
+ 1937              	.LLST17:
+ 1938 032a C6000000 		.4byte	.LVL29
+ 1939 032e D2000000 		.4byte	.LVL30
+ 1940 0332 0300     		.2byte	0x3
+ 1941 0334 74       		.byte	0x74
+ 1942 0335 14       		.sleb128 20
+ 1943 0336 9F       		.byte	0x9f
+ 1944 0337 D2000000 		.4byte	.LVL30
+ 1945 033b D5000000 		.4byte	.LVL31-1
+ 1946 033f 0100     		.2byte	0x1
+ 1947 0341 50       		.byte	0x50
+ 1948 0342 D5000000 		.4byte	.LVL31-1
+ 1949 0346 D6000000 		.4byte	.LVL31
+ 1950 034a 0300     		.2byte	0x3
+ 1951 034c 74       		.byte	0x74
+ 1952 034d 14       		.sleb128 20
+ 1953 034e 9F       		.byte	0x9f
+ 1954 034f 00000000 		.4byte	0
+ 1955 0353 00000000 		.4byte	0
+ 1956              		.section	.debug_aranges,"",%progbits
+ 1957 0000 2C000000 		.4byte	0x2c
+ 1958 0004 0200     		.2byte	0x2
+ 1959 0006 00000000 		.4byte	.Ldebug_info0
+ 1960 000a 04       		.byte	0x4
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 38
+
+
+ 1961 000b 00       		.byte	0
+ 1962 000c 0000     		.2byte	0
+ 1963 000e 0000     		.2byte	0
+ 1964 0010 00000000 		.4byte	.LFB216
+ 1965 0014 46000000 		.4byte	.LFE216-.LFB216
+ 1966 0018 00000000 		.4byte	.LFB213
+ 1967 001c 12000000 		.4byte	.LFE213-.LFB213
+ 1968 0020 00000000 		.4byte	.LFB214
+ 1969 0024 26010000 		.4byte	.LFE214-.LFB214
+ 1970 0028 00000000 		.4byte	0
+ 1971 002c 00000000 		.4byte	0
+ 1972              		.section	.debug_ranges,"",%progbits
+ 1973              	.Ldebug_ranges0:
+ 1974 0000 5C000000 		.4byte	.LBB12
+ 1975 0004 5E000000 		.4byte	.LBE12
+ 1976 0008 60000000 		.4byte	.LBB16
+ 1977 000c 6E000000 		.4byte	.LBE16
+ 1978 0010 8C000000 		.4byte	.LBB17
+ 1979 0014 92000000 		.4byte	.LBE17
+ 1980 0018 00000000 		.4byte	0
+ 1981 001c 00000000 		.4byte	0
+ 1982 0020 00000000 		.4byte	.LFB216
+ 1983 0024 46000000 		.4byte	.LFE216
+ 1984 0028 00000000 		.4byte	.LFB213
+ 1985 002c 12000000 		.4byte	.LFE213
+ 1986 0030 00000000 		.4byte	.LFB214
+ 1987 0034 26010000 		.4byte	.LFE214
+ 1988 0038 00000000 		.4byte	0
+ 1989 003c 00000000 		.4byte	0
+ 1990              		.section	.debug_line,"",%progbits
+ 1991              	.Ldebug_line0:
+ 1992 0000 04020000 		.section	.debug_str,"MS",%progbits,1
+ 1992      02005C01 
+ 1992      00000201 
+ 1992      FB0E0D00 
+ 1992      01010101 
+ 1993              	.LASF53:
+ 1994 0000 504F5254 		.ascii	"PORTB\000"
+ 1994      4200
+ 1995              	.LASF37:
+ 1996 0006 5054504C 		.ascii	"PTPListParser\000"
+ 1996      69737450 
+ 1996      61727365 
+ 1996      7200
+ 1997              	.LASF55:
+ 1998 0014 50494E42 		.ascii	"PINB\000"
+ 1998      00
+ 1999              	.LASF45:
+ 2000 0019 7072734D 		.ascii	"prsMode\000"
+ 2000      6F646500 
+ 2001              	.LASF56:
+ 2002 0021 474E5520 		.ascii	"GNU C++ 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2002      432B2B20 
+ 2002      352E342E 
+ 2002      31203230 
+ 2002      31363036 
+ 2003 0054 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 39
+
+
+ 2003      20726576 
+ 2003      6973696F 
+ 2003      6E203233 
+ 2003      37373135 
+ 2004 0087 32202D66 		.ascii	"2 -ffunction-sections -ffat-lto-objects\000"
+ 2004      66756E63 
+ 2004      74696F6E 
+ 2004      2D736563 
+ 2004      74696F6E 
+ 2005              	.LASF43:
+ 2006 00af 76616C53 		.ascii	"valSize\000"
+ 2006      697A6500 
+ 2007              	.LASF2:
+ 2008 00b7 73686F72 		.ascii	"short int\000"
+ 2008      7420696E 
+ 2008      7400
+ 2009              	.LASF15:
+ 2010 00c1 73697A65 		.ascii	"sizetype\000"
+ 2010      74797065 
+ 2010      00
+ 2011              	.LASF21:
+ 2012 00ca 534B4950 		.ascii	"SKIP_ALL\000"
+ 2012      5F414C4C 
+ 2012      00
+ 2013              	.LASF32:
+ 2014 00d3 496E6974 		.ascii	"Initialize\000"
+ 2014      69616C69 
+ 2014      7A6500
+ 2015              	.LASF33:
+ 2016 00de 50617273 		.ascii	"Parse\000"
+ 2016      6500
+ 2017              	.LASF7:
+ 2018 00e4 5F5F7569 		.ascii	"__uint32_t\000"
+ 2018      6E743332 
+ 2018      5F7400
+ 2019              	.LASF4:
+ 2020 00ef 5F5F7569 		.ascii	"__uint16_t\000"
+ 2020      6E743136 
+ 2020      5F7400
+ 2021              	.LASF40:
+ 2022 00fa 61724C65 		.ascii	"arLen\000"
+ 2022      6E00
+ 2023              	.LASF24:
+ 2024 0100 76616C75 		.ascii	"valueSize\000"
+ 2024      6553697A 
+ 2024      6500
+ 2025              	.LASF12:
+ 2026 010a 75696E74 		.ascii	"uint8_t\000"
+ 2026      385F7400 
+ 2027              	.LASF46:
+ 2028 0112 5F5A4E31 		.ascii	"_ZN13PTPListParserC4Ev\000"
+ 2028      33505450 
+ 2028      4C697374 
+ 2028      50617273 
+ 2028      65724334 
+ 2029              	.LASF27:
+ 2030 0129 636F756E 		.ascii	"countDown\000"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 40
+
+
+ 2030      74446F77 
+ 2030      6E00
+ 2031              	.LASF20:
+ 2032 0133 626F6F6C 		.ascii	"bool\000"
+ 2032      00
+ 2033              	.LASF18:
+ 2034 0138 666C6F61 		.ascii	"float\000"
+ 2034      7400
+ 2035              	.LASF42:
+ 2036 013e 6C656E53 		.ascii	"lenSize\000"
+ 2036      697A6500 
+ 2037              	.LASF47:
+ 2038 0146 5F5A4E31 		.ascii	"_ZN13PTPListParser10InitializeEhhP16MultiValueBuffe"
+ 2038      33505450 
+ 2038      4C697374 
+ 2038      50617273 
+ 2038      65723130 
+ 2039 0179 726800   		.ascii	"rh\000"
+ 2040              	.LASF9:
+ 2041 017c 6C6F6E67 		.ascii	"long long int\000"
+ 2041      206C6F6E 
+ 2041      6720696E 
+ 2041      7400
+ 2042              	.LASF60:
+ 2043 018a 4D756C74 		.ascii	"MultiValueBuffer\000"
+ 2043      6956616C 
+ 2043      75654275 
+ 2043      66666572 
+ 2043      00
+ 2044              	.LASF28:
+ 2045 019b 4D756C74 		.ascii	"MultiByteValueParser\000"
+ 2045      69427974 
+ 2045      6556616C 
+ 2045      75655061 
+ 2045      72736572 
+ 2046              	.LASF6:
+ 2047 01b0 6C6F6E67 		.ascii	"long int\000"
+ 2047      20696E74 
+ 2047      00
+ 2048              	.LASF39:
+ 2049 01b9 656E5374 		.ascii	"enStage\000"
+ 2049      61676500 
+ 2050              	.LASF3:
+ 2051 01c1 5F5F7569 		.ascii	"__uint8_t\000"
+ 2051      6E74385F 
+ 2051      7400
+ 2052              	.LASF29:
+ 2053 01cb 47657442 		.ascii	"GetBuffer\000"
+ 2053      75666665 
+ 2053      7200
+ 2054              	.LASF19:
+ 2055 01d5 6C6F6E67 		.ascii	"long double\000"
+ 2055      20646F75 
+ 2055      626C6500 
+ 2056              	.LASF34:
+ 2057 01e1 5F5A4E32 		.ascii	"_ZN20MultiByteValueParser10InitializeEP16MultiValue"
+ 2057      304D756C 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 41
+
+
+ 2057      74694279 
+ 2057      74655661 
+ 2057      6C756550 
+ 2058 0214 42756666 		.ascii	"Buffer\000"
+ 2058      657200
+ 2059              	.LASF1:
+ 2060 021b 756E7369 		.ascii	"unsigned char\000"
+ 2060      676E6564 
+ 2060      20636861 
+ 2060      7200
+ 2061              	.LASF0:
+ 2062 0229 7369676E 		.ascii	"signed char\000"
+ 2062      65642063 
+ 2062      68617200 
+ 2063              	.LASF10:
+ 2064 0235 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2064      206C6F6E 
+ 2064      6720756E 
+ 2064      7369676E 
+ 2064      65642069 
+ 2065              	.LASF14:
+ 2066 024c 75696E74 		.ascii	"uint32_t\000"
+ 2066      33325F74 
+ 2066      00
+ 2067              	.LASF11:
+ 2068 0255 756E7369 		.ascii	"unsigned int\000"
+ 2068      676E6564 
+ 2068      20696E74 
+ 2068      00
+ 2069              	.LASF31:
+ 2070 0262 5F5A4E32 		.ascii	"_ZN20MultiByteValueParser9GetBufferEv\000"
+ 2070      304D756C 
+ 2070      74694279 
+ 2070      74655661 
+ 2070      6C756550 
+ 2071              	.LASF54:
+ 2072 0288 44445242 		.ascii	"DDRB\000"
+ 2072      00
+ 2073              	.LASF36:
+ 2074 028d 5054505F 		.ascii	"PTP_ARRAY_EL_FUNC\000"
+ 2074      41525241 
+ 2074      595F454C 
+ 2074      5F46554E 
+ 2074      4300
+ 2075              	.LASF30:
+ 2076 029f 5F5A4E32 		.ascii	"_ZN20MultiByteValueParserC4Ev\000"
+ 2076      304D756C 
+ 2076      74694279 
+ 2076      74655661 
+ 2076      6C756550 
+ 2077              	.LASF59:
+ 2078 02bd 4C6F6F6B 		.ascii	"LookaheadMode\000"
+ 2078      61686561 
+ 2078      644D6F64 
+ 2078      6500
+ 2079              	.LASF16:
+ 2080 02cb 63686172 		.ascii	"char\000"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 42
+
+
+ 2080      00
+ 2081              	.LASF13:
+ 2082 02d0 75696E74 		.ascii	"uint16_t\000"
+ 2082      31365F74 
+ 2082      00
+ 2083              	.LASF52:
+ 2084 02d9 55736244 		.ascii	"UsbDEBUGlvl\000"
+ 2084      45425547 
+ 2084      6C766C00 
+ 2085              	.LASF41:
+ 2086 02e5 61724C65 		.ascii	"arLenCntdn\000"
+ 2086      6E436E74 
+ 2086      646E00
+ 2087              	.LASF5:
+ 2088 02f0 73686F72 		.ascii	"short unsigned int\000"
+ 2088      7420756E 
+ 2088      7369676E 
+ 2088      65642069 
+ 2088      6E7400
+ 2089              	.LASF26:
+ 2090 0303 70427566 		.ascii	"pBuf\000"
+ 2090      00
+ 2091              	.LASF50:
+ 2092 0308 74686973 		.ascii	"this\000"
+ 2092      00
+ 2093              	.LASF35:
+ 2094 030d 5F5A4E32 		.ascii	"_ZN20MultiByteValueParser5ParseEPPhPt\000"
+ 2094      304D756C 
+ 2094      74694279 
+ 2094      74655661 
+ 2094      6C756550 
+ 2095              	.LASF49:
+ 2096 0333 70636E74 		.ascii	"pcntdn\000"
+ 2096      646E00
+ 2097              	.LASF8:
+ 2098 033a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2098      20756E73 
+ 2098      69676E65 
+ 2098      6420696E 
+ 2098      7400
+ 2099              	.LASF17:
+ 2100 034c 646F7562 		.ascii	"double\000"
+ 2100      6C6500
+ 2101              	.LASF23:
+ 2102 0353 534B4950 		.ascii	"SKIP_WHITESPACE\000"
+ 2102      5F574849 
+ 2102      54455350 
+ 2102      41434500 
+ 2103              	.LASF57:
+ 2104 0363 70617273 		.ascii	"parsetools.c\000"
+ 2104      65746F6F 
+ 2104      6C732E63 
+ 2104      00
+ 2105              	.LASF58:
+ 2106 0370 433A5C55 		.ascii	"C:\\Users\\jrdia\\OneDrive\\Sync\\Documents\\GitHub"
+ 2106      73657273 
+ 2106      5C6A7264 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccwPaphc.s 			page 43
+
+
+ 2106      69615C4F 
+ 2106      6E654472 
+ 2107 039d 5C50536F 		.ascii	"\\PSoC-Bluetooth-Dualshock\\Bluetooth_Dev.cydsn\000"
+ 2107      432D426C 
+ 2107      7565746F 
+ 2107      6F74682D 
+ 2107      4475616C 
+ 2108              	.LASF25:
+ 2109 03cb 7056616C 		.ascii	"pValue\000"
+ 2109      756500
+ 2110              	.LASF38:
+ 2111 03d2 6E537461 		.ascii	"nStage\000"
+ 2111      676500
+ 2112              	.LASF48:
+ 2113 03d9 5F5A4E31 		.ascii	"_ZN13PTPListParser5ParseEPPhPtPFvPK16MultiValueBuff"
+ 2113      33505450 
+ 2113      4C697374 
+ 2113      50617273 
+ 2113      65723550 
+ 2114 040c 65726D50 		.ascii	"ermPKvES7_\000"
+ 2114      4B764553 
+ 2114      375F00
+ 2115              	.LASF22:
+ 2116 0417 534B4950 		.ascii	"SKIP_NONE\000"
+ 2116      5F4E4F4E 
+ 2116      4500
+ 2117              	.LASF44:
+ 2118 0421 74686550 		.ascii	"theParser\000"
+ 2118      61727365 
+ 2118      7200
+ 2119              	.LASF51:
+ 2120 042b 70627566 		.ascii	"pbuf\000"
+ 2120      00
+ 2121              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

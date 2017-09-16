@@ -1,0 +1,6 @@
+C:\Users\jrdia\OneDrive\Sync\Documents\GitHub\PSoC-Bluetooth-Dualshock\Bluetooth_Dev.cydsn\Bluetooth_Dev.cyprj|f7bb6255-8c82-42e6-a1e3-369444f755ce
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|950cb2cf-c81e-4aad-a920-ef66596dbc5b
+C:\Users\jrdia\OneDrive\Sync\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|36600e7e-430c-4859-bc51-229a7624ffb5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|5d5df5e2-7d4f-4983-974c-cd64720737c0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|fc4e5463-aa37-4aab-afa4-06b1f9fb4304
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|94f9357f-35d4-44d0-8e8f-2a433e86f6c6

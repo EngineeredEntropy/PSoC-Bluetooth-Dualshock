@@ -1,0 +1,830 @@
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Arduino.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.delay,"ax",%progbits
+  20              		.align	2
+  21              		.global	delay
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	delay, %function
+  25              	delay:
+  26              		.fnstart
+  27              	.LFB112:
+  28              		.file 1 "Arduino.c"
+   1:Arduino.c     **** /* ========================================
+   2:Arduino.c     ****  *
+   3:Arduino.c     ****  * Copyright YOUR COMPANY, THE YEAR
+   4:Arduino.c     ****  * All Rights Reserved
+   5:Arduino.c     ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:Arduino.c     ****  *
+   7:Arduino.c     ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:Arduino.c     ****  * WHICH IS THE PROPERTY OF your company.
+   9:Arduino.c     ****  *
+  10:Arduino.c     ****  * ========================================
+  11:Arduino.c     **** */
+  12:Arduino.c     **** 
+  13:Arduino.c     **** /* [] END OF FILE */
+  14:Arduino.c     **** 
+  15:Arduino.c     **** #include "Arduino.h"
+  16:Arduino.c     ****     #include "iprintf.h"
+  17:Arduino.c     **** 
+  18:Arduino.c     **** #ifdef __cplusplus
+  19:Arduino.c     **** extern "C" {
+  20:Arduino.c     **** #endif
+  21:Arduino.c     **** 
+  22:Arduino.c     **** 	// PSoC include, this has to be wrapped
+  23:Arduino.c     **** 	//#include "project.h"
+  24:Arduino.c     **** 
+  25:Arduino.c     **** #ifdef __cplusplus
+  26:Arduino.c     **** }
+  27:Arduino.c     **** #endif
+  28:Arduino.c     **** void delay(unsigned long value)
+  29:Arduino.c     **** {
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 2
+
+
+  29              		.loc 1 29 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 10B5     		push	{r4, lr}
+  35              		.save {r4, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 4, -8
+  38              		.cfi_offset 14, -4
+  30:Arduino.c     ****     //CyDelay(
+  31:Arduino.c     ****     CyDelay( (uint32)value);
+  39              		.loc 1 31 0
+  40 0002 FFF7FEFF 		bl	CyDelay
+  41              	.LVL1:
+  32:Arduino.c     ****     //TCPWM_1_ReadCounter();
+  33:Arduino.c     **** }
+  42              		.loc 1 33 0
+  43              		@ sp needed
+  44 0006 10BD     		pop	{r4, pc}
+  45              		.cfi_endproc
+  46              	.LFE112:
+  47              		.fnend
+  48              		.size	delay, .-delay
+  49              		.section	.text.millis,"ax",%progbits
+  50              		.align	2
+  51              		.global	millis
+  52              		.code	16
+  53              		.thumb_func
+  54              		.type	millis, %function
+  55              	millis:
+  56              		.fnstart
+  57              	.LFB113:
+  34:Arduino.c     **** 
+  35:Arduino.c     **** unsigned long milliValue = 0;
+  36:Arduino.c     **** unsigned long lastMilli = 0;
+  37:Arduino.c     **** unsigned long currentMilli = 0;
+  38:Arduino.c     **** unsigned long milliCount = 0;
+  39:Arduino.c     **** #define MAX_MILLI 0xFFFF
+  40:Arduino.c     **** 
+  41:Arduino.c     **** unsigned long millis(void)
+  42:Arduino.c     **** {
+  58              		.loc 1 42 0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62 0000 10B5     		push	{r4, lr}
+  63              		.save {r4, lr}
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 4, -8
+  66              		.cfi_offset 14, -4
+  43:Arduino.c     ****     //iprintf("Time: %d\r\n",TCPWM_1_ReadCounter());
+  44:Arduino.c     ****     currentMilli = Millis_Timer_ReadCounter();
+  67              		.loc 1 44 0
+  68 0002 FFF7FEFF 		bl	Millis_Timer_ReadCounter
+  69              	.LVL2:
+  70 0006 074B     		ldr	r3, .L7
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 3
+
+
+  45:Arduino.c     ****     if(lastMilli>currentMilli)
+  71              		.loc 1 45 0
+  72 0008 5A68     		ldr	r2, [r3, #4]
+  44:Arduino.c     ****     if(lastMilli>currentMilli)
+  73              		.loc 1 44 0
+  74 000a 1860     		str	r0, [r3]
+  75              		.loc 1 45 0
+  76 000c 9042     		cmp	r0, r2
+  77 000e 07D2     		bcs	.L6
+  46:Arduino.c     ****         milliCount++;
+  78              		.loc 1 46 0
+  79 0010 9A68     		ldr	r2, [r3, #8]
+  80 0012 0132     		adds	r2, r2, #1
+  81 0014 9A60     		str	r2, [r3, #8]
+  82              	.L4:
+  47:Arduino.c     ****     lastMilli = currentMilli;
+  83              		.loc 1 47 0
+  84 0016 5860     		str	r0, [r3, #4]
+  48:Arduino.c     ****     return currentMilli+milliCount*MAX_MILLI;
+  85              		.loc 1 48 0
+  86 0018 1304     		lsls	r3, r2, #16
+  87 001a 9A1A     		subs	r2, r3, r2
+  88 001c 1018     		adds	r0, r2, r0
+  49:Arduino.c     ****     
+  50:Arduino.c     **** }...
+  89              		.loc 1 50 0
+  90              		@ sp needed
+  91 001e 10BD     		pop	{r4, pc}
+  92              	.L6:
+  93 0020 9A68     		ldr	r2, [r3, #8]
+  94 0022 F8E7     		b	.L4
+  95              	.L8:
+  96              		.align	2
+  97              	.L7:
+  98 0024 00000000 		.word	.LANCHOR0
+  99              		.cfi_endproc
+ 100              	.LFE113:
+ 101              		.fnend
+ 102              		.size	millis, .-millis
+ 103              		.global	milliCount
+ 104              		.global	currentMilli
+ 105              		.global	lastMilli
+ 106              		.global	milliValue
+ 107              		.bss
+ 108              		.align	2
+ 109              		.set	.LANCHOR0,. + 0
+ 110              		.type	currentMilli, %object
+ 111              		.size	currentMilli, 4
+ 112              	currentMilli:
+ 113 0000 00000000 		.space	4
+ 114              		.type	lastMilli, %object
+ 115              		.size	lastMilli, 4
+ 116              	lastMilli:
+ 117 0004 00000000 		.space	4
+ 118              		.type	milliCount, %object
+ 119              		.size	milliCount, 4
+ 120              	milliCount:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 4
+
+
+ 121 0008 00000000 		.space	4
+ 122              		.type	milliValue, %object
+ 123              		.size	milliValue, 4
+ 124              	milliValue:
+ 125 000c 00000000 		.space	4
+ 126              		.text
+ 127              	.Letext0:
+ 128              		.file 2 "Generated_Source\\PSoC4/CyLib.h"
+ 129              		.file 3 "Generated_Source\\PSoC4/Millis_Timer.h"
+ 130              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 131              		.file 5 "Stream.h"
+ 132              		.section	.debug_info,"",%progbits
+ 133              	.Ldebug_info0:
+ 134 0000 75010000 		.4byte	0x175
+ 135 0004 0400     		.2byte	0x4
+ 136 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 137 000a 04       		.byte	0x4
+ 138 000b 01       		.uleb128 0x1
+ 139 000c A6010000 		.4byte	.LASF24
+ 140 0010 04       		.byte	0x4
+ 141 0011 46010000 		.4byte	.LASF25
+ 142 0015 C4000000 		.4byte	.LASF26
+ 143 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 144 001d 00000000 		.4byte	0
+ 145 0021 00000000 		.4byte	.Ldebug_line0
+ 146 0025 02       		.uleb128 0x2
+ 147 0026 04       		.byte	0x4
+ 148 0027 07       		.byte	0x7
+ 149 0028 75000000 		.4byte	.LASF0
+ 150 002c 03       		.uleb128 0x3
+ 151 002d 04       		.byte	0x4
+ 152 002e 05       		.byte	0x5
+ 153 002f 696E7400 		.ascii	"int\000"
+ 154 0033 02       		.uleb128 0x2
+ 155 0034 01       		.byte	0x1
+ 156 0035 06       		.byte	0x6
+ 157 0036 9A010000 		.4byte	.LASF1
+ 158 003a 02       		.uleb128 0x2
+ 159 003b 01       		.byte	0x1
+ 160 003c 08       		.byte	0x8
+ 161 003d 17000000 		.4byte	.LASF2
+ 162 0041 02       		.uleb128 0x2
+ 163 0042 02       		.byte	0x2
+ 164 0043 05       		.byte	0x5
+ 165 0044 50010000 		.4byte	.LASF3
+ 166 0048 02       		.uleb128 0x2
+ 167 0049 02       		.byte	0x2
+ 168 004a 07       		.byte	0x7
+ 169 004b 37000000 		.4byte	.LASF4
+ 170 004f 02       		.uleb128 0x2
+ 171 0050 04       		.byte	0x4
+ 172 0051 05       		.byte	0x5
+ 173 0052 65010000 		.4byte	.LASF5
+ 174 0056 02       		.uleb128 0x2
+ 175 0057 04       		.byte	0x4
+ 176 0058 07       		.byte	0x7
+ 177 0059 25000000 		.4byte	.LASF6
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 5
+
+
+ 178 005d 02       		.uleb128 0x2
+ 179 005e 08       		.byte	0x8
+ 180 005f 05       		.byte	0x5
+ 181 0060 28010000 		.4byte	.LASF7
+ 182 0064 02       		.uleb128 0x2
+ 183 0065 08       		.byte	0x8
+ 184 0066 07       		.byte	0x7
+ 185 0067 92000000 		.4byte	.LASF8
+ 186 006b 02       		.uleb128 0x2
+ 187 006c 04       		.byte	0x4
+ 188 006d 07       		.byte	0x7
+ 189 006e 1F010000 		.4byte	.LASF9
+ 190 0072 02       		.uleb128 0x2
+ 191 0073 01       		.byte	0x1
+ 192 0074 08       		.byte	0x8
+ 193 0075 36010000 		.4byte	.LASF10
+ 194 0079 02       		.uleb128 0x2
+ 195 007a 08       		.byte	0x8
+ 196 007b 04       		.byte	0x4
+ 197 007c 5E000000 		.4byte	.LASF11
+ 198 0080 02       		.uleb128 0x2
+ 199 0081 04       		.byte	0x4
+ 200 0082 04       		.byte	0x4
+ 201 0083 0B000000 		.4byte	.LASF12
+ 202 0087 02       		.uleb128 0x2
+ 203 0088 08       		.byte	0x8
+ 204 0089 04       		.byte	0x4
+ 205 008a 75010000 		.4byte	.LASF13
+ 206 008e 04       		.uleb128 0x4
+ 207 008f 6E000000 		.4byte	.LASF27
+ 208 0093 04       		.byte	0x4
+ 209 0094 D401     		.2byte	0x1d4
+ 210 0096 56000000 		.4byte	0x56
+ 211 009a 02       		.uleb128 0x2
+ 212 009b 01       		.byte	0x1
+ 213 009c 02       		.byte	0x2
+ 214 009d 06000000 		.4byte	.LASF14
+ 215 00a1 05       		.uleb128 0x5
+ 216 00a2 B6000000 		.4byte	.LASF28
+ 217 00a6 01       		.byte	0x1
+ 218 00a7 3A000000 		.4byte	0x3a
+ 219 00ab 05       		.byte	0x5
+ 220 00ac 29       		.byte	0x29
+ 221 00ad C4000000 		.4byte	0xc4
+ 222 00b1 06       		.uleb128 0x6
+ 223 00b2 65000000 		.4byte	.LASF15
+ 224 00b6 00       		.byte	0
+ 225 00b7 06       		.uleb128 0x6
+ 226 00b8 4A000000 		.4byte	.LASF16
+ 227 00bc 01       		.byte	0x1
+ 228 00bd 06       		.uleb128 0x6
+ 229 00be 82000000 		.4byte	.LASF17
+ 230 00c2 02       		.byte	0x2
+ 231 00c3 00       		.byte	0
+ 232 00c4 07       		.uleb128 0x7
+ 233 00c5 11000000 		.4byte	.LASF29
+ 234 00c9 01       		.byte	0x1
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 6
+
+
+ 235 00ca 1C       		.byte	0x1c
+ 236 00cb 00000000 		.4byte	.LFB112
+ 237 00cf 08000000 		.4byte	.LFE112-.LFB112
+ 238 00d3 01       		.uleb128 0x1
+ 239 00d4 9C       		.byte	0x9c
+ 240 00d5 FA000000 		.4byte	0xfa
+ 241 00d9 08       		.uleb128 0x8
+ 242 00da 00000000 		.4byte	.LASF30
+ 243 00de 01       		.byte	0x1
+ 244 00df 1C       		.byte	0x1c
+ 245 00e0 56000000 		.4byte	0x56
+ 246 00e4 00000000 		.4byte	.LLST0
+ 247 00e8 09       		.uleb128 0x9
+ 248 00e9 06000000 		.4byte	.LVL1
+ 249 00ed 61010000 		.4byte	0x161
+ 250 00f1 0A       		.uleb128 0xa
+ 251 00f2 01       		.uleb128 0x1
+ 252 00f3 50       		.byte	0x50
+ 253 00f4 03       		.uleb128 0x3
+ 254 00f5 F3       		.byte	0xf3
+ 255 00f6 01       		.uleb128 0x1
+ 256 00f7 50       		.byte	0x50
+ 257 00f8 00       		.byte	0
+ 258 00f9 00       		.byte	0
+ 259 00fa 0B       		.uleb128 0xb
+ 260 00fb 6E010000 		.4byte	.LASF31
+ 261 00ff 01       		.byte	0x1
+ 262 0100 29       		.byte	0x29
+ 263 0101 56000000 		.4byte	0x56
+ 264 0105 00000000 		.4byte	.LFB113
+ 265 0109 28000000 		.4byte	.LFE113-.LFB113
+ 266 010d 01       		.uleb128 0x1
+ 267 010e 9C       		.byte	0x9c
+ 268 010f 1D010000 		.4byte	0x11d
+ 269 0113 0C       		.uleb128 0xc
+ 270 0114 06000000 		.4byte	.LVL2
+ 271 0118 6C010000 		.4byte	0x16c
+ 272 011c 00       		.byte	0
+ 273 011d 0D       		.uleb128 0xd
+ 274 011e 5A010000 		.4byte	.LASF18
+ 275 0122 01       		.byte	0x1
+ 276 0123 23       		.byte	0x23
+ 277 0124 56000000 		.4byte	0x56
+ 278 0128 05       		.uleb128 0x5
+ 279 0129 03       		.byte	0x3
+ 280 012a 00000000 		.4byte	milliValue
+ 281 012e 0D       		.uleb128 0xd
+ 282 012f 54000000 		.4byte	.LASF19
+ 283 0133 01       		.byte	0x1
+ 284 0134 24       		.byte	0x24
+ 285 0135 56000000 		.4byte	0x56
+ 286 0139 05       		.uleb128 0x5
+ 287 013a 03       		.byte	0x3
+ 288 013b 00000000 		.4byte	lastMilli
+ 289 013f 0D       		.uleb128 0xd
+ 290 0140 A9000000 		.4byte	.LASF20
+ 291 0144 01       		.byte	0x1
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 7
+
+
+ 292 0145 25       		.byte	0x25
+ 293 0146 56000000 		.4byte	0x56
+ 294 014a 05       		.uleb128 0x5
+ 295 014b 03       		.byte	0x3
+ 296 014c 00000000 		.4byte	currentMilli
+ 297 0150 0D       		.uleb128 0xd
+ 298 0151 3B010000 		.4byte	.LASF21
+ 299 0155 01       		.byte	0x1
+ 300 0156 26       		.byte	0x26
+ 301 0157 56000000 		.4byte	0x56
+ 302 015b 05       		.uleb128 0x5
+ 303 015c 03       		.byte	0x3
+ 304 015d 00000000 		.4byte	milliCount
+ 305 0161 0E       		.uleb128 0xe
+ 306 0162 34020000 		.4byte	.LASF22
+ 307 0166 34020000 		.4byte	.LASF22
+ 308 016a 02       		.byte	0x2
+ 309 016b D9       		.byte	0xd9
+ 310 016c 0F       		.uleb128 0xf
+ 311 016d 81010000 		.4byte	.LASF23
+ 312 0171 81010000 		.4byte	.LASF23
+ 313 0175 03       		.byte	0x3
+ 314 0176 4B01     		.2byte	0x14b
+ 315 0178 00       		.byte	0
+ 316              		.section	.debug_abbrev,"",%progbits
+ 317              	.Ldebug_abbrev0:
+ 318 0000 01       		.uleb128 0x1
+ 319 0001 11       		.uleb128 0x11
+ 320 0002 01       		.byte	0x1
+ 321 0003 25       		.uleb128 0x25
+ 322 0004 0E       		.uleb128 0xe
+ 323 0005 13       		.uleb128 0x13
+ 324 0006 0B       		.uleb128 0xb
+ 325 0007 03       		.uleb128 0x3
+ 326 0008 0E       		.uleb128 0xe
+ 327 0009 1B       		.uleb128 0x1b
+ 328 000a 0E       		.uleb128 0xe
+ 329 000b 55       		.uleb128 0x55
+ 330 000c 17       		.uleb128 0x17
+ 331 000d 11       		.uleb128 0x11
+ 332 000e 01       		.uleb128 0x1
+ 333 000f 10       		.uleb128 0x10
+ 334 0010 17       		.uleb128 0x17
+ 335 0011 00       		.byte	0
+ 336 0012 00       		.byte	0
+ 337 0013 02       		.uleb128 0x2
+ 338 0014 24       		.uleb128 0x24
+ 339 0015 00       		.byte	0
+ 340 0016 0B       		.uleb128 0xb
+ 341 0017 0B       		.uleb128 0xb
+ 342 0018 3E       		.uleb128 0x3e
+ 343 0019 0B       		.uleb128 0xb
+ 344 001a 03       		.uleb128 0x3
+ 345 001b 0E       		.uleb128 0xe
+ 346 001c 00       		.byte	0
+ 347 001d 00       		.byte	0
+ 348 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 8
+
+
+ 349 001f 24       		.uleb128 0x24
+ 350 0020 00       		.byte	0
+ 351 0021 0B       		.uleb128 0xb
+ 352 0022 0B       		.uleb128 0xb
+ 353 0023 3E       		.uleb128 0x3e
+ 354 0024 0B       		.uleb128 0xb
+ 355 0025 03       		.uleb128 0x3
+ 356 0026 08       		.uleb128 0x8
+ 357 0027 00       		.byte	0
+ 358 0028 00       		.byte	0
+ 359 0029 04       		.uleb128 0x4
+ 360 002a 16       		.uleb128 0x16
+ 361 002b 00       		.byte	0
+ 362 002c 03       		.uleb128 0x3
+ 363 002d 0E       		.uleb128 0xe
+ 364 002e 3A       		.uleb128 0x3a
+ 365 002f 0B       		.uleb128 0xb
+ 366 0030 3B       		.uleb128 0x3b
+ 367 0031 05       		.uleb128 0x5
+ 368 0032 49       		.uleb128 0x49
+ 369 0033 13       		.uleb128 0x13
+ 370 0034 00       		.byte	0
+ 371 0035 00       		.byte	0
+ 372 0036 05       		.uleb128 0x5
+ 373 0037 04       		.uleb128 0x4
+ 374 0038 01       		.byte	0x1
+ 375 0039 03       		.uleb128 0x3
+ 376 003a 0E       		.uleb128 0xe
+ 377 003b 0B       		.uleb128 0xb
+ 378 003c 0B       		.uleb128 0xb
+ 379 003d 49       		.uleb128 0x49
+ 380 003e 13       		.uleb128 0x13
+ 381 003f 3A       		.uleb128 0x3a
+ 382 0040 0B       		.uleb128 0xb
+ 383 0041 3B       		.uleb128 0x3b
+ 384 0042 0B       		.uleb128 0xb
+ 385 0043 01       		.uleb128 0x1
+ 386 0044 13       		.uleb128 0x13
+ 387 0045 00       		.byte	0
+ 388 0046 00       		.byte	0
+ 389 0047 06       		.uleb128 0x6
+ 390 0048 28       		.uleb128 0x28
+ 391 0049 00       		.byte	0
+ 392 004a 03       		.uleb128 0x3
+ 393 004b 0E       		.uleb128 0xe
+ 394 004c 1C       		.uleb128 0x1c
+ 395 004d 0B       		.uleb128 0xb
+ 396 004e 00       		.byte	0
+ 397 004f 00       		.byte	0
+ 398 0050 07       		.uleb128 0x7
+ 399 0051 2E       		.uleb128 0x2e
+ 400 0052 01       		.byte	0x1
+ 401 0053 3F       		.uleb128 0x3f
+ 402 0054 19       		.uleb128 0x19
+ 403 0055 03       		.uleb128 0x3
+ 404 0056 0E       		.uleb128 0xe
+ 405 0057 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 9
+
+
+ 406 0058 0B       		.uleb128 0xb
+ 407 0059 3B       		.uleb128 0x3b
+ 408 005a 0B       		.uleb128 0xb
+ 409 005b 11       		.uleb128 0x11
+ 410 005c 01       		.uleb128 0x1
+ 411 005d 12       		.uleb128 0x12
+ 412 005e 06       		.uleb128 0x6
+ 413 005f 40       		.uleb128 0x40
+ 414 0060 18       		.uleb128 0x18
+ 415 0061 9742     		.uleb128 0x2117
+ 416 0063 19       		.uleb128 0x19
+ 417 0064 01       		.uleb128 0x1
+ 418 0065 13       		.uleb128 0x13
+ 419 0066 00       		.byte	0
+ 420 0067 00       		.byte	0
+ 421 0068 08       		.uleb128 0x8
+ 422 0069 05       		.uleb128 0x5
+ 423 006a 00       		.byte	0
+ 424 006b 03       		.uleb128 0x3
+ 425 006c 0E       		.uleb128 0xe
+ 426 006d 3A       		.uleb128 0x3a
+ 427 006e 0B       		.uleb128 0xb
+ 428 006f 3B       		.uleb128 0x3b
+ 429 0070 0B       		.uleb128 0xb
+ 430 0071 49       		.uleb128 0x49
+ 431 0072 13       		.uleb128 0x13
+ 432 0073 02       		.uleb128 0x2
+ 433 0074 17       		.uleb128 0x17
+ 434 0075 00       		.byte	0
+ 435 0076 00       		.byte	0
+ 436 0077 09       		.uleb128 0x9
+ 437 0078 898201   		.uleb128 0x4109
+ 438 007b 01       		.byte	0x1
+ 439 007c 11       		.uleb128 0x11
+ 440 007d 01       		.uleb128 0x1
+ 441 007e 31       		.uleb128 0x31
+ 442 007f 13       		.uleb128 0x13
+ 443 0080 00       		.byte	0
+ 444 0081 00       		.byte	0
+ 445 0082 0A       		.uleb128 0xa
+ 446 0083 8A8201   		.uleb128 0x410a
+ 447 0086 00       		.byte	0
+ 448 0087 02       		.uleb128 0x2
+ 449 0088 18       		.uleb128 0x18
+ 450 0089 9142     		.uleb128 0x2111
+ 451 008b 18       		.uleb128 0x18
+ 452 008c 00       		.byte	0
+ 453 008d 00       		.byte	0
+ 454 008e 0B       		.uleb128 0xb
+ 455 008f 2E       		.uleb128 0x2e
+ 456 0090 01       		.byte	0x1
+ 457 0091 3F       		.uleb128 0x3f
+ 458 0092 19       		.uleb128 0x19
+ 459 0093 03       		.uleb128 0x3
+ 460 0094 0E       		.uleb128 0xe
+ 461 0095 3A       		.uleb128 0x3a
+ 462 0096 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 10
+
+
+ 463 0097 3B       		.uleb128 0x3b
+ 464 0098 0B       		.uleb128 0xb
+ 465 0099 49       		.uleb128 0x49
+ 466 009a 13       		.uleb128 0x13
+ 467 009b 11       		.uleb128 0x11
+ 468 009c 01       		.uleb128 0x1
+ 469 009d 12       		.uleb128 0x12
+ 470 009e 06       		.uleb128 0x6
+ 471 009f 40       		.uleb128 0x40
+ 472 00a0 18       		.uleb128 0x18
+ 473 00a1 9742     		.uleb128 0x2117
+ 474 00a3 19       		.uleb128 0x19
+ 475 00a4 01       		.uleb128 0x1
+ 476 00a5 13       		.uleb128 0x13
+ 477 00a6 00       		.byte	0
+ 478 00a7 00       		.byte	0
+ 479 00a8 0C       		.uleb128 0xc
+ 480 00a9 898201   		.uleb128 0x4109
+ 481 00ac 00       		.byte	0
+ 482 00ad 11       		.uleb128 0x11
+ 483 00ae 01       		.uleb128 0x1
+ 484 00af 31       		.uleb128 0x31
+ 485 00b0 13       		.uleb128 0x13
+ 486 00b1 00       		.byte	0
+ 487 00b2 00       		.byte	0
+ 488 00b3 0D       		.uleb128 0xd
+ 489 00b4 34       		.uleb128 0x34
+ 490 00b5 00       		.byte	0
+ 491 00b6 03       		.uleb128 0x3
+ 492 00b7 0E       		.uleb128 0xe
+ 493 00b8 3A       		.uleb128 0x3a
+ 494 00b9 0B       		.uleb128 0xb
+ 495 00ba 3B       		.uleb128 0x3b
+ 496 00bb 0B       		.uleb128 0xb
+ 497 00bc 49       		.uleb128 0x49
+ 498 00bd 13       		.uleb128 0x13
+ 499 00be 3F       		.uleb128 0x3f
+ 500 00bf 19       		.uleb128 0x19
+ 501 00c0 02       		.uleb128 0x2
+ 502 00c1 18       		.uleb128 0x18
+ 503 00c2 00       		.byte	0
+ 504 00c3 00       		.byte	0
+ 505 00c4 0E       		.uleb128 0xe
+ 506 00c5 2E       		.uleb128 0x2e
+ 507 00c6 00       		.byte	0
+ 508 00c7 3F       		.uleb128 0x3f
+ 509 00c8 19       		.uleb128 0x19
+ 510 00c9 3C       		.uleb128 0x3c
+ 511 00ca 19       		.uleb128 0x19
+ 512 00cb 6E       		.uleb128 0x6e
+ 513 00cc 0E       		.uleb128 0xe
+ 514 00cd 03       		.uleb128 0x3
+ 515 00ce 0E       		.uleb128 0xe
+ 516 00cf 3A       		.uleb128 0x3a
+ 517 00d0 0B       		.uleb128 0xb
+ 518 00d1 3B       		.uleb128 0x3b
+ 519 00d2 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 11
+
+
+ 520 00d3 00       		.byte	0
+ 521 00d4 00       		.byte	0
+ 522 00d5 0F       		.uleb128 0xf
+ 523 00d6 2E       		.uleb128 0x2e
+ 524 00d7 00       		.byte	0
+ 525 00d8 3F       		.uleb128 0x3f
+ 526 00d9 19       		.uleb128 0x19
+ 527 00da 3C       		.uleb128 0x3c
+ 528 00db 19       		.uleb128 0x19
+ 529 00dc 6E       		.uleb128 0x6e
+ 530 00dd 0E       		.uleb128 0xe
+ 531 00de 03       		.uleb128 0x3
+ 532 00df 0E       		.uleb128 0xe
+ 533 00e0 3A       		.uleb128 0x3a
+ 534 00e1 0B       		.uleb128 0xb
+ 535 00e2 3B       		.uleb128 0x3b
+ 536 00e3 05       		.uleb128 0x5
+ 537 00e4 00       		.byte	0
+ 538 00e5 00       		.byte	0
+ 539 00e6 00       		.byte	0
+ 540              		.section	.debug_loc,"",%progbits
+ 541              	.Ldebug_loc0:
+ 542              	.LLST0:
+ 543 0000 00000000 		.4byte	.LVL0
+ 544 0004 05000000 		.4byte	.LVL1-1
+ 545 0008 0100     		.2byte	0x1
+ 546 000a 50       		.byte	0x50
+ 547 000b 05000000 		.4byte	.LVL1-1
+ 548 000f 08000000 		.4byte	.LFE112
+ 549 0013 0400     		.2byte	0x4
+ 550 0015 F3       		.byte	0xf3
+ 551 0016 01       		.uleb128 0x1
+ 552 0017 50       		.byte	0x50
+ 553 0018 9F       		.byte	0x9f
+ 554 0019 00000000 		.4byte	0
+ 555 001d 00000000 		.4byte	0
+ 556              		.section	.debug_aranges,"",%progbits
+ 557 0000 24000000 		.4byte	0x24
+ 558 0004 0200     		.2byte	0x2
+ 559 0006 00000000 		.4byte	.Ldebug_info0
+ 560 000a 04       		.byte	0x4
+ 561 000b 00       		.byte	0
+ 562 000c 0000     		.2byte	0
+ 563 000e 0000     		.2byte	0
+ 564 0010 00000000 		.4byte	.LFB112
+ 565 0014 08000000 		.4byte	.LFE112-.LFB112
+ 566 0018 00000000 		.4byte	.LFB113
+ 567 001c 28000000 		.4byte	.LFE113-.LFB113
+ 568 0020 00000000 		.4byte	0
+ 569 0024 00000000 		.4byte	0
+ 570              		.section	.debug_ranges,"",%progbits
+ 571              	.Ldebug_ranges0:
+ 572 0000 00000000 		.4byte	.LFB112
+ 573 0004 08000000 		.4byte	.LFE112
+ 574 0008 00000000 		.4byte	.LFB113
+ 575 000c 28000000 		.4byte	.LFE113
+ 576 0010 00000000 		.4byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 12
+
+
+ 577 0014 00000000 		.4byte	0
+ 578              		.section	.debug_line,"",%progbits
+ 579              	.Ldebug_line0:
+ 580 0000 9B000000 		.section	.debug_str,"MS",%progbits,1
+ 580      02006D00 
+ 580      00000201 
+ 580      FB0E0D00 
+ 580      01010101 
+ 581              	.LASF30:
+ 582 0000 76616C75 		.ascii	"value\000"
+ 582      6500
+ 583              	.LASF14:
+ 584 0006 626F6F6C 		.ascii	"bool\000"
+ 584      00
+ 585              	.LASF12:
+ 586 000b 666C6F61 		.ascii	"float\000"
+ 586      7400
+ 587              	.LASF29:
+ 588 0011 64656C61 		.ascii	"delay\000"
+ 588      7900
+ 589              	.LASF2:
+ 590 0017 756E7369 		.ascii	"unsigned char\000"
+ 590      676E6564 
+ 590      20636861 
+ 590      7200
+ 591              	.LASF6:
+ 592 0025 6C6F6E67 		.ascii	"long unsigned int\000"
+ 592      20756E73 
+ 592      69676E65 
+ 592      6420696E 
+ 592      7400
+ 593              	.LASF4:
+ 594 0037 73686F72 		.ascii	"short unsigned int\000"
+ 594      7420756E 
+ 594      7369676E 
+ 594      65642069 
+ 594      6E7400
+ 595              	.LASF16:
+ 596 004a 534B4950 		.ascii	"SKIP_NONE\000"
+ 596      5F4E4F4E 
+ 596      4500
+ 597              	.LASF19:
+ 598 0054 6C617374 		.ascii	"lastMilli\000"
+ 598      4D696C6C 
+ 598      6900
+ 599              	.LASF11:
+ 600 005e 646F7562 		.ascii	"double\000"
+ 600      6C6500
+ 601              	.LASF15:
+ 602 0065 534B4950 		.ascii	"SKIP_ALL\000"
+ 602      5F414C4C 
+ 602      00
+ 603              	.LASF27:
+ 604 006e 75696E74 		.ascii	"uint32\000"
+ 604      333200
+ 605              	.LASF0:
+ 606 0075 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 13
+
+
+ 606      676E6564 
+ 606      20696E74 
+ 606      00
+ 607              	.LASF17:
+ 608 0082 534B4950 		.ascii	"SKIP_WHITESPACE\000"
+ 608      5F574849 
+ 608      54455350 
+ 608      41434500 
+ 609              	.LASF8:
+ 610 0092 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 610      206C6F6E 
+ 610      6720756E 
+ 610      7369676E 
+ 610      65642069 
+ 611              	.LASF20:
+ 612 00a9 63757272 		.ascii	"currentMilli\000"
+ 612      656E744D 
+ 612      696C6C69 
+ 612      00
+ 613              	.LASF28:
+ 614 00b6 4C6F6F6B 		.ascii	"LookaheadMode\000"
+ 614      61686561 
+ 614      644D6F64 
+ 614      6500
+ 615              	.LASF26:
+ 616 00c4 433A5C55 		.ascii	"C:\\Users\\jrdia\\OneDrive\\Sync\\Documents\\GitHub"
+ 616      73657273 
+ 616      5C6A7264 
+ 616      69615C4F 
+ 616      6E654472 
+ 617 00f1 5C50536F 		.ascii	"\\PSoC-Bluetooth-Dualshock\\Bluetooth_Dev.cydsn\000"
+ 617      432D426C 
+ 617      7565746F 
+ 617      6F74682D 
+ 617      4475616C 
+ 618              	.LASF9:
+ 619 011f 73697A65 		.ascii	"sizetype\000"
+ 619      74797065 
+ 619      00
+ 620              	.LASF7:
+ 621 0128 6C6F6E67 		.ascii	"long long int\000"
+ 621      206C6F6E 
+ 621      6720696E 
+ 621      7400
+ 622              	.LASF10:
+ 623 0136 63686172 		.ascii	"char\000"
+ 623      00
+ 624              	.LASF21:
+ 625 013b 6D696C6C 		.ascii	"milliCount\000"
+ 625      69436F75 
+ 625      6E7400
+ 626              	.LASF25:
+ 627 0146 41726475 		.ascii	"Arduino.c\000"
+ 627      696E6F2E 
+ 627      6300
+ 628              	.LASF3:
+ 629 0150 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccmzeGcI.s 			page 14
+
+
+ 629      7420696E 
+ 629      7400
+ 630              	.LASF18:
+ 631 015a 6D696C6C 		.ascii	"milliValue\000"
+ 631      6956616C 
+ 631      756500
+ 632              	.LASF5:
+ 633 0165 6C6F6E67 		.ascii	"long int\000"
+ 633      20696E74 
+ 633      00
+ 634              	.LASF31:
+ 635 016e 6D696C6C 		.ascii	"millis\000"
+ 635      697300
+ 636              	.LASF13:
+ 637 0175 6C6F6E67 		.ascii	"long double\000"
+ 637      20646F75 
+ 637      626C6500 
+ 638              	.LASF23:
+ 639 0181 4D696C6C 		.ascii	"Millis_Timer_ReadCounter\000"
+ 639      69735F54 
+ 639      696D6572 
+ 639      5F526561 
+ 639      64436F75 
+ 640              	.LASF1:
+ 641 019a 7369676E 		.ascii	"signed char\000"
+ 641      65642063 
+ 641      68617200 
+ 642              	.LASF24:
+ 643 01a6 474E5520 		.ascii	"GNU C++ 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 643      432B2B20 
+ 643      352E342E 
+ 643      31203230 
+ 643      31363036 
+ 644 01d9 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 644      20726576 
+ 644      6973696F 
+ 644      6E203233 
+ 644      37373135 
+ 645 020c 32202D66 		.ascii	"2 -ffunction-sections -ffat-lto-objects\000"
+ 645      66756E63 
+ 645      74696F6E 
+ 645      2D736563 
+ 645      74696F6E 
+ 646              	.LASF22:
+ 647 0234 43794465 		.ascii	"CyDelay\000"
+ 647      6C617900 
+ 648              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

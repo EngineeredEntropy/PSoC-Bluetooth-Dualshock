@@ -1,0 +1,893 @@
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"SPI_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.SPI_SaveConfig,"ax",%progbits
+  20              		.align	2
+  21              		.global	SPI_SaveConfig
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	SPI_SaveConfig, %function
+  25              	SPI_SaveConfig:
+  26              	.LFB5:
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              		@ sp needed
+  32 0000 7047     		bx	lr
+  33              		.cfi_endproc
+  34              	.LFE5:
+  35              		.size	SPI_SaveConfig, .-SPI_SaveConfig
+  36 0002 C046     		.section	.text.SPI_RestoreConfig,"ax",%progbits
+  37              		.align	2
+  38              		.global	SPI_RestoreConfig
+  39              		.code	16
+  40              		.thumb_func
+  41              		.type	SPI_RestoreConfig, %function
+  42              	SPI_RestoreConfig:
+  43              	.LFB1:
+  44              		.file 1 "Generated_Source\\PSoC4\\SPI_PM.c"
+   1:Generated_Source\PSoC4/SPI_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/SPI_PM.c **** * File Name: SPI_PM.c
+   3:Generated_Source\PSoC4/SPI_PM.c **** * Version 2.50
+   4:Generated_Source\PSoC4/SPI_PM.c **** *
+   5:Generated_Source\PSoC4/SPI_PM.c **** * Description:
+   6:Generated_Source\PSoC4/SPI_PM.c **** *  This file contains the setup, control and status commands to support
+   7:Generated_Source\PSoC4/SPI_PM.c **** *  component operations in low power mode.
+   8:Generated_Source\PSoC4/SPI_PM.c **** *
+   9:Generated_Source\PSoC4/SPI_PM.c **** * Note:
+  10:Generated_Source\PSoC4/SPI_PM.c **** *
+  11:Generated_Source\PSoC4/SPI_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/SPI_PM.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/SPI_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 2
+
+
+  14:Generated_Source\PSoC4/SPI_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC4/SPI_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/SPI_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/SPI_PM.c **** 
+  18:Generated_Source\PSoC4/SPI_PM.c **** #include "SPI_PVT.h"
+  19:Generated_Source\PSoC4/SPI_PM.c **** 
+  20:Generated_Source\PSoC4/SPI_PM.c **** static SPI_BACKUP_STRUCT SPI_backup =
+  21:Generated_Source\PSoC4/SPI_PM.c **** {
+  22:Generated_Source\PSoC4/SPI_PM.c ****     SPI_DISABLED,
+  23:Generated_Source\PSoC4/SPI_PM.c ****     SPI_BITCTR_INIT,
+  24:Generated_Source\PSoC4/SPI_PM.c **** };
+  25:Generated_Source\PSoC4/SPI_PM.c **** 
+  26:Generated_Source\PSoC4/SPI_PM.c **** 
+  27:Generated_Source\PSoC4/SPI_PM.c **** /*******************************************************************************
+  28:Generated_Source\PSoC4/SPI_PM.c **** * Function Name: SPI_SaveConfig
+  29:Generated_Source\PSoC4/SPI_PM.c **** ********************************************************************************
+  30:Generated_Source\PSoC4/SPI_PM.c **** *
+  31:Generated_Source\PSoC4/SPI_PM.c **** * Summary:
+  32:Generated_Source\PSoC4/SPI_PM.c **** *  Empty function. Included for consistency with other components.
+  33:Generated_Source\PSoC4/SPI_PM.c **** *
+  34:Generated_Source\PSoC4/SPI_PM.c **** * Parameters:
+  35:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+  36:Generated_Source\PSoC4/SPI_PM.c **** *
+  37:Generated_Source\PSoC4/SPI_PM.c **** * Return:
+  38:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+  39:Generated_Source\PSoC4/SPI_PM.c **** *
+  40:Generated_Source\PSoC4/SPI_PM.c **** *******************************************************************************/
+  41:Generated_Source\PSoC4/SPI_PM.c **** void SPI_SaveConfig(void) 
+  42:Generated_Source\PSoC4/SPI_PM.c **** {
+  43:Generated_Source\PSoC4/SPI_PM.c **** 
+  44:Generated_Source\PSoC4/SPI_PM.c **** }
+  45:Generated_Source\PSoC4/SPI_PM.c **** 
+  46:Generated_Source\PSoC4/SPI_PM.c **** 
+  47:Generated_Source\PSoC4/SPI_PM.c **** /*******************************************************************************
+  48:Generated_Source\PSoC4/SPI_PM.c **** * Function Name: SPI_RestoreConfig
+  49:Generated_Source\PSoC4/SPI_PM.c **** ********************************************************************************
+  50:Generated_Source\PSoC4/SPI_PM.c **** *
+  51:Generated_Source\PSoC4/SPI_PM.c **** * Summary:
+  52:Generated_Source\PSoC4/SPI_PM.c **** *  Empty function. Included for consistency with other components.
+  53:Generated_Source\PSoC4/SPI_PM.c **** *
+  54:Generated_Source\PSoC4/SPI_PM.c **** * Parameters:
+  55:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+  56:Generated_Source\PSoC4/SPI_PM.c **** *
+  57:Generated_Source\PSoC4/SPI_PM.c **** * Return:
+  58:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+  59:Generated_Source\PSoC4/SPI_PM.c **** *
+  60:Generated_Source\PSoC4/SPI_PM.c **** *******************************************************************************/
+  61:Generated_Source\PSoC4/SPI_PM.c **** void SPI_RestoreConfig(void) 
+  62:Generated_Source\PSoC4/SPI_PM.c **** {
+  45              		.loc 1 62 0
+  46              		.cfi_startproc
+  47              		@ args = 0, pretend = 0, frame = 0
+  48              		@ frame_needed = 0, uses_anonymous_args = 0
+  49              		@ link register save eliminated.
+  63:Generated_Source\PSoC4/SPI_PM.c **** 
+  64:Generated_Source\PSoC4/SPI_PM.c **** }
+  50              		.loc 1 64 0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 3
+
+
+  51              		@ sp needed
+  52 0000 7047     		bx	lr
+  53              		.cfi_endproc
+  54              	.LFE1:
+  55              		.size	SPI_RestoreConfig, .-SPI_RestoreConfig
+  56 0002 C046     		.section	.text.SPI_Sleep,"ax",%progbits
+  57              		.align	2
+  58              		.global	SPI_Sleep
+  59              		.code	16
+  60              		.thumb_func
+  61              		.type	SPI_Sleep, %function
+  62              	SPI_Sleep:
+  63              	.LFB2:
+  65:Generated_Source\PSoC4/SPI_PM.c **** 
+  66:Generated_Source\PSoC4/SPI_PM.c **** 
+  67:Generated_Source\PSoC4/SPI_PM.c **** /*******************************************************************************
+  68:Generated_Source\PSoC4/SPI_PM.c **** * Function Name: SPI_Sleep
+  69:Generated_Source\PSoC4/SPI_PM.c **** ********************************************************************************
+  70:Generated_Source\PSoC4/SPI_PM.c **** *
+  71:Generated_Source\PSoC4/SPI_PM.c **** * Summary:
+  72:Generated_Source\PSoC4/SPI_PM.c **** *  Prepare SPIM Component goes to sleep.
+  73:Generated_Source\PSoC4/SPI_PM.c **** *
+  74:Generated_Source\PSoC4/SPI_PM.c **** * Parameters:
+  75:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+  76:Generated_Source\PSoC4/SPI_PM.c **** *
+  77:Generated_Source\PSoC4/SPI_PM.c **** * Return:
+  78:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+  79:Generated_Source\PSoC4/SPI_PM.c **** *
+  80:Generated_Source\PSoC4/SPI_PM.c **** * Global Variables:
+  81:Generated_Source\PSoC4/SPI_PM.c **** *  SPI_backup - modified when non-retention registers are saved.
+  82:Generated_Source\PSoC4/SPI_PM.c **** *
+  83:Generated_Source\PSoC4/SPI_PM.c **** * Reentrant:
+  84:Generated_Source\PSoC4/SPI_PM.c **** *  No.
+  85:Generated_Source\PSoC4/SPI_PM.c **** *
+  86:Generated_Source\PSoC4/SPI_PM.c **** *******************************************************************************/
+  87:Generated_Source\PSoC4/SPI_PM.c **** void SPI_Sleep(void) 
+  88:Generated_Source\PSoC4/SPI_PM.c **** {
+  64              		.loc 1 88 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0000 10B5     		push	{r4, lr}
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 4, -8
+  71              		.cfi_offset 14, -4
+  89:Generated_Source\PSoC4/SPI_PM.c ****     /* Save components enable state */
+  90:Generated_Source\PSoC4/SPI_PM.c ****     SPI_backup.enableState = ((uint8) SPI_IS_ENABLED);
+  72              		.loc 1 90 0
+  73 0002 044B     		ldr	r3, .L4
+  74 0004 044A     		ldr	r2, .L4+4
+  75 0006 1B78     		ldrb	r3, [r3]
+  91:Generated_Source\PSoC4/SPI_PM.c **** 
+  92:Generated_Source\PSoC4/SPI_PM.c ****     SPI_Stop();
+  93:Generated_Source\PSoC4/SPI_PM.c **** }
+  76              		.loc 1 93 0
+  77              		@ sp needed
+  90:Generated_Source\PSoC4/SPI_PM.c **** 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 4
+
+
+  78              		.loc 1 90 0
+  79 0008 DB06     		lsls	r3, r3, #27
+  80 000a DB0F     		lsrs	r3, r3, #31
+  81 000c 1370     		strb	r3, [r2]
+  92:Generated_Source\PSoC4/SPI_PM.c **** }
+  82              		.loc 1 92 0
+  83 000e FFF7FEFF 		bl	SPI_Stop
+  84              	.LVL0:
+  85              		.loc 1 93 0
+  86 0012 10BD     		pop	{r4, pc}
+  87              	.L5:
+  88              		.align	2
+  89              	.L4:
+  90 0014 92000F40 		.word	1074725010
+  91 0018 00000000 		.word	.LANCHOR0
+  92              		.cfi_endproc
+  93              	.LFE2:
+  94              		.size	SPI_Sleep, .-SPI_Sleep
+  95              		.section	.text.SPI_Wakeup,"ax",%progbits
+  96              		.align	2
+  97              		.global	SPI_Wakeup
+  98              		.code	16
+  99              		.thumb_func
+ 100              		.type	SPI_Wakeup, %function
+ 101              	SPI_Wakeup:
+ 102              	.LFB3:
+  94:Generated_Source\PSoC4/SPI_PM.c **** 
+  95:Generated_Source\PSoC4/SPI_PM.c **** 
+  96:Generated_Source\PSoC4/SPI_PM.c **** /*******************************************************************************
+  97:Generated_Source\PSoC4/SPI_PM.c **** * Function Name: SPI_Wakeup
+  98:Generated_Source\PSoC4/SPI_PM.c **** ********************************************************************************
+  99:Generated_Source\PSoC4/SPI_PM.c **** *
+ 100:Generated_Source\PSoC4/SPI_PM.c **** * Summary:
+ 101:Generated_Source\PSoC4/SPI_PM.c **** *  Prepare SPIM Component to wake up.
+ 102:Generated_Source\PSoC4/SPI_PM.c **** *
+ 103:Generated_Source\PSoC4/SPI_PM.c **** * Parameters:
+ 104:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+ 105:Generated_Source\PSoC4/SPI_PM.c **** *
+ 106:Generated_Source\PSoC4/SPI_PM.c **** * Return:
+ 107:Generated_Source\PSoC4/SPI_PM.c **** *  None.
+ 108:Generated_Source\PSoC4/SPI_PM.c **** *
+ 109:Generated_Source\PSoC4/SPI_PM.c **** * Global Variables:
+ 110:Generated_Source\PSoC4/SPI_PM.c **** *  SPI_backup - used when non-retention registers are restored.
+ 111:Generated_Source\PSoC4/SPI_PM.c **** *  SPI_txBufferWrite - modified every function call - resets to
+ 112:Generated_Source\PSoC4/SPI_PM.c **** *  zero.
+ 113:Generated_Source\PSoC4/SPI_PM.c **** *  SPI_txBufferRead - modified every function call - resets to
+ 114:Generated_Source\PSoC4/SPI_PM.c **** *  zero.
+ 115:Generated_Source\PSoC4/SPI_PM.c **** *  SPI_rxBufferWrite - modified every function call - resets to
+ 116:Generated_Source\PSoC4/SPI_PM.c **** *  zero.
+ 117:Generated_Source\PSoC4/SPI_PM.c **** *  SPI_rxBufferRead - modified every function call - resets to
+ 118:Generated_Source\PSoC4/SPI_PM.c **** *  zero.
+ 119:Generated_Source\PSoC4/SPI_PM.c **** *
+ 120:Generated_Source\PSoC4/SPI_PM.c **** * Reentrant:
+ 121:Generated_Source\PSoC4/SPI_PM.c **** *  No.
+ 122:Generated_Source\PSoC4/SPI_PM.c **** *
+ 123:Generated_Source\PSoC4/SPI_PM.c **** *******************************************************************************/
+ 124:Generated_Source\PSoC4/SPI_PM.c **** void SPI_Wakeup(void) 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 5
+
+
+ 125:Generated_Source\PSoC4/SPI_PM.c **** {
+ 103              		.loc 1 125 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 10B5     		push	{r4, lr}
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 4, -8
+ 110              		.cfi_offset 14, -4
+ 126:Generated_Source\PSoC4/SPI_PM.c ****     #if(SPI_RX_SOFTWARE_BUF_ENABLED)
+ 127:Generated_Source\PSoC4/SPI_PM.c ****         SPI_rxBufferFull  = 0u;
+ 128:Generated_Source\PSoC4/SPI_PM.c ****         SPI_rxBufferRead  = 0u;
+ 129:Generated_Source\PSoC4/SPI_PM.c ****         SPI_rxBufferWrite = 0u;
+ 130:Generated_Source\PSoC4/SPI_PM.c ****     #endif /* (SPI_RX_SOFTWARE_BUF_ENABLED) */
+ 131:Generated_Source\PSoC4/SPI_PM.c **** 
+ 132:Generated_Source\PSoC4/SPI_PM.c ****     #if(SPI_TX_SOFTWARE_BUF_ENABLED)
+ 133:Generated_Source\PSoC4/SPI_PM.c ****         SPI_txBufferFull  = 0u;
+ 134:Generated_Source\PSoC4/SPI_PM.c ****         SPI_txBufferRead  = 0u;
+ 135:Generated_Source\PSoC4/SPI_PM.c ****         SPI_txBufferWrite = 0u;
+ 136:Generated_Source\PSoC4/SPI_PM.c ****     #endif /* (SPI_TX_SOFTWARE_BUF_ENABLED) */
+ 137:Generated_Source\PSoC4/SPI_PM.c **** 
+ 138:Generated_Source\PSoC4/SPI_PM.c ****     /* Clear any data from the RX and TX FIFO */
+ 139:Generated_Source\PSoC4/SPI_PM.c ****     SPI_ClearFIFO();
+ 111              		.loc 1 139 0
+ 112 0002 FFF7FEFF 		bl	SPI_ClearFIFO
+ 113              	.LVL1:
+ 140:Generated_Source\PSoC4/SPI_PM.c **** 
+ 141:Generated_Source\PSoC4/SPI_PM.c ****     /* Restore components block enable state */
+ 142:Generated_Source\PSoC4/SPI_PM.c ****     if(0u != SPI_backup.enableState)
+ 114              		.loc 1 142 0
+ 115 0006 034B     		ldr	r3, .L12
+ 116 0008 1B78     		ldrb	r3, [r3]
+ 117 000a 002B     		cmp	r3, #0
+ 118 000c 01D0     		beq	.L6
+ 143:Generated_Source\PSoC4/SPI_PM.c ****     {
+ 144:Generated_Source\PSoC4/SPI_PM.c ****         SPI_Enable();
+ 119              		.loc 1 144 0
+ 120 000e FFF7FEFF 		bl	SPI_Enable
+ 121              	.LVL2:
+ 122              	.L6:
+ 145:Generated_Source\PSoC4/SPI_PM.c ****     }
+ 146:Generated_Source\PSoC4/SPI_PM.c **** }
+ 123              		.loc 1 146 0
+ 124              		@ sp needed
+ 125 0012 10BD     		pop	{r4, pc}
+ 126              	.L13:
+ 127              		.align	2
+ 128              	.L12:
+ 129 0014 00000000 		.word	.LANCHOR0
+ 130              		.cfi_endproc
+ 131              	.LFE3:
+ 132              		.size	SPI_Wakeup, .-SPI_Wakeup
+ 133              		.data
+ 134              		.align	2
+ 135              		.set	.LANCHOR0,. + 0
+ 136              		.type	SPI_backup, %object
+ 137              		.size	SPI_backup, 2
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 6
+
+
+ 138              	SPI_backup:
+ 139 0000 00       		.byte	0
+ 140 0001 0F       		.byte	15
+ 141              		.text
+ 142              	.Letext0:
+ 143              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 144              		.file 3 "Generated_Source\\PSoC4\\SPI.h"
+ 145              		.section	.debug_info,"",%progbits
+ 146              	.Ldebug_info0:
+ 147 0000 64010000 		.4byte	0x164
+ 148 0004 0400     		.2byte	0x4
+ 149 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 150 000a 04       		.byte	0x4
+ 151 000b 01       		.uleb128 0x1
+ 152 000c 3B010000 		.4byte	.LASF24
+ 153 0010 0C       		.byte	0xc
+ 154 0011 1B010000 		.4byte	.LASF25
+ 155 0015 45000000 		.4byte	.LASF26
+ 156 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 157 001d 00000000 		.4byte	0
+ 158 0021 00000000 		.4byte	.Ldebug_line0
+ 159 0025 02       		.uleb128 0x2
+ 160 0026 01       		.byte	0x1
+ 161 0027 06       		.byte	0x6
+ 162 0028 DD010000 		.4byte	.LASF0
+ 163 002c 02       		.uleb128 0x2
+ 164 002d 01       		.byte	0x1
+ 165 002e 08       		.byte	0x8
+ 166 002f ED000000 		.4byte	.LASF1
+ 167 0033 02       		.uleb128 0x2
+ 168 0034 02       		.byte	0x2
+ 169 0035 05       		.byte	0x5
+ 170 0036 07020000 		.4byte	.LASF2
+ 171 003a 02       		.uleb128 0x2
+ 172 003b 02       		.byte	0x2
+ 173 003c 07       		.byte	0x7
+ 174 003d 0E000000 		.4byte	.LASF3
+ 175 0041 02       		.uleb128 0x2
+ 176 0042 04       		.byte	0x4
+ 177 0043 05       		.byte	0x5
+ 178 0044 00010000 		.4byte	.LASF4
+ 179 0048 02       		.uleb128 0x2
+ 180 0049 04       		.byte	0x4
+ 181 004a 07       		.byte	0x7
+ 182 004b B0000000 		.4byte	.LASF5
+ 183 004f 02       		.uleb128 0x2
+ 184 0050 08       		.byte	0x8
+ 185 0051 05       		.byte	0x5
+ 186 0052 00000000 		.4byte	.LASF6
+ 187 0056 02       		.uleb128 0x2
+ 188 0057 08       		.byte	0x8
+ 189 0058 07       		.byte	0x7
+ 190 0059 C2000000 		.4byte	.LASF7
+ 191 005d 03       		.uleb128 0x3
+ 192 005e 04       		.byte	0x4
+ 193 005f 05       		.byte	0x5
+ 194 0060 696E7400 		.ascii	"int\000"
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 7
+
+
+ 195 0064 02       		.uleb128 0x2
+ 196 0065 04       		.byte	0x4
+ 197 0066 07       		.byte	0x7
+ 198 0067 2D000000 		.4byte	.LASF8
+ 199 006b 04       		.uleb128 0x4
+ 200 006c AA000000 		.4byte	.LASF12
+ 201 0070 02       		.byte	0x2
+ 202 0071 D201     		.2byte	0x1d2
+ 203 0073 2C000000 		.4byte	0x2c
+ 204 0077 02       		.uleb128 0x2
+ 205 0078 04       		.byte	0x4
+ 206 0079 04       		.byte	0x4
+ 207 007a D9000000 		.4byte	.LASF9
+ 208 007e 02       		.uleb128 0x2
+ 209 007f 08       		.byte	0x8
+ 210 0080 04       		.byte	0x4
+ 211 0081 14010000 		.4byte	.LASF10
+ 212 0085 02       		.uleb128 0x2
+ 213 0086 01       		.byte	0x1
+ 214 0087 08       		.byte	0x8
+ 215 0088 FB000000 		.4byte	.LASF11
+ 216 008c 04       		.uleb128 0x4
+ 217 008d 11020000 		.4byte	.LASF13
+ 218 0091 02       		.byte	0x2
+ 219 0092 7C02     		.2byte	0x27c
+ 220 0094 98000000 		.4byte	0x98
+ 221 0098 05       		.uleb128 0x5
+ 222 0099 6B000000 		.4byte	0x6b
+ 223 009d 02       		.uleb128 0x2
+ 224 009e 08       		.byte	0x8
+ 225 009f 04       		.byte	0x4
+ 226 00a0 FB010000 		.4byte	.LASF14
+ 227 00a4 02       		.uleb128 0x2
+ 228 00a5 04       		.byte	0x4
+ 229 00a6 07       		.byte	0x7
+ 230 00a7 33020000 		.4byte	.LASF15
+ 231 00ab 06       		.uleb128 0x6
+ 232 00ac 02       		.byte	0x2
+ 233 00ad 03       		.byte	0x3
+ 234 00ae 40       		.byte	0x40
+ 235 00af CC000000 		.4byte	0xcc
+ 236 00b3 07       		.uleb128 0x7
+ 237 00b4 21000000 		.4byte	.LASF16
+ 238 00b8 03       		.byte	0x3
+ 239 00b9 42       		.byte	0x42
+ 240 00ba 6B000000 		.4byte	0x6b
+ 241 00be 00       		.byte	0
+ 242 00bf 07       		.uleb128 0x7
+ 243 00c0 09010000 		.4byte	.LASF17
+ 244 00c4 03       		.byte	0x3
+ 245 00c5 43       		.byte	0x43
+ 246 00c6 6B000000 		.4byte	0x6b
+ 247 00ca 01       		.byte	0x1
+ 248 00cb 00       		.byte	0
+ 249 00cc 08       		.uleb128 0x8
+ 250 00cd 16020000 		.4byte	.LASF18
+ 251 00d1 03       		.byte	0x3
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 8
+
+
+ 252 00d2 44       		.byte	0x44
+ 253 00d3 AB000000 		.4byte	0xab
+ 254 00d7 09       		.uleb128 0x9
+ 255 00d8 E9010000 		.4byte	.LASF27
+ 256 00dc 01       		.byte	0x1
+ 257 00dd 3D       		.byte	0x3d
+ 258 00de 01       		.byte	0x1
+ 259 00df 0A       		.uleb128 0xa
+ 260 00e0 D7000000 		.4byte	0xd7
+ 261 00e4 00000000 		.4byte	.LFB1
+ 262 00e8 02000000 		.4byte	.LFE1-.LFB1
+ 263 00ec 01       		.uleb128 0x1
+ 264 00ed 9C       		.byte	0x9c
+ 265 00ee 0B       		.uleb128 0xb
+ 266 00ef A0000000 		.4byte	.LASF19
+ 267 00f3 01       		.byte	0x1
+ 268 00f4 57       		.byte	0x57
+ 269 00f5 00000000 		.4byte	.LFB2
+ 270 00f9 1C000000 		.4byte	.LFE2-.LFB2
+ 271 00fd 01       		.uleb128 0x1
+ 272 00fe 9C       		.byte	0x9c
+ 273 00ff 0D010000 		.4byte	0x10d
+ 274 0103 0C       		.uleb128 0xc
+ 275 0104 12000000 		.4byte	.LVL0
+ 276 0108 46010000 		.4byte	0x146
+ 277 010c 00       		.byte	0
+ 278 010d 0B       		.uleb128 0xb
+ 279 010e D2010000 		.4byte	.LASF20
+ 280 0112 01       		.byte	0x1
+ 281 0113 7C       		.byte	0x7c
+ 282 0114 00000000 		.4byte	.LFB3
+ 283 0118 18000000 		.4byte	.LFE3-.LFB3
+ 284 011c 01       		.uleb128 0x1
+ 285 011d 9C       		.byte	0x9c
+ 286 011e 35010000 		.4byte	0x135
+ 287 0122 0C       		.uleb128 0xc
+ 288 0123 06000000 		.4byte	.LVL1
+ 289 0127 51010000 		.4byte	0x151
+ 290 012b 0C       		.uleb128 0xc
+ 291 012c 12000000 		.4byte	.LVL2
+ 292 0130 5C010000 		.4byte	0x15c
+ 293 0134 00       		.byte	0
+ 294 0135 0D       		.uleb128 0xd
+ 295 0136 3A000000 		.4byte	.LASF28
+ 296 013a 01       		.byte	0x1
+ 297 013b 14       		.byte	0x14
+ 298 013c CC000000 		.4byte	0xcc
+ 299 0140 05       		.uleb128 0x5
+ 300 0141 03       		.byte	0x3
+ 301 0142 00000000 		.4byte	SPI_backup
+ 302 0146 0E       		.uleb128 0xe
+ 303 0147 C9010000 		.4byte	.LASF21
+ 304 014b C9010000 		.4byte	.LASF21
+ 305 014f 03       		.byte	0x3
+ 306 0150 4E       		.byte	0x4e
+ 307 0151 0E       		.uleb128 0xe
+ 308 0152 DF000000 		.4byte	.LASF22
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 9
+
+
+ 309 0156 DF000000 		.4byte	.LASF22
+ 310 015a 03       		.byte	0x3
+ 311 015b 66       		.byte	0x66
+ 312 015c 0E       		.uleb128 0xe
+ 313 015d 28020000 		.4byte	.LASF23
+ 314 0161 28020000 		.4byte	.LASF23
+ 315 0165 03       		.byte	0x3
+ 316 0166 4C       		.byte	0x4c
+ 317 0167 00       		.byte	0
+ 318              		.section	.debug_abbrev,"",%progbits
+ 319              	.Ldebug_abbrev0:
+ 320 0000 01       		.uleb128 0x1
+ 321 0001 11       		.uleb128 0x11
+ 322 0002 01       		.byte	0x1
+ 323 0003 25       		.uleb128 0x25
+ 324 0004 0E       		.uleb128 0xe
+ 325 0005 13       		.uleb128 0x13
+ 326 0006 0B       		.uleb128 0xb
+ 327 0007 03       		.uleb128 0x3
+ 328 0008 0E       		.uleb128 0xe
+ 329 0009 1B       		.uleb128 0x1b
+ 330 000a 0E       		.uleb128 0xe
+ 331 000b 55       		.uleb128 0x55
+ 332 000c 17       		.uleb128 0x17
+ 333 000d 11       		.uleb128 0x11
+ 334 000e 01       		.uleb128 0x1
+ 335 000f 10       		.uleb128 0x10
+ 336 0010 17       		.uleb128 0x17
+ 337 0011 00       		.byte	0
+ 338 0012 00       		.byte	0
+ 339 0013 02       		.uleb128 0x2
+ 340 0014 24       		.uleb128 0x24
+ 341 0015 00       		.byte	0
+ 342 0016 0B       		.uleb128 0xb
+ 343 0017 0B       		.uleb128 0xb
+ 344 0018 3E       		.uleb128 0x3e
+ 345 0019 0B       		.uleb128 0xb
+ 346 001a 03       		.uleb128 0x3
+ 347 001b 0E       		.uleb128 0xe
+ 348 001c 00       		.byte	0
+ 349 001d 00       		.byte	0
+ 350 001e 03       		.uleb128 0x3
+ 351 001f 24       		.uleb128 0x24
+ 352 0020 00       		.byte	0
+ 353 0021 0B       		.uleb128 0xb
+ 354 0022 0B       		.uleb128 0xb
+ 355 0023 3E       		.uleb128 0x3e
+ 356 0024 0B       		.uleb128 0xb
+ 357 0025 03       		.uleb128 0x3
+ 358 0026 08       		.uleb128 0x8
+ 359 0027 00       		.byte	0
+ 360 0028 00       		.byte	0
+ 361 0029 04       		.uleb128 0x4
+ 362 002a 16       		.uleb128 0x16
+ 363 002b 00       		.byte	0
+ 364 002c 03       		.uleb128 0x3
+ 365 002d 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 10
+
+
+ 366 002e 3A       		.uleb128 0x3a
+ 367 002f 0B       		.uleb128 0xb
+ 368 0030 3B       		.uleb128 0x3b
+ 369 0031 05       		.uleb128 0x5
+ 370 0032 49       		.uleb128 0x49
+ 371 0033 13       		.uleb128 0x13
+ 372 0034 00       		.byte	0
+ 373 0035 00       		.byte	0
+ 374 0036 05       		.uleb128 0x5
+ 375 0037 35       		.uleb128 0x35
+ 376 0038 00       		.byte	0
+ 377 0039 49       		.uleb128 0x49
+ 378 003a 13       		.uleb128 0x13
+ 379 003b 00       		.byte	0
+ 380 003c 00       		.byte	0
+ 381 003d 06       		.uleb128 0x6
+ 382 003e 13       		.uleb128 0x13
+ 383 003f 01       		.byte	0x1
+ 384 0040 0B       		.uleb128 0xb
+ 385 0041 0B       		.uleb128 0xb
+ 386 0042 3A       		.uleb128 0x3a
+ 387 0043 0B       		.uleb128 0xb
+ 388 0044 3B       		.uleb128 0x3b
+ 389 0045 0B       		.uleb128 0xb
+ 390 0046 01       		.uleb128 0x1
+ 391 0047 13       		.uleb128 0x13
+ 392 0048 00       		.byte	0
+ 393 0049 00       		.byte	0
+ 394 004a 07       		.uleb128 0x7
+ 395 004b 0D       		.uleb128 0xd
+ 396 004c 00       		.byte	0
+ 397 004d 03       		.uleb128 0x3
+ 398 004e 0E       		.uleb128 0xe
+ 399 004f 3A       		.uleb128 0x3a
+ 400 0050 0B       		.uleb128 0xb
+ 401 0051 3B       		.uleb128 0x3b
+ 402 0052 0B       		.uleb128 0xb
+ 403 0053 49       		.uleb128 0x49
+ 404 0054 13       		.uleb128 0x13
+ 405 0055 38       		.uleb128 0x38
+ 406 0056 0B       		.uleb128 0xb
+ 407 0057 00       		.byte	0
+ 408 0058 00       		.byte	0
+ 409 0059 08       		.uleb128 0x8
+ 410 005a 16       		.uleb128 0x16
+ 411 005b 00       		.byte	0
+ 412 005c 03       		.uleb128 0x3
+ 413 005d 0E       		.uleb128 0xe
+ 414 005e 3A       		.uleb128 0x3a
+ 415 005f 0B       		.uleb128 0xb
+ 416 0060 3B       		.uleb128 0x3b
+ 417 0061 0B       		.uleb128 0xb
+ 418 0062 49       		.uleb128 0x49
+ 419 0063 13       		.uleb128 0x13
+ 420 0064 00       		.byte	0
+ 421 0065 00       		.byte	0
+ 422 0066 09       		.uleb128 0x9
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 11
+
+
+ 423 0067 2E       		.uleb128 0x2e
+ 424 0068 00       		.byte	0
+ 425 0069 3F       		.uleb128 0x3f
+ 426 006a 19       		.uleb128 0x19
+ 427 006b 03       		.uleb128 0x3
+ 428 006c 0E       		.uleb128 0xe
+ 429 006d 3A       		.uleb128 0x3a
+ 430 006e 0B       		.uleb128 0xb
+ 431 006f 3B       		.uleb128 0x3b
+ 432 0070 0B       		.uleb128 0xb
+ 433 0071 27       		.uleb128 0x27
+ 434 0072 19       		.uleb128 0x19
+ 435 0073 20       		.uleb128 0x20
+ 436 0074 0B       		.uleb128 0xb
+ 437 0075 00       		.byte	0
+ 438 0076 00       		.byte	0
+ 439 0077 0A       		.uleb128 0xa
+ 440 0078 2E       		.uleb128 0x2e
+ 441 0079 00       		.byte	0
+ 442 007a 31       		.uleb128 0x31
+ 443 007b 13       		.uleb128 0x13
+ 444 007c 11       		.uleb128 0x11
+ 445 007d 01       		.uleb128 0x1
+ 446 007e 12       		.uleb128 0x12
+ 447 007f 06       		.uleb128 0x6
+ 448 0080 40       		.uleb128 0x40
+ 449 0081 18       		.uleb128 0x18
+ 450 0082 9742     		.uleb128 0x2117
+ 451 0084 19       		.uleb128 0x19
+ 452 0085 00       		.byte	0
+ 453 0086 00       		.byte	0
+ 454 0087 0B       		.uleb128 0xb
+ 455 0088 2E       		.uleb128 0x2e
+ 456 0089 01       		.byte	0x1
+ 457 008a 3F       		.uleb128 0x3f
+ 458 008b 19       		.uleb128 0x19
+ 459 008c 03       		.uleb128 0x3
+ 460 008d 0E       		.uleb128 0xe
+ 461 008e 3A       		.uleb128 0x3a
+ 462 008f 0B       		.uleb128 0xb
+ 463 0090 3B       		.uleb128 0x3b
+ 464 0091 0B       		.uleb128 0xb
+ 465 0092 27       		.uleb128 0x27
+ 466 0093 19       		.uleb128 0x19
+ 467 0094 11       		.uleb128 0x11
+ 468 0095 01       		.uleb128 0x1
+ 469 0096 12       		.uleb128 0x12
+ 470 0097 06       		.uleb128 0x6
+ 471 0098 40       		.uleb128 0x40
+ 472 0099 18       		.uleb128 0x18
+ 473 009a 9742     		.uleb128 0x2117
+ 474 009c 19       		.uleb128 0x19
+ 475 009d 01       		.uleb128 0x1
+ 476 009e 13       		.uleb128 0x13
+ 477 009f 00       		.byte	0
+ 478 00a0 00       		.byte	0
+ 479 00a1 0C       		.uleb128 0xc
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 12
+
+
+ 480 00a2 898201   		.uleb128 0x4109
+ 481 00a5 00       		.byte	0
+ 482 00a6 11       		.uleb128 0x11
+ 483 00a7 01       		.uleb128 0x1
+ 484 00a8 31       		.uleb128 0x31
+ 485 00a9 13       		.uleb128 0x13
+ 486 00aa 00       		.byte	0
+ 487 00ab 00       		.byte	0
+ 488 00ac 0D       		.uleb128 0xd
+ 489 00ad 34       		.uleb128 0x34
+ 490 00ae 00       		.byte	0
+ 491 00af 03       		.uleb128 0x3
+ 492 00b0 0E       		.uleb128 0xe
+ 493 00b1 3A       		.uleb128 0x3a
+ 494 00b2 0B       		.uleb128 0xb
+ 495 00b3 3B       		.uleb128 0x3b
+ 496 00b4 0B       		.uleb128 0xb
+ 497 00b5 49       		.uleb128 0x49
+ 498 00b6 13       		.uleb128 0x13
+ 499 00b7 02       		.uleb128 0x2
+ 500 00b8 18       		.uleb128 0x18
+ 501 00b9 00       		.byte	0
+ 502 00ba 00       		.byte	0
+ 503 00bb 0E       		.uleb128 0xe
+ 504 00bc 2E       		.uleb128 0x2e
+ 505 00bd 00       		.byte	0
+ 506 00be 3F       		.uleb128 0x3f
+ 507 00bf 19       		.uleb128 0x19
+ 508 00c0 3C       		.uleb128 0x3c
+ 509 00c1 19       		.uleb128 0x19
+ 510 00c2 6E       		.uleb128 0x6e
+ 511 00c3 0E       		.uleb128 0xe
+ 512 00c4 03       		.uleb128 0x3
+ 513 00c5 0E       		.uleb128 0xe
+ 514 00c6 3A       		.uleb128 0x3a
+ 515 00c7 0B       		.uleb128 0xb
+ 516 00c8 3B       		.uleb128 0x3b
+ 517 00c9 0B       		.uleb128 0xb
+ 518 00ca 00       		.byte	0
+ 519 00cb 00       		.byte	0
+ 520 00cc 00       		.byte	0
+ 521              		.section	.debug_aranges,"",%progbits
+ 522 0000 2C000000 		.4byte	0x2c
+ 523 0004 0200     		.2byte	0x2
+ 524 0006 00000000 		.4byte	.Ldebug_info0
+ 525 000a 04       		.byte	0x4
+ 526 000b 00       		.byte	0
+ 527 000c 0000     		.2byte	0
+ 528 000e 0000     		.2byte	0
+ 529 0010 00000000 		.4byte	.LFB1
+ 530 0014 02000000 		.4byte	.LFE1-.LFB1
+ 531 0018 00000000 		.4byte	.LFB2
+ 532 001c 1C000000 		.4byte	.LFE2-.LFB2
+ 533 0020 00000000 		.4byte	.LFB3
+ 534 0024 18000000 		.4byte	.LFE3-.LFB3
+ 535 0028 00000000 		.4byte	0
+ 536 002c 00000000 		.4byte	0
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 13
+
+
+ 537              		.section	.debug_ranges,"",%progbits
+ 538              	.Ldebug_ranges0:
+ 539 0000 00000000 		.4byte	.LFB1
+ 540 0004 02000000 		.4byte	.LFE1
+ 541 0008 00000000 		.4byte	.LFB2
+ 542 000c 1C000000 		.4byte	.LFE2
+ 543 0010 00000000 		.4byte	.LFB3
+ 544 0014 18000000 		.4byte	.LFE3
+ 545 0018 00000000 		.4byte	0
+ 546 001c 00000000 		.4byte	0
+ 547              		.section	.debug_line,"",%progbits
+ 548              	.Ldebug_line0:
+ 549 0000 8D000000 		.section	.debug_str,"MS",%progbits,1
+ 549      02004C00 
+ 549      00000201 
+ 549      FB0E0D00 
+ 549      01010101 
+ 550              	.LASF6:
+ 551 0000 6C6F6E67 		.ascii	"long long int\000"
+ 551      206C6F6E 
+ 551      6720696E 
+ 551      7400
+ 552              	.LASF3:
+ 553 000e 73686F72 		.ascii	"short unsigned int\000"
+ 553      7420756E 
+ 553      7369676E 
+ 553      65642069 
+ 553      6E7400
+ 554              	.LASF16:
+ 555 0021 656E6162 		.ascii	"enableState\000"
+ 555      6C655374 
+ 555      61746500 
+ 556              	.LASF8:
+ 557 002d 756E7369 		.ascii	"unsigned int\000"
+ 557      676E6564 
+ 557      20696E74 
+ 557      00
+ 558              	.LASF28:
+ 559 003a 5350495F 		.ascii	"SPI_backup\000"
+ 559      6261636B 
+ 559      757000
+ 560              	.LASF26:
+ 561 0045 433A5C55 		.ascii	"C:\\Users\\jrdia\\OneDrive\\Sync\\Documents\\GitHub"
+ 561      73657273 
+ 561      5C6A7264 
+ 561      69615C4F 
+ 561      6E654472 
+ 562 0072 5C50536F 		.ascii	"\\PSoC-Bluetooth-Dualshock\\Bluetooth_Dev.cydsn\000"
+ 562      432D426C 
+ 562      7565746F 
+ 562      6F74682D 
+ 562      4475616C 
+ 563              	.LASF19:
+ 564 00a0 5350495F 		.ascii	"SPI_Sleep\000"
+ 564      536C6565 
+ 564      7000
+ 565              	.LASF12:
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 14
+
+
+ 566 00aa 75696E74 		.ascii	"uint8\000"
+ 566      3800
+ 567              	.LASF5:
+ 568 00b0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 568      20756E73 
+ 568      69676E65 
+ 568      6420696E 
+ 568      7400
+ 569              	.LASF7:
+ 570 00c2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 570      206C6F6E 
+ 570      6720756E 
+ 570      7369676E 
+ 570      65642069 
+ 571              	.LASF9:
+ 572 00d9 666C6F61 		.ascii	"float\000"
+ 572      7400
+ 573              	.LASF22:
+ 574 00df 5350495F 		.ascii	"SPI_ClearFIFO\000"
+ 574      436C6561 
+ 574      72464946 
+ 574      4F00
+ 575              	.LASF1:
+ 576 00ed 756E7369 		.ascii	"unsigned char\000"
+ 576      676E6564 
+ 576      20636861 
+ 576      7200
+ 577              	.LASF11:
+ 578 00fb 63686172 		.ascii	"char\000"
+ 578      00
+ 579              	.LASF4:
+ 580 0100 6C6F6E67 		.ascii	"long int\000"
+ 580      20696E74 
+ 580      00
+ 581              	.LASF17:
+ 582 0109 636E7472 		.ascii	"cntrPeriod\000"
+ 582      50657269 
+ 582      6F6400
+ 583              	.LASF10:
+ 584 0114 646F7562 		.ascii	"double\000"
+ 584      6C6500
+ 585              	.LASF25:
+ 586 011b 47656E65 		.ascii	"Generated_Source\\PSoC4\\SPI_PM.c\000"
+ 586      72617465 
+ 586      645F536F 
+ 586      75726365 
+ 586      5C50536F 
+ 587              	.LASF24:
+ 588 013b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 588      43313120 
+ 588      352E342E 
+ 588      31203230 
+ 588      31363036 
+ 589 016e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 589      20726576 
+ 589      6973696F 
+ 589      6E203233 
+ARM GAS  C:\Users\jrdia\AppData\Local\Temp\ccN2jpui.s 			page 15
+
+
+ 589      37373135 
+ 590 01a1 32202D66 		.ascii	"2 -ffunction-sections -ffat-lto-objects\000"
+ 590      66756E63 
+ 590      74696F6E 
+ 590      2D736563 
+ 590      74696F6E 
+ 591              	.LASF21:
+ 592 01c9 5350495F 		.ascii	"SPI_Stop\000"
+ 592      53746F70 
+ 592      00
+ 593              	.LASF20:
+ 594 01d2 5350495F 		.ascii	"SPI_Wakeup\000"
+ 594      57616B65 
+ 594      757000
+ 595              	.LASF0:
+ 596 01dd 7369676E 		.ascii	"signed char\000"
+ 596      65642063 
+ 596      68617200 
+ 597              	.LASF27:
+ 598 01e9 5350495F 		.ascii	"SPI_RestoreConfig\000"
+ 598      52657374 
+ 598      6F726543 
+ 598      6F6E6669 
+ 598      6700
+ 599              	.LASF14:
+ 600 01fb 6C6F6E67 		.ascii	"long double\000"
+ 600      20646F75 
+ 600      626C6500 
+ 601              	.LASF2:
+ 602 0207 73686F72 		.ascii	"short int\000"
+ 602      7420696E 
+ 602      7400
+ 603              	.LASF13:
+ 604 0211 72656738 		.ascii	"reg8\000"
+ 604      00
+ 605              	.LASF18:
+ 606 0216 5350495F 		.ascii	"SPI_BACKUP_STRUCT\000"
+ 606      4241434B 
+ 606      55505F53 
+ 606      54525543 
+ 606      5400
+ 607              	.LASF23:
+ 608 0228 5350495F 		.ascii	"SPI_Enable\000"
+ 608      456E6162 
+ 608      6C6500
+ 609              	.LASF15:
+ 610 0233 73697A65 		.ascii	"sizetype\000"
+ 610      74797065 
+ 610      00
+ 611              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

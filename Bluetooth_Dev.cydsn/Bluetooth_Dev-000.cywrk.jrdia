@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Bluetooth_Dev-000\Bluetooth_Dev\Source Files\Arduino.c">
+<ExpandedNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TopDesign</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Pins</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Analog</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Clocks</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Interrupts</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\System</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Directives</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Flash Security</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\address.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\Arduino.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\avrpins.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\BTD.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\BTHID.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\confdescparser.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\controllerEnums.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\cyapicallbacks.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\HardwareSerial.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\hexdump.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\hidboot.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\hidusagestr.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\iom328p.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\iprintf.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\macros.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\max3421e.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\message.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\parsetools.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\pins_arduino.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\Print.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\Printable.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\printhex.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\PS4BT.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\PS4Parser.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\settings.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\sink_parser.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\Stream.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\Usb.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\usb_ch9.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\USB_HOST_SERIAL.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\UsbCore.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\usbhid.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\usbhost.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\usbhub.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\version_helper.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files\WString.h</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\Arduino.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\BTD.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\BTHID.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\hidboot.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\iprintf.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\main.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\message.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\parsetools.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\PS4Parser.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\Usb.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\usbhid.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\usbhub.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Generated_Source\PSoC4</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TopDesign</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Pins</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Analog</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Clocks</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Interrupts</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\System</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Directives</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.cydwr\Flash Security</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Header Files</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\Arduino.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\BTD.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\BTHID.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\hidboot.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\iprintf.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\main.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\message.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\parsetools.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\PS4Parser.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\Usb.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\usbhid.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Source Files\usbhub.c</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Generated_Source</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TopDesign</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TopDesign</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\Arduino.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\BTD.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\BTHID.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\Clock_1.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\Cm0Start.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\hidboot.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\INT_PIN.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\INT_PIN_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\iprintf.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\isr_1.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\message.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\Millis_Timer.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\Millis_Timer_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\MISO.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\MISO_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\MOSI.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\MOSI_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\parsetools.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\PS4Parser.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SCK.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SCK_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SPI.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SPI_INT.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SPI_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SS.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\SS_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\timer_clock.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_rx_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SCBCLK.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_SPI_UART_INT.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_tx_PM.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\UART_UART_BOOT.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\Usb.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\usbhid.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Listing Files\usbhub.lst</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.elf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.hex</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\CortexM0\ARM_GCC_541\Debug\Bluetooth_Dev.map</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.gpdsc</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev.rpt</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\Bluetooth_Dev_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\PSoC 4 Architecture TRM</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\PSoC 4200 Family Datasheet</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\System Reference Guides</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\System Reference Guides\cy_boot_v5_60</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\System Reference Guides\cy_lfclk_v1_20</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_clock_v2_20</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_isr_v1_70.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_pins_v2_20</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\SCB_P4_v3_20.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\SPI_Master_v2_50.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TCPWM_P4_v2_10.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Bluetooth_Dev-000</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\PSoC 4 Architecture TRM</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\PSoC 4200 Family Datasheet</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\System Reference Guides</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\System Reference Guides\cy_boot_v5_60</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\System Reference Guides\cy_lfclk_v1_20</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_clock_v2_20</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_isr_v1_70.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_pins_v2_20</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\SCB_P4_v3_20.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\SPI_Master_v2_50.pdf</v>
+<v>Bluetooth_Dev-000\Bluetooth_Dev\TCPWM_P4_v2_10.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs />
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>
